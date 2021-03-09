@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
     [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
     [SerializeField] private float stickToGroundForce = 10;
-    [SerializeField] [Range(0.0f, 30.0f)] private float jumpStrength = 20.0f;
+    [SerializeField] [Range(0.0f, 20.0f)] private float jumpStrength = 10.0f;
     [SerializeField] [Range(0.0f, 5.0f)] private float gravityMultiplier = 2.0f;
     [SerializeField] [Range(0.0f, 5.0f)] private float interactDistance = 2.0f;
     [SerializeField] private bool lockCursor = true;
