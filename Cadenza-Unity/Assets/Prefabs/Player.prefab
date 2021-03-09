@@ -326,7 +326,7 @@ MonoBehaviour:
   movementSpeed: 6
   stickToGroundForce: 10
   jumpStrength: 10
-  gravityMultiplier: 0.8
+  gravityMultiplier: 2
   interactDistance: 2
   lockCursor: 1
   highlightMaterial: {fileID: 2100000, guid: 3c2b09054a940094692d6488db4eccf4, type: 2}

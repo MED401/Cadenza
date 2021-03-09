@@ -10,9 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0.0f, 5.0f)] private float gravityMultiplier = 2.0f;
     [SerializeField] [Range(0.0f, 5.0f)] private float interactDistance = 2.0f;
     [SerializeField] private bool lockCursor = true;
-    [SerializeField] Material highlightMaterial;
-    [SerializeField] Material defaultMaterial;
-
 
     private CharacterController controller;
     private new Camera camera;
@@ -27,12 +24,14 @@ public class PlayerController : MonoBehaviour
         playerInput = new InputMaster();
         controller = GetComponent<CharacterController>();
         camera = GetComponentInChildren<Camera>();
+
+        playerInput.OnFoot.Interact.performed += _ => Interact();
+        playerInput.OnFoot.Jump.performed += _ => Jump();
     }
 
     private void OnEnable()
     {
         playerInput.Enable();
-        Debug.Log("Hello");
     }
 
     private void OnDisable()
@@ -55,8 +54,6 @@ public class PlayerController : MonoBehaviour
         UpdateMouseLook();
         UpdateTarget();
         controller.Move(UpdateMovement() * Time.deltaTime);
-        playerInput.OnFoot.Jump.performed += _ => Jump();
-        playerInput.OnFoot.Interact.performed += _ => Interact();
     }
 
     private void UpdateMouseLook()
@@ -72,27 +69,31 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateTarget()
     {
-        if (currentTarget != null)
-        {
-            Renderer targetRenderer = currentTarget.GetComponent<Renderer>();
-            targetRenderer.material = defaultMaterial;
-            currentTarget = null;
-        }
-
         RaycastHit hit;
         if (Physics.Raycast(camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, camera.nearClipPlane)), camera.transform.forward, out hit, interactDistance))
         {
             Transform newTarget = hit.transform;
 
+            if (currentTarget != null && currentTarget != newTarget)
+            {
+                GameEvents.current.RemoveTarget(currentTarget.GetComponent<Interactable>().id);
+            }
+
             if (newTarget.CompareTag(selectableTag))
             {
-                Renderer targetRenderer = newTarget.GetComponent<Renderer>();
-
-                if (targetRenderer != null)
-                {
-                    targetRenderer.material = highlightMaterial;
-                }
                 currentTarget = newTarget;
+                GameEvents.current.TakeTarget(currentTarget.GetComponent<Interactable>().id);
+            }
+            else
+            {
+                currentTarget = null;
+            }
+        }
+        else
+        {
+            if (currentTarget != null)
+            {
+                GameEvents.current.RemoveTarget(currentTarget.GetComponent<Interactable>().id);
             }
         }
     }
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            currentDirection += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
+            currentDirection += Physics.gravity * gravityMultiplier * Time.deltaTime;
         }
 
         return currentDirection;
@@ -140,7 +141,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Interact()
     {
-
+        Debug.Log("Pressed Interact");
+        if (currentTarget != null)
+        {
+            Debug.Log("Interacted With Current Target");
+            GameEvents.current.Interact(currentTarget.GetComponent<Interactable>().id);
+        }
     }
 
 }
