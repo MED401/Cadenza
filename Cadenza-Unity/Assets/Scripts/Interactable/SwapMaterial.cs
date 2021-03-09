@@ -28,7 +28,6 @@ public class SwapMaterial : Interactable
     {
         if (id == this.id)
         {
-            Debug.Log("Activated Target" + this.id);
             if (currentMaterial != onInteractMaterial)
             {
                 currentMaterial = onInteractMaterial;

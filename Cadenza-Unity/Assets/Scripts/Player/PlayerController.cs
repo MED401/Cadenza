@@ -141,10 +141,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Interact()
     {
-        Debug.Log("Pressed Interact");
         if (currentTarget != null)
         {
-            Debug.Log("Interacted With Current Target");
             GameEvents.current.Interact(currentTarget.GetComponent<Interactable>().id);
         }
     }
