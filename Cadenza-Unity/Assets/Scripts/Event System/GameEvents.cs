@@ -2,37 +2,28 @@ using System;
 using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents current;
+    public static GameEvents Current;
 
     private void Awake()
     {
-        current = this;
+        Current = this;
     }
 
-    public event Action<int> onTarget;
+    public event Action<int> ONTarget;
     public void TakeTarget(int id)
     {
-        if (onTarget != null)
-        {
-            onTarget(id);
-        }
+        ONTarget?.Invoke(id);
     }
 
-    public event Action<int> onRemoveTarget;
+    public event Action<int> ONRemoveTarget;
     public void RemoveTarget(int id)
     {
-        if (onRemoveTarget != null)
-        {
-            onRemoveTarget(id);
-        }
+        ONRemoveTarget?.Invoke(id);
     }
 
-    public event Action<int> onInteract;
+    public event Action<int> ONInteract;
     public void Interact(int id)
     {
-        if (onInteract != null)
-        {
-            onInteract(id);
-        }
+        ONInteract?.Invoke(id);
     }
 }

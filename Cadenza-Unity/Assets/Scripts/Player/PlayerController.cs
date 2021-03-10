@@ -76,13 +76,13 @@ public class PlayerController : MonoBehaviour
 
             if (currentTarget != null && currentTarget != newTarget)
             {
-                GameEvents.current.RemoveTarget(currentTarget.GetComponent<Interactable>().id);
+                GameEvents.Current.RemoveTarget(currentTarget.GetComponent<Interactable>().id);
             }
 
             if (newTarget.CompareTag(selectableTag))
             {
                 currentTarget = newTarget;
-                GameEvents.current.TakeTarget(currentTarget.GetComponent<Interactable>().id);
+                GameEvents.Current.TakeTarget(currentTarget.GetComponent<Interactable>().id);
             }
             else
             {
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentTarget != null)
             {
-                GameEvents.current.RemoveTarget(currentTarget.GetComponent<Interactable>().id);
+                GameEvents.Current.RemoveTarget(currentTarget.GetComponent<Interactable>().id);
             }
         }
     }
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            GameEvents.current.Interact(currentTarget.GetComponent<Interactable>().id);
+            GameEvents.Current.Interact(currentTarget.GetComponent<Interactable>().id);
         }
     }
 

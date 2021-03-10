@@ -19,9 +19,9 @@ public class SwapMaterial : Interactable
         baseMaterial = renderer.material;
         currentMaterial = renderer.material;
 
-        GameEvents.current.onInteract += OnInteract;
-        GameEvents.current.onTarget += OnTarget;
-        GameEvents.current.onRemoveTarget += OnRemoveTarget;
+        GameEvents.Current.ONInteract += OnInteract;
+        GameEvents.Current.ONTarget += OnTarget;
+        GameEvents.Current.ONRemoveTarget += OnRemoveTarget;
     }
 
     public override void OnInteract(int id)
