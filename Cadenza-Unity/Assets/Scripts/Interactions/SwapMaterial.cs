@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Interactions
 {
-    public class SwapMaterial : Targetable, IInteractable
+    public class SwapMaterial : Interactable
     {
         [SerializeField] private Material onInteractMaterial;
         private Material baseMaterial;
@@ -19,9 +19,9 @@ namespace Interactions
             GameEvents.Current.ONInteract += OnInteract;
         }
 
-        public void OnInteract(int id)
+        public override void OnInteract(int id)
         {
-            if (this.ID != id) return;
+            if (ID != id) return;
 
             if (renderer.material == baseMaterial)
                 renderer.material = onInteractMaterial;

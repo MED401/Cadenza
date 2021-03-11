@@ -76,9 +76,9 @@ namespace Player
                 camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, camera.nearClipPlane)),
                 camera.transform.forward, out var hit, interactDistance))
             {
-                if (!hit.transform.GetComponent<Targetable>()) return;
+                if (!hit.transform.GetComponent<Interactable>()) return;
 
-                newTargetId = hit.transform.GetComponent<Targetable>().GetId();
+                newTargetId = hit.transform.GetComponent<Interactable>().GetId();
 
                 if (currentTargetId != 0 && currentTargetId != newTargetId)
                     GameEvents.Current.RemoveTarget(currentTargetId);
