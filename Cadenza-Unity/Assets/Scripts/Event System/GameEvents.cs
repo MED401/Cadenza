@@ -1,29 +1,43 @@
 using System;
 using UnityEngine;
-public class GameEvents : MonoBehaviour
+
+namespace Event_System
 {
-    public static GameEvents Current;
-
-    private void Awake()
+    public class GameEvents : MonoBehaviour
     {
-        Current = this;
-    }
+        public static GameEvents Current;
 
-    public event Action<int> ONTarget;
-    public void TakeTarget(int id)
-    {
-        ONTarget?.Invoke(id);
-    }
+        private void Awake()
+        {
+            Current = this;
+        }
 
-    public event Action<int> ONRemoveTarget;
-    public void RemoveTarget(int id)
-    {
-        ONRemoveTarget?.Invoke(id);
-    }
+        public event Action<int> ONTarget;
 
-    public event Action<int> ONInteract;
-    public void Interact(int id)
-    {
-        ONInteract?.Invoke(id);
+        public void TakeTarget(int id)
+        {
+            ONTarget?.Invoke(id);
+        }
+
+        public event Action<int> ONRemoveTarget;
+
+        public void RemoveTarget(int id)
+        {
+            ONRemoveTarget?.Invoke(id);
+        }
+
+        public event Action<int> ONInteract;
+
+        public void Interact(int id)
+        {
+            ONInteract?.Invoke(id);
+        }
+
+        public event Action<int> OnDrop;
+
+        public void Drop(int id)
+        {
+            OnDrop?.Invoke(id);
+        }
     }
 }

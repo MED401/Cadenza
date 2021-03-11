@@ -1,46 +1,32 @@
+using Event_System;
 using UnityEngine;
 
 namespace Interactions
 {
-    public class SwapMaterial : Interactable
+    public class SwapMaterial : Targetable, IInteractable
     {
-        [SerializeField] private Material onTargetMaterial;
         [SerializeField] private Material onInteractMaterial;
-
-        [SerializeField] private int _id;
-        private new Renderer renderer;
         private Material baseMaterial;
+        private new Renderer renderer;
 
-        private Material currentMaterial;
-
-        public override int id => _id;
-
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             renderer = GetComponent<Renderer>();
             var material = renderer.material;
             baseMaterial = material;
-            currentMaterial = material;
 
             GameEvents.Current.ONInteract += OnInteract;
-            GameEvents.Current.ONTarget += OnTarget;
-            GameEvents.Current.ONRemoveTarget += OnRemoveTarget;
         }
 
-        public override void OnInteract(int id)
+        public void OnInteract(int id)
         {
-            if (id != this.id) return;
-            currentMaterial = currentMaterial != onInteractMaterial ? onInteractMaterial : baseMaterial;
-            renderer.material = currentMaterial;
-        }
+            if (this.ID != id) return;
 
-        public override void OnTarget(int id)
-        {
-        }
-        public override void OnRemoveTarget(int id)
-        {
-            if (id != this.id) return;
-            renderer.material = currentMaterial;
+            if (renderer.material == baseMaterial)
+                renderer.material = onInteractMaterial;
+            else
+                renderer.material = baseMaterial;
         }
     }
 }

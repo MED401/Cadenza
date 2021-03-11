@@ -1,25 +1,49 @@
+using Event_System;
+using Player;
 using UnityEngine;
 
 namespace Interactions
 {
-    public class Pickup : Interactable
+    public class Pickup : Targetable, IInteractable
     {
-        [SerializeField] private int _id;
-        public override int id => id;
+        private Transform playerHand;
+        private Rigidbody rigidbody; 
 
-        public override void OnInteract(int id)
+        protected override void Start()
         {
-            throw new System.NotImplementedException();
+            base.Start();
+
+            rigidbody = gameObject.AddComponent<Rigidbody>();
+            rigidbody.isKinematic = true;
+            rigidbody.useGravity = false;
+            
+            playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
+                .Find("PickupContainer");
+
+            GameEvents.Current.ONInteract += OnInteract;
+            GameEvents.Current.OnDrop += OnDrop; 
         }
 
-        public override void OnRemoveTarget(int id)
+        public void OnInteract(int id)
         {
-            throw new System.NotImplementedException();
+            if (this.ID != id) return;
+
+            rigidbody.isKinematic = true;
+            rigidbody.useGravity = false;
+
+            Transform thisTransform = transform;
+            thisTransform.SetParent(playerHand);
+            thisTransform.localPosition = Vector3.zero;
+            thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
         }
 
-        public override void OnTarget(int id)
+        public void OnDrop(int id)
         {
-            throw new System.NotImplementedException();
+            if (this.ID != id) return;
+            
+            transform.parent = null;
+            rigidbody.isKinematic = false;
+            rigidbody.useGravity = true; 
         }
     }
 }

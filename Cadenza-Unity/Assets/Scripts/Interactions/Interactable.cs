@@ -1,9 +1,7 @@
-using UnityEngine;
-
-public abstract class Interactable : MonoBehaviour
+namespace Interactions
 {
-    public abstract int id { get; }
-    public abstract void OnTarget(int id);
-    public abstract void OnRemoveTarget(int id);
-    public abstract void OnInteract(int id);
+    internal interface IInteractable
+    {
+        void OnInteract(int id);
+    }
 }
