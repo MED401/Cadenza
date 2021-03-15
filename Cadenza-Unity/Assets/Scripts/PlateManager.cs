@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +5,6 @@ using UnityEngine.Events;
 
 public class PlateManager : MonoBehaviour
 {
-
     public static PlateManager instance;
 
     public List<GameObject> plate;
@@ -25,7 +23,8 @@ public class PlateManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        } else if (instance != this)
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
@@ -36,34 +35,33 @@ public class PlateManager : MonoBehaviour
         AssignColor(box);
         AssignColor(plate);
         BoxOrder();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void AssignColor(List<GameObject> objects)
     {
-        for(int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < objects.Count; i++)
         {
-            objects[i].GetComponent<Renderer>().material.color = color[i]; 
+            objects[i].GetComponent<Renderer>().material.color = color[i];
         }
     }
 
     void BoxOrder()
     {
         int number = 0; //Box ID
-        for(int i = 0; i < box.Count; i++)
+        for (int i = 0; i < box.Count; i++)
         {
             GameObject temp = box[i];       //box stored in temp variable
             int randomIndex = UnityEngine.Random.Range(i, box.Count);
-            box[i] = box[randomIndex]; 
+            box[i] = box[randomIndex];
             box[randomIndex] = temp;
 
-            box[i].GetComponent<Pickup>().boxId = number;
+            //box[i].GetComponent<Pickup>().boxId = number;
             plate[i].GetComponent<Plate>().plateId = number;
             number++;
         }

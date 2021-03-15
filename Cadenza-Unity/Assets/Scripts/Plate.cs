@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Plate : MonoBehaviour
@@ -11,11 +9,11 @@ public class Plate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<Pickup>() != null)        // OBS! Få hjælp af hector til at tilføje pickup på de boxe jeg har lavet OBS!
+        if (other.gameObject.GetComponent<Pickup>() != null)        // OBS! Fï¿½ hjï¿½lp af hector til at tilfï¿½je pickup pï¿½ de boxe jeg har lavet OBS!
         {
             objectsOnPlate++;
 
-            if(other.gameObject.GetComponent<Pickup>().ReturnBoxId() == padId)      //OBS! få et ID på boxen inde i pickup sådan så hvis plate og box ID matcher sidder boxen på den rigtige plate
+            //if(other.gameObject.GetComponent<Pickup>().ReturnBoxId() == padId)      //OBS! fï¿½ et ID pï¿½ boxen inde i pickup sï¿½dan sï¿½ hvis plate og box ID matcher sidder boxen pï¿½ den rigtige plate
             {
                 //Increases the number of correct placements 
             }
@@ -23,15 +21,15 @@ public class Plate : MonoBehaviour
 
     }
 
-    private void OnTriggerExit (Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.GetComponent<Pickup>() != null)
+        if (other.gameObject.GetComponent<Pickup>() != null)
         {
             objectsOnPlate--;
-            
+
             //Decrease the number of placements
 
-        if(other.gameObject.GetComponent<Pickup>().ReturnBoxId() == plateId)        //OBS! husk at lav et box ID
+            //if(other.gameObject.GetComponent<Pickup>().ReturnBoxId() == plateId)        //OBS! husk at lav et box ID
             {
                 //Decrease the number of correct placements 
             }
