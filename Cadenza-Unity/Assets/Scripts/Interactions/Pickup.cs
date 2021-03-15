@@ -7,7 +7,7 @@ namespace Interactions
     public class Pickup : Interactable
     {
         private Transform playerHand;
-        private Rigidbody rigidbody;
+        private new Rigidbody rigidbody;
 
         protected override void Start()
         {
