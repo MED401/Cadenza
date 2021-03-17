@@ -20,14 +20,31 @@ namespace Interactions
             playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
                 .Find("PickupContainer");
 
-            GameEvents.Current.ONInteract += OnInteract;
+            GameEvents.Current.OnPlace += OnPlace;
             GameEvents.Current.OnDrop += OnDrop;
+        }
+
+        private void OnPlace(int id, Plate target)
+        {
+            if (GetInstanceID() != id) return;
+
+            GetComponent<Collider>().enabled = true;
+            rigidbody.isKinematic = true;
+            rigidbody.useGravity = false;
+
+            var thisTransform = transform;
+            thisTransform.SetParent(target.placementLocation);
+            thisTransform.localPosition = Vector3.zero;
+            thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
+
+            GameEvents.Current.PlateActivation(target.GetInstanceID());
         }
 
         public override void OnInteract(int id)
         {
-            if (ID != id) return;
+            if (GetInstanceID() != id) return;
 
+            GetComponent<Collider>().enabled = false;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
 
@@ -39,8 +56,9 @@ namespace Interactions
 
         public void OnDrop(int id)
         {
-            if (ID != id) return;
+            if (GetInstanceID() != id) return;
 
+            GetComponent<Collider>().enabled = true;
             transform.parent = null;
             rigidbody.isKinematic = false;
             rigidbody.useGravity = true;

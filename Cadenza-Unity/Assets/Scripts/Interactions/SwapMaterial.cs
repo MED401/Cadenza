@@ -1,4 +1,3 @@
-using Event_System;
 using UnityEngine;
 
 namespace Interactions
@@ -15,13 +14,11 @@ namespace Interactions
             renderer = GetComponent<Renderer>();
             var material = renderer.material;
             baseMaterial = material;
-
-            GameEvents.Current.ONInteract += OnInteract;
         }
 
         public override void OnInteract(int id)
         {
-            if (ID != id) return;
+            if (this.GetInstanceID() != id) return;
 
             if (renderer.material == baseMaterial)
                 renderer.material = onInteractMaterial;

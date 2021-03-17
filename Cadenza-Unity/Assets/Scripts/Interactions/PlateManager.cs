@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Interactions
 {
@@ -23,16 +23,12 @@ namespace Interactions
         private void Awake()
         {
             if (instance == null)
-            {
                 instance = this;
-            }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
-            }
+            else if (instance != this) Destroy(gameObject);
         }
+
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             AssignColor(box);
             AssignColor(plate);
@@ -40,31 +36,27 @@ namespace Interactions
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-
         }
 
-        void AssignColor(List<GameObject> objects)
+        private void AssignColor(List<GameObject> objects)
         {
-            for (int i = 0; i < objects.Count; i++)
-            {
-                objects[i].GetComponent<Renderer>().material.color = color[i];
-            }
+            for (var i = 0; i < objects.Count; i++) objects[i].GetComponent<Renderer>().material.color = color[i];
         }
 
-        void BoxOrder()
+        private void BoxOrder()
         {
-            int number = 0; //Box ID
-            for (int i = 0; i < box.Count; i++)
+            var number = 0; //Box ID
+            for (var i = 0; i < box.Count; i++)
             {
-                GameObject temp = box[i];       //box stored in temp variable
-                int randomIndex = UnityEngine.Random.Range(i, box.Count);
+                var temp = box[i]; //box stored in temp variable
+                var randomIndex = Random.Range(i, box.Count);
                 box[i] = box[randomIndex];
                 box[randomIndex] = temp;
 
                 //box[i].GetComponent<Pickup>().boxId = number;
-                plate[i].GetComponent<Plate>().plateId = number;
+                //plate[i].GetComponent<Plate>().plateId = number;
                 number++;
             }
         }

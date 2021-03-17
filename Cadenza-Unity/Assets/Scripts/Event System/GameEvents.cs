@@ -1,4 +1,5 @@
 using System;
+using Interactions;
 using UnityEngine;
 
 namespace Event_System
@@ -31,6 +32,20 @@ namespace Event_System
         public void Interact(int id)
         {
             ONInteract?.Invoke(id);
+        }
+
+        public event Action<int, Plate> OnPlace;
+
+        public void Place(int id, Plate target)
+        {
+            OnPlace?.Invoke(id, target);
+        }
+
+        public event Action<int> OnPlateActivation;
+
+        public void PlateActivation(int id)
+        {
+            OnPlateActivation?.Invoke(id);
         }
 
         public event Action<int> OnDrop;

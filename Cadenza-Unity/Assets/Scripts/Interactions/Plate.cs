@@ -1,43 +1,31 @@
+using System.Collections;
+using Event_System;
 using UnityEngine;
 
 namespace Interactions
 {
-
-
-    public class Plate : MonoBehaviour
+    public class Plate : Interactable
     {
+        public Transform placementLocation;
+        private ArrayList correctObjects;
+        private Pickup objectOnPlate;
+        private int objectsOnPlate;
 
-        public int plateId;
-        int objectsOnPlate = 0;
-
-
-        private void OnTriggerEnter(Collider other)
+        protected override void Start()
         {
-            if (other.gameObject.GetComponent<Interactable>() != null)        // OBS! F� hj�lp af hector til at tilf�je pickup p� de boxe jeg har lavet OBS!
-            {
-                objectsOnPlate++;
+            base.Start();
 
-                //if(other.gameObject.GetComponent<Pickup>().ReturnBoxId() == padId)      //OBS! f� et ID p� boxen inde i pickup s�dan s� hvis plate og box ID matcher sidder boxen p� den rigtige plate
-                {
-                    //Increases the number of correct placements 
-                }
-            }
-
+            GameEvents.Current.OnPlateActivation += OnPlateActivation;
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnPlateActivation(int id)
         {
-            if (other.gameObject.GetComponent<Interactable>() != null)
-            {
-                objectsOnPlate--;
+            if (GetInstanceID() != id) return;
+        }
 
-                //Decrease the number of placements
-
-                //if(other.gameObject.GetComponent<Pickup>().ReturnBoxId() == plateId)        //OBS! husk at lav et box ID
-                {
-                    //Decrease the number of correct placements 
-                }
-            }
+        public override void OnInteract(int id)
+        {
+            if (GetInstanceID() != id) return;
         }
     }
 }
