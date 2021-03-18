@@ -15,12 +15,12 @@ namespace Player
         [SerializeField] private bool lockCursor = true;
         private new Camera camera;
         private float cameraPitch;
-        
         private CharacterController controller;
         private Vector3 currentDirection = Vector3.zero;
-        private int currentTargetId;
         private bool isJumping;
         private InputMaster playerInput;
+
+        private Interactable target;
 
         private void Awake()
         {
@@ -71,25 +71,25 @@ namespace Player
 
         private void UpdateTarget()
         {
-            var newTargetId = 0;
+            Interactable newTarget = null;
             if (Physics.Raycast(
                 camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, camera.nearClipPlane)),
                 camera.transform.forward, out var hit, interactDistance))
             {
                 if (!hit.transform.GetComponent<Interactable>()) return;
 
-                newTargetId = hit.transform.GetComponent<Interactable>().GetId();
+                newTarget = hit.transform.GetComponent<Interactable>();
 
-                if (currentTargetId != 0 && currentTargetId != newTargetId)
-                    GameEvents.Current.RemoveTarget(currentTargetId);
+                if (target != null && target != newTarget)
+                    GameEvents.Current.RemoveTarget(target.GetInstanceID());
 
-                currentTargetId = newTargetId;
-                GameEvents.Current.TakeTarget(currentTargetId);
+                target = newTarget;
+                GameEvents.Current.TakeTarget(target.GetInstanceID());
             }
             else
             {
-                if (currentTargetId != 0) GameEvents.Current.RemoveTarget(currentTargetId);
-                currentTargetId = 0;
+                if (target != null) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                target = null;
             }
         }
 
@@ -135,15 +135,12 @@ namespace Player
 
         private void Interact()
         {
-            if (camera.GetComponentInChildren<Pickup>())
-            {
-                GameEvents.Current.Drop(camera.GetComponentInChildren<Pickup>().GetId());
-            }
+            if (camera.GetComponentInChildren<Pickup>() & target is Plate)
+                GameEvents.Current.Place(camera.GetComponentInChildren<Pickup>().GetInstanceID(), target as Plate);
+            else if (camera.GetComponentInChildren<Pickup>())
+                GameEvents.Current.Drop(camera.GetComponentInChildren<Pickup>().GetInstanceID());
 
-            else if (currentTargetId != 0)
-            {
-                GameEvents.Current.Interact(currentTargetId);
-            }
+            else if (target != null) GameEvents.Current.Interact(target.GetInstanceID());
         }
     }
 }
