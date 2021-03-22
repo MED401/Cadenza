@@ -54,5 +54,12 @@ namespace Event_System
         {
             OnDrop?.Invoke(id);
         }
+        
+        public event Action<int> OnActivateDoor;
+
+        public void ActivateDoor(int id)
+        {
+            OnActivateDoor?.Invoke(id);
+        }
     }
 }
