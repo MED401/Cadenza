@@ -34,7 +34,7 @@ namespace Event_System
             ONInteract?.Invoke(id);
         }
 
-        public event Action<int, Plate> OnPlace;
+        public event Action<int, Plate> OnPlace; 
 
         public void Place(int id, Plate target)
         {
