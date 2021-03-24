@@ -6,13 +6,13 @@ namespace SoundMachine
     public class InstrumentButton : Button
     {
         [SerializeField] private string instrumentPath;
-        private Button[] pitchButtons; 
+        private SoundBox soundBox; 
 
         protected override void Start()
         {
             base.Start();
 
-            pitchButtons = transform.parent.parent.GetChild(1).GetComponentsInChildren<Button>();
+            soundBox = transform.parent.parent.GetComponent<SoundBox>();
         }
 
         public override void OnInteract(int id)
