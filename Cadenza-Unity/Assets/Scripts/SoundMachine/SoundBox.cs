@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Event_System;
+﻿using Event_System;
 using UnityEngine;
 
 namespace SoundMachine
@@ -9,15 +7,14 @@ namespace SoundMachine
     {
         [SerializeField] private SoundObject soundObject;
         [SerializeField] private Transform soundObjectHolder;
-        public AudioSource[] sounds;
 
-        private List<Button> instrumentButtons;
-        private List<Button> pitchButtons;
+        [SerializeField] private PitchButton[] pitchButtons;
+        [SerializeField] private InstrumentButton[] instrumentButtons;
 
         private void Start()
         {
-            foreach (PitchButton btn in transform.GetChild(1)) pitchButtons.Add(btn);
-            foreach (InstrumentButton btn in transform.GetChild(2)) instrumentButtons.Add(btn);
+            pitchButtons = transform.GetChild(1).GetComponentsInChildren<PitchButton>();
+            instrumentButtons = transform.GetChild(2).GetComponentsInChildren<InstrumentButton>();
 
             GameEvents.Current.OnChangeInstrument += OnChangeInstrument;
             GameEvents.Current.OnApplyPitch += OnApplyPitch;
@@ -25,17 +22,20 @@ namespace SoundMachine
 
         private void OnApplyPitch(int id, AudioClip clip)
         {
-            throw new NotImplementedException();
+            if (GetInstanceID() != id) return;
+
+            soundObject.SoundSource.clip = clip; 
+            soundObject.SoundSource.Play();
         }
 
         private void OnChangeInstrument(int id, string path)
         {
             if (GetInstanceID() != id) return;
 
-            var index = 0;
-            foreach (PitchButton btn in pitchButtons)
+            var index = 1;
+            foreach (var btn in pitchButtons)
             {
-                btn.clip = Resources.Load<AudioClip>(path + "/" + index);
+                btn.Clip = Resources.Load<AudioClip>(path + index);
                 ++index;
             }
         }

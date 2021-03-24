@@ -31,7 +31,6 @@ namespace Interactions
             GetComponent<Collider>().enabled = true;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
-            FindObjectOfType<AudioManager>().Play("C4");	
 
             var thisTransform = transform;
             thisTransform.SetParent(target.placementLocation);
