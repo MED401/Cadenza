@@ -61,5 +61,19 @@ namespace Event_System
         {
             OnActivateDoor?.Invoke(id);
         }
+
+        public event Action<int, string> OnChangeInstrument;
+
+        public void ChangeInstrument(int id, string path)
+        {
+            OnChangeInstrument?.Invoke(id, path);
+        }
+
+        public event Action<int, AudioClip> OnApplyPitch;
+
+        public void ApplyPitch(int id, AudioClip clip)
+        {
+            OnApplyPitch?.Invoke(id, clip);
+        }
     }
 }
