@@ -4,19 +4,6 @@ namespace PassiveInteractions
 {
     public class PressurePlateDoor : MonoBehaviour
     {
-        /*[SerializeField]
-        private GameObject door;
-        private void Start()
-        {
-            GameEvents.Current.OnActivateDoor += OnActivate;
-        }
-
-        private void OnActivate(int id)
-        {
-            if (GetInstanceID() != id) return;
-            
-        }
-    }*/
         [SerializeField] private GameObject door;
         private bool isOpened;
 

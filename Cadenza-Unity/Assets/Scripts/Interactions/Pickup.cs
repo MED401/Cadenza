@@ -31,7 +31,6 @@ namespace Interactions
             GetComponent<Collider>().enabled = true;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
-           
 
             var thisTransform = transform;
             thisTransform.SetParent(target.placementLocation);
