@@ -48,10 +48,14 @@ namespace Interactions
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
 
+            Instantiate(this.gameObject,this.gameObject.transform.parent);
+
             var thisTransform = transform;
             thisTransform.SetParent(playerHand);
             thisTransform.localPosition = Vector3.zero;
             thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
+            
+            
         }
 
         public void OnDrop(int id)

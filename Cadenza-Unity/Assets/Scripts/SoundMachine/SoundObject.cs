@@ -7,7 +7,7 @@ namespace SoundMachine
     {
         public AudioSource SoundSource { get; set; }
         private Pickup pickup;
-
+        private Pickup PickupClone;
         private void Start()
         {
             pickup = this.gameObject.AddComponent<Pickup>();
