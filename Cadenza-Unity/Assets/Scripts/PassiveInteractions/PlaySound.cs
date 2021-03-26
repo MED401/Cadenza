@@ -1,24 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySound : MonoBehaviour {
-
-    public AudioSource audio;
-    public bool alreadyPlayed = false;
-
-    public AudioSource Door;
-    void Start()
+namespace PassiveInteractions
+{
+    public class PlaySound : MonoBehaviour
     {
-        audio = GetComponent<AudioSource>();
-    }
+        public AudioSource audioClip;
+        public bool alreadyPlayed;
 
-    void OnTriggerEnter()
-    {
-        if (!alreadyPlayed)
+        public AudioSource door;
+
+        private void Start()
         {
-            audio.Play();
-            Door.Play();
+            audioClip = GetComponent<AudioSource>();
+        }
+
+        private void OnTriggerEnter()
+        {
+            if (alreadyPlayed) return;
+            
+            audioClip.Play();
+            door.Play();
             alreadyPlayed = true;
         }
     }
