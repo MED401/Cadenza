@@ -47,9 +47,7 @@ namespace Interactions
             GetComponent<Collider>().enabled = false;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
-
-            Instantiate(this.gameObject,this.gameObject.transform.parent);
-
+            
             var thisTransform = transform;
             thisTransform.SetParent(playerHand);
             thisTransform.localPosition = Vector3.zero;
