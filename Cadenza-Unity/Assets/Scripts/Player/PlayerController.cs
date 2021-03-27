@@ -1,11 +1,14 @@
 using Event_System;
 using Interactions;
+using LevelSystem;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public static Transform _playerPickupContainer;
+
         [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
         [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
         [SerializeField] private float stickToGroundForce = 10;
@@ -27,6 +30,8 @@ namespace Player
             playerInput = new InputMaster();
             controller = GetComponent<CharacterController>();
             camera = GetComponentInChildren<Camera>();
+            _playerPickupContainer = camera.transform.GetChild(1);
+            
 
             playerInput.OnFoot.Interact.performed += _ => Interact();
             playerInput.OnFoot.Jump.performed += _ => Jump();
@@ -135,8 +140,8 @@ namespace Player
 
         private void Interact()
         {
-            if (camera.GetComponentInChildren<Pickup>() & target is Plate)
-                GameEvents.Current.Place(camera.GetComponentInChildren<Pickup>().GetInstanceID(), target as Plate);
+            if (camera.GetComponentInChildren<Pickup>() & target is SoundObjectPlatform)
+                GameEvents.Current.Place(camera.GetComponentInChildren<Pickup>().GetInstanceID(), target as SoundObjectPlatform);
             else if (camera.GetComponentInChildren<Pickup>())
                 GameEvents.Current.Drop(camera.GetComponentInChildren<Pickup>().GetInstanceID());
 

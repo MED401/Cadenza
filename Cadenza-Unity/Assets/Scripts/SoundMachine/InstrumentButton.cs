@@ -15,7 +15,7 @@ namespace SoundMachine
             soundBox = transform.parent.parent.GetComponent<SoundBox>();
         }
 
-        public override void OnInteract(int id)
+        protected override void OnInteract(int id)
         {
             if (GetInstanceID() != id) return;
             

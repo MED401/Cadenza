@@ -1,12 +1,21 @@
-﻿using SoundMachine;
+﻿using Interactions;
+using SoundMachine;
 using UnityEngine;
 
 namespace LevelSystem
 {
-    public class SoundObjectPlatform : MonoBehaviour
+    public class SoundObjectPlatform : Interactable
     {
+        [SerializeField] private CorrectInstrument correctInstrument = CorrectInstrument.Guitar;
+        [SerializeField] private CorrectPitch correctPitch = CorrectPitch.Low;
+        private readonly bool interactable = true;
+
         private SoundObject currentSoundObject;
-        private Transform soundObjectContainer; 
+        
+        protected override void OnInteract(int id)
+        {
+            if ((GetInstanceID() != id) | (currentSoundObject == null) | (interactable != true)) return;
+        }
 
         private enum CorrectInstrument
         {
