@@ -1,6 +1,6 @@
 using System;
-using Interactions;
 using LevelSystem;
+using SoundMachine;
 using UnityEngine;
 
 namespace Event_System
@@ -35,18 +35,11 @@ namespace Event_System
             ONInteract?.Invoke(id);
         }
 
-        public event Action<int, SoundObjectPlatform> ONPlace; 
+        public event Action<int, SoundObjectPlatform> ONPlace;
 
         public void Place(int id, SoundObjectPlatform target)
         {
             ONPlace?.Invoke(id, target);
-        }
-
-        public event Action<int> ONPlateActivation;
-
-        public void PlateActivation(int id)
-        {
-            ONPlateActivation?.Invoke(id);
         }
 
         public event Action<int> ONDrop;
@@ -54,13 +47,6 @@ namespace Event_System
         public void Drop(int id)
         {
             ONDrop?.Invoke(id);
-        }
-        
-        public event Action<int> ONActivateDoor;
-
-        public void ActivateDoor(int id)
-        {
-            ONActivateDoor?.Invoke(id);
         }
 
         public event Action<int, string> ONChangeInstrument;
@@ -76,5 +62,20 @@ namespace Event_System
         {
             ONApplyPitch?.Invoke(id, clip);
         }
+
+        public event Action<int, SoundObject> ONValidatePlace;
+
+        public void ValidatePlace(int id, SoundObject soundObject)
+        {
+            ONValidatePlace?.Invoke(id, soundObject);
+        }
+
+        public event Action<int> ONValidateSolution;
+
+        public void ValidateSolution(int id)
+        {
+            ONValidateSolution?.Invoke(id);
+        }
+        
     }
 }

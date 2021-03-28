@@ -24,8 +24,8 @@ namespace SoundMachine
         {
             if (GetInstanceID() != id) return;
 
-            soundObject.SoundSource.clip = clip; 
-            soundObject.SoundSource.Play();
+            soundObject.AudioSource.clip = clip; 
+            soundObject.AudioSource.Play();
         }
 
         private void OnChangeInstrument(int id, string path)

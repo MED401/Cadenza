@@ -1,9 +1,10 @@
 ﻿using Event_System;
+using Interactions;
 using UnityEngine;
 
 namespace SoundMachine
 {
-    public class InstrumentButton : Button
+    public class InstrumentButton : Interactable, IButton
     {
         [SerializeField] private Instrument instrument = Instrument.Guitar;
         private SoundBox soundBox;

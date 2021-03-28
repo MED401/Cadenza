@@ -1,7 +1,9 @@
 using Event_System;
 using Interactions;
 using LevelSystem;
+using SoundMachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -24,6 +26,7 @@ namespace Player
         private InputMaster playerInput;
 
         private Interactable target;
+        private Text useInfo;
 
         private void Awake()
         {
@@ -31,7 +34,7 @@ namespace Player
             controller = GetComponent<CharacterController>();
             camera = GetComponentInChildren<Camera>();
             _playerPickupContainer = camera.transform.GetChild(1);
-            
+            useInfo = camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
 
             playerInput.OnFoot.Interact.performed += _ => Interact();
             playerInput.OnFoot.Jump.performed += _ => Jump();
@@ -86,16 +89,29 @@ namespace Player
                 newTarget = hit.transform.GetComponent<Interactable>();
 
                 if (target != null && target != newTarget)
+                {
                     GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                }
 
                 target = newTarget;
                 GameEvents.Current.TakeTarget(target.GetInstanceID());
+                UpdateInfoText(target);
             }
             else
             {
                 if (target != null) GameEvents.Current.RemoveTarget(target.GetInstanceID());
                 target = null;
+                UpdateInfoText(target);
             }
+        }
+
+        private void UpdateInfoText(Interactable target)
+        {
+            useInfo.text = "";
+            if (target is Pickup) useInfo.text = "Pick Up";
+            if (target is IButton) useInfo.text = "Activate";
+            if (target is SoundObjectPlatform) useInfo.text = "Activate";
+            if (target is SoundObjectPlatform & _playerPickupContainer.childCount > 0) useInfo.text = "Place";
         }
 
         private Vector3 UpdateMovement()
@@ -141,7 +157,8 @@ namespace Player
         private void Interact()
         {
             if (camera.GetComponentInChildren<Pickup>() & target is SoundObjectPlatform)
-                GameEvents.Current.Place(camera.GetComponentInChildren<Pickup>().GetInstanceID(), target as SoundObjectPlatform);
+                GameEvents.Current.Place(camera.GetComponentInChildren<Pickup>().GetInstanceID(),
+                    target as SoundObjectPlatform);
             else if (camera.GetComponentInChildren<Pickup>())
                 GameEvents.Current.Drop(camera.GetComponentInChildren<Pickup>().GetInstanceID());
 

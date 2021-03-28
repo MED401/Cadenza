@@ -1,9 +1,10 @@
 ﻿using Event_System;
+using Interactions;
 using UnityEngine;
 
 namespace SoundMachine
 {
-    public class PitchButton : Button
+    public class PitchButton : Interactable, IButton
     {
         private SoundBox soundBox;
         public AudioClip Clip { get; set; }

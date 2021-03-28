@@ -2,13 +2,14 @@ using System.Collections;
 using Event_System;
 using LevelSystem;
 using Player;
+using SoundMachine;
 using UnityEngine;
 
 namespace Interactions
 {
     public class Pickup : Interactable
     {
-        protected bool interactable;
+        protected bool interactable = true;
         protected Transform playerHand;
         protected new Rigidbody rigidbody;
 
@@ -28,7 +29,14 @@ namespace Interactions
             GameEvents.Current.ONDrop += OnDrop;
         }
 
-        private void OnPlace(int id, SoundObjectPlatform target)
+        protected override void OnTarget(int id)
+        {
+            if ((GetInstanceID() != id) | !interactable) return;
+
+            outline.enabled = true;
+        }
+
+        protected virtual void OnPlace(int id, SoundObjectPlatform target)
         {
             if (GetInstanceID() != id) return;
 
@@ -37,13 +45,7 @@ namespace Interactions
             rigidbody.useGravity = false;
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
-        }
-
-        protected new void OnTarget(int id)
-        {
-            if ((GetInstanceID() != id) | !interactable) return;
-
-            outline.enabled = true;
+            GameEvents.Current.ValidatePlace(target.GetInstanceID(), this as SoundObject);
         }
 
 
@@ -68,7 +70,7 @@ namespace Interactions
             rigidbody.useGravity = true;
         }
 
-        private IEnumerator LerpPosition(Transform target, float duration)
+        protected IEnumerator LerpPosition(Transform target, float duration)
         {
             float time = 0;
             interactable = false;

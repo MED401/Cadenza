@@ -1,0 +1,7 @@
+namespace Interactions
+{
+    interface IButton
+    {
+        
+    }
+}

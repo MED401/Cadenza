@@ -26,14 +26,14 @@ namespace Interactions
         protected abstract void OnInteract(int id);
 
 
-        protected void OnTarget(int id)
+        protected virtual void OnTarget(int id)
         {
             if (GetInstanceID() != id) return;
 
             outline.enabled = true;
         }
 
-        protected void OnRemoveTarget(int id)
+        protected virtual void OnRemoveTarget(int id)
         {
             if (GetInstanceID() != id) return;
 
