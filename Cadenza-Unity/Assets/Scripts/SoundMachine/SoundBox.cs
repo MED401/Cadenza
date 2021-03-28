@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Event_System;
 using Interactions;
@@ -23,13 +24,13 @@ namespace SoundMachine
 
             GameEvents.Current.OnChangeInstrument += OnChangeInstrument;
             GameEvents.Current.OnApplyPitch += OnApplyPitch;
-            //GameEvents.Current.ONInteract += OnSoundObjectPickUp;
+            GameEvents.Current.ONInteract += OnSoundObjectPickUp;
            
         }
 
-        private void Update()
+        private void OnSoundObjectPickUp(int id)
         {
-            if (soundObjectHolder.childCount > 0)
+            /*if (soundObjectHolder.childCount > 0)
             {
                 return;
             }
@@ -37,7 +38,16 @@ namespace SoundMachine
             {
                 GameObject newBall = Instantiate(soundObject, soundObjectHolder); 
                 newBall.SetActive(true);
-            }
+            }*/
+
+            StartCoroutine(CreateNewBall());
+        }
+
+        private IEnumerator CreateNewBall()
+        {
+            yield return new WaitForSeconds(1);
+            GameObject newBall = Instantiate(soundObject, soundObjectHolder); 
+                newBall.SetActive(true);
         }
 
         private void OnApplyPitch(int id, AudioClip clip)
