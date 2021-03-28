@@ -1,16 +1,31 @@
 ﻿using Interactions;
+using LevelSystem;
 using UnityEngine;
 
 namespace SoundMachine
 {
-    public class SoundObject : MonoBehaviour
+    public class SoundObject : Pickup
     {
         public AudioSource SoundSource { get; set; }
         private Pickup pickup;
-        private void Start()
+
+        public AudioSource AudioSource { get; set; }
+
+        protected override void Start()
         {
-            pickup = this.gameObject.AddComponent<Pickup>();
-            SoundSource = GetComponent<AudioSource>();
+            base.Start();
+            AudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        protected override void OnPlace(int id, SoundObjectPlatform target)
+        {
+            if (GetInstanceID() != id) return;
+
+            GetComponent<Collider>().enabled = true;
+            rigidbody.isKinematic = true;
+            rigidbody.useGravity = false;
+
+            StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
         }
     }
 }

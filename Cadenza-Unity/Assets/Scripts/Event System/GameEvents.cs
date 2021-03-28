@@ -1,5 +1,6 @@
 using System;
-using Interactions;
+using LevelSystem;
+using SoundMachine;
 using UnityEngine;
 
 namespace Event_System
@@ -34,46 +35,47 @@ namespace Event_System
             ONInteract?.Invoke(id);
         }
 
-        public event Action<int, Plate> OnPlace; 
+        public event Action<int, SoundObjectPlatform> ONPlace;
 
-        public void Place(int id, Plate target)
+        public void Place(int id, SoundObjectPlatform target)
         {
-            OnPlace?.Invoke(id, target);
+            ONPlace?.Invoke(id, target);
         }
 
-        public event Action<int> OnPlateActivation;
-
-        public void PlateActivation(int id)
-        {
-            OnPlateActivation?.Invoke(id);
-        }
-
-        public event Action<int> OnDrop;
+        public event Action<int> ONDrop;
 
         public void Drop(int id)
         {
-            OnDrop?.Invoke(id);
-        }
-        
-        public event Action<int> OnActivateDoor;
-
-        public void ActivateDoor(int id)
-        {
-            OnActivateDoor?.Invoke(id);
+            ONDrop?.Invoke(id);
         }
 
-        public event Action<int, string> OnChangeInstrument;
+        public event Action<int, string> ONChangeInstrument;
 
         public void ChangeInstrument(int id, string path)
         {
-            OnChangeInstrument?.Invoke(id, path);
+            ONChangeInstrument?.Invoke(id, path);
         }
 
-        public event Action<int, AudioClip> OnApplyPitch;
+        public event Action<int, AudioClip> ONApplyPitch;
 
         public void ApplyPitch(int id, AudioClip clip)
         {
-            OnApplyPitch?.Invoke(id, clip);
+            ONApplyPitch?.Invoke(id, clip);
         }
+
+        public event Action<int, SoundObject> ONValidatePlace;
+
+        public void ValidatePlace(int id, SoundObject soundObject)
+        {
+            ONValidatePlace?.Invoke(id, soundObject);
+        }
+
+        public event Action<int> ONValidateSolution;
+
+        public void ValidateSolution(int id)
+        {
+            ONValidateSolution?.Invoke(id);
+        }
+        
     }
 }

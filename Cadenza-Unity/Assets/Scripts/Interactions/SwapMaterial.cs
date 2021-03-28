@@ -16,7 +16,7 @@ namespace Interactions
             baseMaterial = material;
         }
 
-        public override void OnInteract(int id)
+        protected override void OnInteract(int id)
         {
             if (this.GetInstanceID() != id) return;
 

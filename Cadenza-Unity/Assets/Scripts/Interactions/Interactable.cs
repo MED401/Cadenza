@@ -5,15 +5,15 @@ namespace Interactions
 {
     public abstract class Interactable : MonoBehaviour
     {
-        protected Outline Outline;
+        protected Outline outline;
 
         private void Awake()
         {
-            Outline = gameObject.AddComponent<Outline>();
-            Outline.OutlineColor = Color.white;
-            Outline.OutlineWidth = 3;
-            Outline.OutlineMode = Outline.Mode.OutlineVisible;
-            Outline.enabled = false;
+            outline = gameObject.AddComponent<Outline>();
+            outline.OutlineColor = Color.white;
+            outline.OutlineWidth = 3;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+            outline.enabled = false;
         }
 
         protected virtual void Start()
@@ -23,21 +23,21 @@ namespace Interactions
             GameEvents.Current.ONTarget += OnTarget;
         }
 
-        public abstract void OnInteract(int id);
+        protected abstract void OnInteract(int id);
 
 
-        public void OnTarget(int id)
+        protected virtual void OnTarget(int id)
         {
-            if (this.GetInstanceID() != id) return;
+            if (GetInstanceID() != id) return;
 
-            Outline.enabled = true;
+            outline.enabled = true;
         }
 
-        public void OnRemoveTarget(int id)
+        protected virtual void OnRemoveTarget(int id)
         {
-            if (this.GetInstanceID() != id) return;
+            if (GetInstanceID() != id) return;
 
-            Outline.enabled = false;
+            outline.enabled = false;
         }
     }
 }

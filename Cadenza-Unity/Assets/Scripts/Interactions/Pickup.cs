@@ -1,13 +1,17 @@
+using System.Collections;
 using Event_System;
+using LevelSystem;
 using Player;
+using SoundMachine;
 using UnityEngine;
 
 namespace Interactions
 {
     public class Pickup : Interactable
     {
-        private Transform playerHand;
-        private new Rigidbody rigidbody;
+        protected bool interactable = true;
+        protected Transform playerHand;
+        protected new Rigidbody rigidbody;
 
         protected override void Start()
         {
@@ -20,11 +24,19 @@ namespace Interactions
             playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
                 .Find("PickupContainer");
 
-            GameEvents.Current.OnPlace += OnPlace;
-            GameEvents.Current.OnDrop += OnDrop;
+            GameEvents.Current.ONPlace += OnPlace;
+            GameEvents.Current.ONTarget += OnTarget;
+            GameEvents.Current.ONDrop += OnDrop;
         }
 
-        private void OnPlace(int id, Plate target)
+        protected override void OnTarget(int id)
+        {
+            if ((GetInstanceID() != id) | !interactable) return;
+
+            outline.enabled = true;
+        }
+
+        protected virtual void OnPlace(int id, SoundObjectPlatform target)
         {
             if (GetInstanceID() != id) return;
 
@@ -32,31 +44,23 @@ namespace Interactions
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
 
-            var thisTransform = transform;
-            thisTransform.SetParent(target.placementLocation);
-            thisTransform.localPosition = Vector3.zero;
-            thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
-
-            GameEvents.Current.PlateActivation(target.GetInstanceID());
+            StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
+            GameEvents.Current.ValidatePlace(target.GetInstanceID(), this as SoundObject);
         }
 
-        public override void OnInteract(int id)
+
+        protected override void OnInteract(int id)
         {
             if (GetInstanceID() != id) return;
 
             GetComponent<Collider>().enabled = false;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
-            
-            var thisTransform = transform;
-            thisTransform.SetParent(playerHand);
-            thisTransform.localPosition = Vector3.zero;
-            thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
-            
-            
+
+            StartCoroutine(LerpPosition(playerHand, 0.05f));
         }
 
-        public void OnDrop(int id)
+        private void OnDrop(int id)
         {
             if (GetInstanceID() != id) return;
 
@@ -64,6 +68,25 @@ namespace Interactions
             transform.parent = null;
             rigidbody.isKinematic = false;
             rigidbody.useGravity = true;
+        }
+
+        protected IEnumerator LerpPosition(Transform target, float duration)
+        {
+            float time = 0;
+            interactable = false;
+            var startPosition = transform.position;
+
+            while (time < duration)
+            {
+                transform.position = Vector3.Lerp(startPosition, target.position, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            var thisTransform = transform;
+            thisTransform.SetParent(target);
+            thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
+            interactable = true;
         }
     }
 }
