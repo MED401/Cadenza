@@ -1,4 +1,7 @@
-﻿using Event_System;
+﻿using System;
+using System.Collections.Generic;
+using Event_System;
+using Interactions;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -20,17 +23,21 @@ namespace SoundMachine
 
             GameEvents.Current.OnChangeInstrument += OnChangeInstrument;
             GameEvents.Current.OnApplyPitch += OnApplyPitch;
-            GameEvents.Current.ONInteract += OnSoundObjectPickUp;
+            //GameEvents.Current.ONInteract += OnSoundObjectPickUp;
+           
         }
 
-        private void OnSoundObjectPickUp(int id) //Hertil
+        private void Update()
         {
-            Debug.Log("Goodbye");
-            if (soundObject.transform.GetInstanceID() != id)
-
-                Debug.Log("Hello");
-            //Instantiate(soundObject.gameObject, soundObjectHolder);
-            Instantiate(soundObject.gameObject, new Vector3(0,2,0), quaternion.identity, soundObjectHolder);
+            if (soundObjectHolder.childCount > 0)
+            {
+                return;
+            }
+            else
+            {
+                GameObject newBall = Instantiate(soundObject, soundObjectHolder); 
+                newBall.SetActive(true);
+            }
         }
 
         private void OnApplyPitch(int id, AudioClip clip)
