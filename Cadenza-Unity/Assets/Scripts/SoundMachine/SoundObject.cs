@@ -6,6 +6,9 @@ namespace SoundMachine
 {
     public class SoundObject : Pickup
     {
+        public AudioSource SoundSource { get; set; }
+        private Pickup pickup;
+
         public AudioSource AudioSource { get; set; }
 
         protected override void Start()
