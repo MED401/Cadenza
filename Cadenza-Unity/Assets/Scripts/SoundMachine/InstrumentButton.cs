@@ -6,7 +6,7 @@ namespace SoundMachine
 {
     public class InstrumentButton : Interactable, IButton
     {
-        [SerializeField] private Instrument instrument = Instrument.Guitar;
+        [SerializeField] private Instrument instrument;
         private SoundBox soundBox;
 
         protected override void Start()
@@ -20,44 +20,7 @@ namespace SoundMachine
         {
             if (GetInstanceID() != id) return;
             
-            switch (instrument)
-            {
-                case Instrument.Guitar:
-                {
-                    GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/Guitar/");
-                    break;
-                }
-                case Instrument.Vocal:
-                {
-                    GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/Vocals/");
-                    break;
-                }
-                case Instrument.Oboe:
-                {
-                    GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/Oboe/");
-                    break;
-                }
-                case Instrument.Organ:
-                {
-                    GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/Organ/");
-                    break;
-                }
-                case Instrument.SpaceBot:
-                {
-                    GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/SpaceBot/");
-                    break;
-                }
-                case Instrument.Tuba:
-                {
-                    GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/Tuba/");
-                    break;
-                }
-                default:
-                {
-                    Debug.Log("Invalid Instrument");
-                    break;
-                }
-            }
+            GameEvents.Current.ChangeInstrument(soundBox.GetInstanceID(), "Audio/Sounds/" + instrument);
         }
 
         private enum Instrument

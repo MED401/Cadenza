@@ -7,7 +7,7 @@ namespace Interactions
     {
         protected Outline outline;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             outline = gameObject.AddComponent<Outline>();
             outline.OutlineColor = Color.white;

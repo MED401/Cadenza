@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Event_System;
 using UnityEngine;
@@ -8,6 +10,8 @@ namespace LevelSystem
     {
         [SerializeField] private SoundObjectPlatform[] soundObjectPlatforms;
         [SerializeField] private Transform exitDoor;
+        [SerializeField] private Transform moveTransformTarget; 
+
         public AudioClip[] CorrectSoundClips { get; set; }
 
         private void Start()
@@ -27,14 +31,28 @@ namespace LevelSystem
             var checks = new bool[soundObjectPlatforms.Length];
 
             for (var i = 0; i < soundObjectPlatforms.Length; i++)
-                checks[i] = soundObjectPlatforms[i].HasCorrectSoundObject();
+                checks[i] = soundObjectPlatforms[i].HasCorrectAudioClip;
 
             if (checks.All(i => true)) exitDoor.position = Vector3.zero;
         }
 
         public void EMoveTransform()
         {
-            exitDoor.position = Vector3.zero;
+            Debug.Log("Emovetransform called");
+            StartCoroutine(LerpPosition(moveTransformTarget, new Vector3(0, 5, 0), 5f)); 
+        }
+
+        private IEnumerator LerpPosition(Transform targetObject, Vector3 targetLocation, float duration)
+        {
+            float time = 0;
+            var startPosition = targetObject.position;
+
+            while (time < duration)
+            {
+                targetObject.position = Vector3.Lerp(startPosition, startPosition + targetLocation, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }
