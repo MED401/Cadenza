@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Event_System;
+using SoundMachine;
 using UnityEngine;
 
 namespace LevelSystem
@@ -28,12 +29,13 @@ namespace LevelSystem
         private void OnValidateSolution(int id)
         {
             if (GetInstanceID() != id) return;
-            var checks = new bool[soundObjectPlatforms.Length];
 
-            for (var i = 0; i < soundObjectPlatforms.Length; i++)
-                checks[i] = soundObjectPlatforms[i].HasCorrectAudioClip;
+            foreach (SoundObjectPlatform soundObjectPlatform in soundObjectPlatforms)
+            {
+                if (!soundObjectPlatform.HasCorrectAudioClip) return;
+            }
 
-            if (checks.All(i => true)) exitDoor.position = Vector3.zero;
+            exitDoor.position = Vector3.zero;
         }
 
         public void EMoveTransform()

@@ -46,8 +46,7 @@ namespace Interactions
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
         }
-
-
+        
         protected override void OnInteract(int id)
         {
             if (GetInstanceID() != id) return;
@@ -67,6 +66,7 @@ namespace Interactions
             transform.parent = null;
             rigidbody.isKinematic = false;
             rigidbody.useGravity = true;
+            rigidbody.AddForce(playerHand.forward * 200f);
         }
 
         protected IEnumerator LerpPosition(Transform target, float duration)
@@ -85,6 +85,7 @@ namespace Interactions
             var thisTransform = transform;
             thisTransform.SetParent(target);
             thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
+            thisTransform.position = target.position;
             interactable = true;
         }
     }
