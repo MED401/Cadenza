@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Event_System;
 using Interactions;
 using UnityEngine;
 
@@ -19,7 +20,10 @@ namespace LevelSystem
 
         protected override void OnInteract(int id)
         {
+            if(GetInstanceID() != id) return;
+            
             StartCoroutine(PlayCorrectSounds(levelController.CorrectSoundClips));
+            GameEvents.Current.ValidateSolution(levelController.GetInstanceID());
         }
 
         private IEnumerator PlayCorrectSounds(AudioClip[] sounds)
