@@ -10,12 +10,13 @@ namespace SoundMachine
 {
     public class SoundBox : MonoBehaviour
     {
-        [SerializeField] private SoundObject soundObject;
+        [SerializeField] private GameObject soundObject;
         [SerializeField] private Transform soundObjectHolder;
 
 
         [SerializeField] private PitchButton[] pitchButtons;
         [SerializeField] private InstrumentButton[] instrumentButtons;
+
 
         private void Start()
         {
@@ -25,36 +26,28 @@ namespace SoundMachine
             GameEvents.Current.ONChangeInstrument += OnChangeInstrument;
             GameEvents.Current.ONApplyPitch += OnApplyPitch;
             GameEvents.Current.ONInteract += OnSoundObjectPickUp;
+            StartCoroutine(CreateNewBall());
+
 
         }
 
         private void OnSoundObjectPickUp(int id)
         {
-            /*if (soundObjectHolder.childCount > 0)
-            {
-                return;
-            }
-            else
-            {
-                GameObject newBall = Instantiate(soundObject, soundObjectHolder); 
-                newBall.SetActive(true);
-            }*/
-
+            if (soundObjectHolder.transform.GetComponentInChildren<SoundObject>().GetInstanceID() != id) return;
             StartCoroutine(CreateNewBall());
         }
 
         private IEnumerator CreateNewBall()
         {
             yield return new WaitForSeconds(1);
-            GameObject newBall = Instantiate(soundObject.gameObject, soundObjectHolder);
-            newBall.SetActive(true);
+            Instantiate(soundObject, soundObjectHolder);
         }
 
         private void OnApplyPitch(int id, AudioClip clip)
         {
             if (GetInstanceID() != id) return;
-            soundObject.AudioSource.clip = clip;
-            soundObject.AudioSource.Play();
+            soundObject.GetComponent<SoundObject>().AudioSource.clip = clip;
+            soundObject.GetComponent<SoundObject>().AudioSource.Play();
         }
 
         private void OnChangeInstrument(int id, string path)
