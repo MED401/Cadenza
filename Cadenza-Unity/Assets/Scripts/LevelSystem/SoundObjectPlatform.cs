@@ -2,34 +2,42 @@
 using Interactions;
 using SoundMachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LevelSystem
 {
     public class SoundObjectPlatform : Interactable
     {
+        public UnityEvent onCorrectPlaceEvent;
+
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
-        private readonly bool interactable = true;
 
+        private readonly bool interactable = true;
         private SoundObject currentSoundObject;
+        private LevelController levelController;
+        private Transform soundObjectContainer;
 
         protected override void Start()
         {
             base.Start();
 
-            GameEvents.Current.ONValidatePlace += ValidatePlace; 
+            GameEvents.Current.ONPlace += OnPlace;
+            levelController = GetComponentInParent<LevelController>();
+            soundObjectContainer = transform.GetChild(0);
         }
 
-        private void ValidatePlace(int id, SoundObject soundObject)
+        private void OnPlace(int id, SoundObjectPlatform platform)
         {
-            if(GetInstanceID() != id) return;
+            if (platform != this) return;
+            currentSoundObject = soundObjectContainer.GetComponentInChildren<SoundObject>();
 
-            currentSoundObject = soundObject;
+            if (currentSoundObject.AudioSource.clip == GetCorrectAudioClip()) onCorrectPlaceEvent?.Invoke();
+        }
 
-            if (currentSoundObject.AudioSource.clip == GetCorrectAudioClip())
-            {
-                
-            }
+        public bool HasCorrectSoundObject()
+        {
+            return currentSoundObject.AudioSource.clip == GetCorrectAudioClip();
         }
 
         public AudioClip GetCorrectAudioClip()
