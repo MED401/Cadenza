@@ -252,7 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d44f311174ad087414ca762352ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundObject: {fileID: 5588006414964482961, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
+  soundObjectPrefab: {fileID: 5588006414964482964, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
+  soundObject: {fileID: 5588006414964482964, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
   soundObjectHolder: {fileID: 5961328660892579341}
   pitchButtons: []
   instrumentButtons: []

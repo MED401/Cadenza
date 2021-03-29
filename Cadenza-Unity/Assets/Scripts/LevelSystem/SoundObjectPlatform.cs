@@ -13,31 +13,26 @@ namespace LevelSystem
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
 
-        private readonly bool interactable = true;
-        private SoundObject currentSoundObject;
         private LevelController levelController;
-        private Transform soundObjectContainer;
+        public SoundObject CurrentSoundObject { get; set; }
+        public bool HasCorrectAudioClip { get; private set; }
 
         protected override void Start()
         {
             base.Start();
 
-            GameEvents.Current.ONPlace += OnPlace;
             levelController = GetComponentInParent<LevelController>();
-            soundObjectContainer = transform.GetChild(0);
         }
 
-        private void OnPlace(int id, SoundObjectPlatform platform)
+        public void OnPlace(SoundObject soundObject)
         {
-            if (platform != this) return;
-            currentSoundObject = soundObjectContainer.GetComponentInChildren<SoundObject>();
-
-            if (currentSoundObject.AudioSource.clip == GetCorrectAudioClip()) onCorrectPlaceEvent?.Invoke();
-        }
-
-        public bool HasCorrectSoundObject()
-        {
-            return currentSoundObject.AudioSource.clip == GetCorrectAudioClip();
+            CurrentSoundObject = soundObject;
+            if (CurrentSoundObject.aSource.clip == GetCorrectAudioClip())
+            {
+                HasCorrectAudioClip = true;
+                onCorrectPlaceEvent?.Invoke();
+                GameEvents.Current.ValidateSolution(levelController.GetInstanceID());
+            }
         }
 
         public AudioClip GetCorrectAudioClip()
@@ -47,7 +42,9 @@ namespace LevelSystem
 
         protected override void OnInteract(int id)
         {
-            if ((GetInstanceID() != id) | (currentSoundObject == null) | (interactable != true)) return;
+            if ((GetInstanceID() != id) | (CurrentSoundObject == null)) return;
+
+            CurrentSoundObject.aSource.Play();
         }
 
         private enum CorrectInstrument
@@ -62,11 +59,11 @@ namespace LevelSystem
 
         private enum CorrectPitch
         {
-            Low,
-            LowMedium,
-            Medium,
-            HighMedium,
-            High
+            Low = 1,
+            LowMedium = 2,
+            Medium = 3,
+            HighMedium = 4,
+            High = 5
         }
     }
 }

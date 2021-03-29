@@ -45,7 +45,6 @@ namespace Interactions
             rigidbody.useGravity = false;
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
-            GameEvents.Current.ValidatePlace(target.GetInstanceID(), this as SoundObject);
         }
 
 

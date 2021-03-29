@@ -6,17 +6,14 @@ namespace SoundMachine
 {
     public class SoundObject : Pickup
     {
-        public AudioSource SoundSource { get; set; }
-        private Pickup pickup;
+        public AudioSource aSource;
 
-        public AudioSource AudioSource { get; set; }
-
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
-            AudioSource = gameObject.AddComponent<AudioSource>();
+            base.Awake();
+            aSource = gameObject.AddComponent<AudioSource>();
         }
-
+        
         protected override void OnPlace(int id, SoundObjectPlatform target)
         {
             if (GetInstanceID() != id) return;
@@ -26,6 +23,7 @@ namespace SoundMachine
             rigidbody.useGravity = false;
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
+            target.OnPlace(this);
         }
     }
 }
