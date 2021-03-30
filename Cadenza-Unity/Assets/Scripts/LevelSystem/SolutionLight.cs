@@ -29,5 +29,4 @@ namespace LevelSystem
             GetComponent<MeshRenderer>().material = offMaterial;
         }
     }
-
 }
