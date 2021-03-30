@@ -17,13 +17,13 @@ namespace LevelSystem
             light.color = offMaterial.color; 
         }
 
-        public void TurnOn()
+        public virtual void TurnOn()
         {
             light.enabled = true;
             GetComponent<MeshRenderer>().material = onMaterial;
         }
 
-        public void TurnOff()
+        public virtual void TurnOff()
         {
             light.enabled = false;
             GetComponent<MeshRenderer>().material = offMaterial;

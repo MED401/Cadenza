@@ -2,6 +2,7 @@
 using Event_System;
 using Interactions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace LevelSystem
 {
@@ -27,15 +28,25 @@ namespace LevelSystem
 
         private IEnumerator PlayCorrectSounds(AudioClip[] sounds)
         {
+            
             var i = 0;
             while (i < sounds.Length)
             {
+                if (i > 0)
+                {
+                    levelController.solutionLights[i - 1].TurnOff();
+                }
+
+                levelController.solutionLights[i].TurnOn();
+                
                 audioSource.clip = sounds[i];
                 audioSource.Play();
                 i++;
                 yield return new WaitForSeconds(2);
-                audioSource.Stop();
+                
             }
+            audioSource.Stop();
+            levelController.solutionLights[levelController.solutionLights.Length-1].TurnOff();
         }
     }
 }
