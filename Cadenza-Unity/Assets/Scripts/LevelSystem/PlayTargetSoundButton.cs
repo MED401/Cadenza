@@ -23,7 +23,6 @@ namespace LevelSystem
             if(GetInstanceID() != id) return;
             
             StartCoroutine(PlayCorrectSounds(levelController.CorrectSoundClips));
-            GameEvents.Current.ValidateSolution(levelController.GetInstanceID());
         }
 
         private IEnumerator PlayCorrectSounds(AudioClip[] sounds)
