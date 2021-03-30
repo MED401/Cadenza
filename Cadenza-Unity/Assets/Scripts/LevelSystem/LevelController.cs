@@ -9,13 +9,18 @@ namespace LevelSystem
 {
     public class LevelController : MonoBehaviour
     {
+        public AudioSource doorSound;
+        public AudioSource pillarSound;
+        public SolutionLight[] solutionLights;
+        
         [SerializeField] private SoundObjectPlatform[] soundObjectPlatforms;
         [SerializeField] private Transform exitDoor;
         [SerializeField] private Transform moveTransformTarget;
-        public AudioSource doorSound;
-        public AudioSource pillarSound;
+        
         private bool pillarRisen = false;
+        
 
+        
         public AudioClip[] CorrectSoundClips { get; set; }
 
         private void Start()
@@ -25,6 +30,7 @@ namespace LevelSystem
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
             CorrectSoundClips = new AudioClip[soundObjectPlatforms.Length];
 
+            solutionLights = GetComponentsInChildren<SolutionLight>();
             for (var i = 0; i < soundObjectPlatforms.Length; i++)
                 CorrectSoundClips[i] = soundObjectPlatforms[i].GetCorrectAudioClip();
         }
