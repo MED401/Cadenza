@@ -50,7 +50,7 @@ namespace LevelSystem
         private enum CorrectInstrument
         {
             Guitar,
-            Vocals,
+            Vocal,
             Oboe,
             Organ,
             SpaceBot,
