@@ -11,7 +11,8 @@ namespace LevelSystem
     {
         [SerializeField] private SoundObjectPlatform[] soundObjectPlatforms;
         [SerializeField] private Transform exitDoor;
-        [SerializeField] private Transform moveTransformTarget; 
+        [SerializeField] private Transform moveTransformTarget;
+        public AudioSource doorSound;
 
         public AudioClip[] CorrectSoundClips { get; set; }
 
@@ -36,12 +37,13 @@ namespace LevelSystem
             }
 
             exitDoor.position = Vector3.zero;
+            doorSound.Play();
         }
 
         public void EMoveTransform()
         {
             Debug.Log("Emovetransform called");
-            StartCoroutine(LerpPosition(moveTransformTarget, new Vector3(0, 5, 0), 5f)); 
+            StartCoroutine(LerpPosition(moveTransformTarget, new Vector3(0, 5, 0), 5f));
         }
 
         private IEnumerator LerpPosition(Transform targetObject, Vector3 targetLocation, float duration)
