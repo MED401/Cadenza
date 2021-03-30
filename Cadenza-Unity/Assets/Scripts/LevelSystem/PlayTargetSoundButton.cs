@@ -33,7 +33,8 @@ namespace LevelSystem
                 audioSource.clip = sounds[i];
                 audioSource.Play();
                 i++;
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
+                audioSource.Stop();
             }
         }
     }
