@@ -13,6 +13,8 @@ namespace LevelSystem
         [SerializeField] private Transform exitDoor;
         [SerializeField] private Transform moveTransformTarget;
         public AudioSource doorSound;
+        public AudioSource pillarSound;
+        private bool pillarRisen = false;
 
         public AudioClip[] CorrectSoundClips { get; set; }
 
@@ -42,9 +44,15 @@ namespace LevelSystem
 
         public void EMoveTransform()
         {
-            Debug.Log("Emovetransform called");
-            StartCoroutine(LerpPosition(moveTransformTarget, new Vector3(0, 5, 0), 5f));
+            if (!pillarRisen)
+            {
+                StartCoroutine(LerpPosition(moveTransformTarget, new Vector3(0, 5, 0), 3f));
+                pillarSound.Play();
+                pillarRisen = true;
+            }
+            
         }
+            
 
         private IEnumerator LerpPosition(Transform targetObject, Vector3 targetLocation, float duration)
         {
