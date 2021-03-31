@@ -9,9 +9,11 @@ namespace LevelSystem
     public class SoundObjectPlatform : Interactable
     {
         public UnityEvent onCorrectPlaceEvent;
+        private AudioSource NoSound;
 
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
+        [SerializeField] private AudioClip noSoundClip;
 
         private LevelController levelController;
         public SoundObject CurrentSoundObject { get; set; }
@@ -20,6 +22,9 @@ namespace LevelSystem
         protected override void Start()
         {
             base.Start();
+            NoSound = gameObject.AddComponent<AudioSource>();
+            NoSound.spatialBlend = 0.8f;
+            NoSound.clip = noSoundClip;
 
             levelController = GetComponentInParent<LevelController>();
         }
@@ -42,9 +47,11 @@ namespace LevelSystem
 
         protected override void OnInteract(int id)
         {
-            if ((GetInstanceID() != id) | (CurrentSoundObject == null)) return;
-
-            CurrentSoundObject.aSource.Play();
+            if ((GetInstanceID() != id)) return;
+            
+            if ((CurrentSoundObject == null)) NoSound.Play();
+            
+            else CurrentSoundObject.aSource.Play();
         }
 
         private enum CorrectInstrument
