@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cdc9abd6477f447b0358f964056980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onMaterial: {fileID: 0}
+  onMaterial: {fileID: 2100000, guid: edb8706fa476bd24cbbf581fd8d53bfe, type: 2}
   offMaterial: {fileID: 0}
 --- !u!1 &4615700856619301209
 GameObject:
