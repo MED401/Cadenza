@@ -40,17 +40,26 @@ namespace SoundMachine
             soundObject = Instantiate(soundObjectPrefab, soundObjectHolder);
         }
 
+        private IEnumerator PlayNewPitch(AudioSource source)
+        {
+            source.Play();
+            yield return new WaitForSeconds(1.2f);
+            source.Stop();
+        }
+
         private void OnApplyPitch(int id, AudioClip clip)
         {
             if (GetInstanceID() != id) return;
-            soundObject.GetComponent<SoundObject>().aSource.clip = clip;
-            soundObject.GetComponent<SoundObject>().aSource.Play();
+            AudioSource source = soundObject.GetComponent<SoundObject>().aSource;
+            source.clip = clip;
+            source.spatialBlend = 0.8f; 
+            StartCoroutine(PlayNewPitch(source));
         }
 
         private void OnChangeInstrument(int id, string path)
         {
             if (GetInstanceID() != id) return;
-
+            
             var index = 1;
             foreach (var btn in pitchButtons)
             {

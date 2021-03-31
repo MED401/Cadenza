@@ -84,18 +84,20 @@ namespace Player
                 camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, camera.nearClipPlane)),
                 camera.transform.forward, out var hit, interactDistance))
             {
-                if (!hit.transform.GetComponent<Interactable>()) return;
-
-                newTarget = hit.transform.GetComponent<Interactable>();
-
-                if (target != null && target != newTarget)
+                if (hit.transform.GetComponent<Interactable>())
                 {
-                    GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                    newTarget = hit.transform.GetComponent<Interactable>();
+                    if(target != null && target != newTarget) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                    target = newTarget;
+                    GameEvents.Current.TakeTarget(target.GetInstanceID());
+                    UpdateInfoText(target);
                 }
-
-                target = newTarget;
-                GameEvents.Current.TakeTarget(target.GetInstanceID());
-                UpdateInfoText(target);
+                else
+                {
+                    if (target != null) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                    target = null;
+                    UpdateInfoText(target);
+                }
             }
             else
             {
