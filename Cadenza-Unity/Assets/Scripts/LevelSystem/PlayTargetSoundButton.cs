@@ -43,7 +43,6 @@ namespace LevelSystem
                 audioSource.Play();
                 i++;
                 yield return new WaitForSeconds(2);
-                
             }
             audioSource.Stop();
             levelController.solutionLights[levelController.solutionLights.Length-1].TurnOff();

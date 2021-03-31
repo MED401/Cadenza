@@ -19,8 +19,6 @@ namespace LevelSystem
         
         private bool pillarRisen = false;
         
-
-        
         public AudioClip[] CorrectSoundClips { get; set; }
 
         private void Start()
@@ -29,6 +27,9 @@ namespace LevelSystem
 
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
             CorrectSoundClips = new AudioClip[soundObjectPlatforms.Length];
+
+            pillarSound.spatialBlend = 0.8f;
+            doorSound.spatialBlend = 0.8f;
 
             solutionLights = GetComponentsInChildren<SolutionLight>();
             for (var i = 0; i < soundObjectPlatforms.Length; i++)
@@ -44,7 +45,7 @@ namespace LevelSystem
                 if (!soundObjectPlatform.HasCorrectAudioClip) return;
             }
 
-            exitDoor.position = Vector3.zero;
+            exitDoor.gameObject.SetActive(false);
             doorSound.Play();
         }
 
@@ -56,7 +57,6 @@ namespace LevelSystem
                 pillarSound.Play();
                 pillarRisen = true;
             }
-            
         }
             
 
