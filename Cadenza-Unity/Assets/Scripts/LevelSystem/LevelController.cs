@@ -28,7 +28,6 @@ namespace LevelSystem
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
             CorrectSoundClips = new AudioClip[soundObjectPlatforms.Length];
 
-            pillarSound.spatialBlend = 0.8f;
             doorSound.spatialBlend = 0.8f;
 
             solutionLights = GetComponentsInChildren<SolutionLight>();
