@@ -12,6 +12,7 @@ namespace SoundMachine
         {
             base.Awake();
             aSource = gameObject.AddComponent<AudioSource>();
+            aSource.spatialBlend = 0.8f;
         }
         
         protected override void OnPlace(int id, SoundObjectPlatform target)

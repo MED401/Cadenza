@@ -43,7 +43,7 @@ namespace SoundMachine
         private IEnumerator PlayNewPitch(AudioSource source)
         {
             source.Play();
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(2f);
             source.Stop();
         }
 
@@ -52,7 +52,7 @@ namespace SoundMachine
             if (GetInstanceID() != id) return;
             AudioSource source = soundObject.GetComponent<SoundObject>().aSource;
             source.clip = clip;
-            source.spatialBlend = 0.8f; 
+            StopCoroutine(PlayNewPitch(source));
             StartCoroutine(PlayNewPitch(source));
         }
 
