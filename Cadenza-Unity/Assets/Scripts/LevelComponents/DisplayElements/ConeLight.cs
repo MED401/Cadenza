@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LevelSystem
+namespace LevelComponents.DisplayElements
 {
     public class ConeLight : SolutionLight
     {
