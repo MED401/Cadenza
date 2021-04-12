@@ -13,6 +13,7 @@ namespace LevelComponents.SolutionElements
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
         [SerializeField] private AudioClip noSoundClip;
+        [SerializeField] public Transform soundObjectContainer;
 
         private LevelController levelController;
         public SoundObject CurrentSoundObject { get; set; }
@@ -47,7 +48,7 @@ namespace LevelComponents.SolutionElements
         public override void Interact()
         {
             if ((CurrentSoundObject == null)) _noSound.Play();
-
+            
             else CurrentSoundObject.aSource.Play();
         }
 

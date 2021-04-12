@@ -29,6 +29,9 @@ namespace Interactions
 
         public virtual void Place(SoundObjectPlatform target)
         {
+            if (target.soundObjectContainer.childCount > 0) return;
+
+            Debug.Log(target.soundObjectContainer.childCount);
             GetComponent<Collider>().enabled = true;
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;
