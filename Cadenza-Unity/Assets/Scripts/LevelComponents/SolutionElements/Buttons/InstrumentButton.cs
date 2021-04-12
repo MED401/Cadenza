@@ -7,17 +7,17 @@ namespace LevelComponents.SolutionElements.Buttons
     public class InstrumentButton : Interactable
     {
         [SerializeField] private Instrument instrument;
-        private SoundObjectFactory soundObjectFactory;
+        private SoundObjectFactory _soundObjectFactory;
 
         protected override void Start()
         {
             UseInfo = "Change Instrument";
-            soundObjectFactory = transform.parent.parent.GetComponent<SoundObjectFactory>();
+            _soundObjectFactory = transform.parent.parent.GetComponent<SoundObjectFactory>();
         }
 
         public override void Interact()
         {
-            GameEvents.Current.ChangeInstrument(soundObjectFactory.GetInstanceID(), "Audio/Sounds/" + instrument);
+            GameEvents.Current.ChangeInstrument(_soundObjectFactory.GetInstanceID(), "Audio/Sounds/" + instrument);
         }
 
         private enum Instrument

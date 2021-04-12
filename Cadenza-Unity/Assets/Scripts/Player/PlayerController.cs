@@ -16,26 +16,26 @@ namespace Player
         [SerializeField] [Range(0.0f, 5.0f)] private float gravityMultiplier = 2.0f;
         [SerializeField] [Range(0.0f, 5.0f)] private float interactDistance = 2.0f;
         [SerializeField] private bool lockCursor = true;
-        private new Camera camera;
-        private float cameraPitch;
-        private CharacterController controller;
-        private Vector3 currentDirection = Vector3.zero;
-        private bool isJumping;
-        private InputMaster playerInput;
+        private new Camera _camera;
+        private float _cameraPitch;
+        private CharacterController _controller;
+        private Vector3 _currentDirection = Vector3.zero;
+        private bool _isJumping;
+        private InputMaster _playerInput;
 
-        private Interactable target;
-        private Text useInfo;
+        private Interactable _target;
+        private Text _useInfo;
 
         private void Awake()
         {
-            playerInput = new InputMaster();
-            controller = GetComponent<CharacterController>();
-            camera = GetComponentInChildren<Camera>();
-            PlayerPickupContainer = camera.transform.GetChild(1);
-            useInfo = camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
+            _playerInput = new InputMaster();
+            _controller = GetComponent<CharacterController>();
+            _camera = GetComponentInChildren<Camera>();
+            PlayerPickupContainer = _camera.transform.GetChild(1);
+            _useInfo = _camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
 
-            playerInput.OnFoot.Interact.performed += _ => Interact();
-            playerInput.OnFoot.Jump.performed += _ => Jump();
+            _playerInput.OnFoot.Interact.performed += _ => Interact();
+            _playerInput.OnFoot.Jump.performed += _ => Jump();
         }
 
         private void Start()
@@ -51,53 +51,53 @@ namespace Player
         {
             UpdateMouseLook();
             UpdateTarget();
-            controller.Move(UpdateMovement() * Time.deltaTime);
+            _controller.Move(UpdateMovement() * Time.deltaTime);
         }
 
         private void OnEnable()
         {
-            playerInput.Enable();
+            _playerInput.Enable();
         }
 
         private void OnDisable()
         {
-            playerInput.Disable();
+            _playerInput.Disable();
         }
 
         private void UpdateMouseLook()
         {
-            var mouseDelta = playerInput.OnFoot.CameraMovement.ReadValue<Vector2>();
+            var mouseDelta = _playerInput.OnFoot.CameraMovement.ReadValue<Vector2>();
 
-            cameraPitch -= mouseDelta.y * mouseSensitivity;
-            cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
+            _cameraPitch -= mouseDelta.y * mouseSensitivity;
+            _cameraPitch = Mathf.Clamp(_cameraPitch, -90.0f, 90.0f);
 
-            camera.transform.localEulerAngles = Vector3.right * cameraPitch;
+            _camera.transform.localEulerAngles = Vector3.right * _cameraPitch;
             transform.Rotate(Vector3.up * (mouseDelta.x * mouseSensitivity));
         }
 
         private void UpdateTarget()
         {
             if (Physics.Raycast(
-                camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, camera.nearClipPlane)),
-                camera.transform.forward, out var hit, interactDistance))
+                _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, _camera.nearClipPlane)),
+                _camera.transform.forward, out var hit, interactDistance))
             {
                 if (hit.transform.GetComponent<Interactable>())
                 {
                     var newTarget = hit.transform.GetComponent<Interactable>();
-                    if (target != null && target != newTarget) target.RemoveTarget();
-                    target = newTarget;
-                    target.Target();
+                    if (_target != null && _target != newTarget) _target.RemoveTarget();
+                    _target = newTarget;
+                    _target.Target();
                 }
                 else
                 {
-                    if (target != null) target.RemoveTarget();
-                    target = null;
+                    if (_target != null) _target.RemoveTarget();
+                    _target = null;
                 }
             }
             else
             {
-                if (target != null) target.RemoveTarget();
-                target = null;
+                if (_target != null) _target.RemoveTarget();
+                _target = null;
             }
             
             UpdateInfoText();
@@ -105,24 +105,24 @@ namespace Player
 
         private void UpdateInfoText()
         {
-            if (target is SoundObjectPlatform && PlayerPickupContainer.childCount > 0)
+            if (_target is SoundObjectPlatform && PlayerPickupContainer.childCount > 0)
             {
-                useInfo.text = "Place";
+                _useInfo.text = "Place";
             }
-            else if (target)
+            else if (_target)
             {
-                useInfo.text = target.UseInfo;
+                _useInfo.text = _target.UseInfo;
             }
             else
             {
-                useInfo.text = "";
+                _useInfo.text = "";
             }
         }
 
         private Vector3 UpdateMovement()
             {
-                var verticalMovement = playerInput.OnFoot.VerticalMovement.ReadValue<float>();
-                var horizontalMovement = playerInput.OnFoot.HorizontalMovement.ReadValue<float>();
+                var verticalMovement = _playerInput.OnFoot.VerticalMovement.ReadValue<float>();
+                var horizontalMovement = _playerInput.OnFoot.HorizontalMovement.ReadValue<float>();
 
                 var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
                 targetDirection.Normalize();
@@ -132,41 +132,41 @@ namespace Player
                 var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
 
                 // get a normal for the surface that is being touched to move along it
-                Physics.SphereCast(transform1.position, controller.radius, Vector3.down, out var hitInfo,
-                    controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+                Physics.SphereCast(transform1.position, _controller.radius, Vector3.down, out var hitInfo,
+                    _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
                 desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-                currentDirection.x = desiredMove.x * movementSpeed;
-                currentDirection.z = desiredMove.z * movementSpeed;
+                _currentDirection.x = desiredMove.x * movementSpeed;
+                _currentDirection.z = desiredMove.z * movementSpeed;
 
-                if (controller.isGrounded)
+                if (_controller.isGrounded)
                 {
-                    currentDirection.y = -stickToGroundForce;
+                    _currentDirection.y = -stickToGroundForce;
 
-                    if (isJumping) currentDirection.y = jumpStrength;
-                    isJumping = false;
+                    if (_isJumping) _currentDirection.y = jumpStrength;
+                    _isJumping = false;
                 }
                 else
                 {
-                    currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
+                    _currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
                 }
 
-                return currentDirection;
+                return _currentDirection;
             }
 
             private void Jump()
             {
-                isJumping = true;
+                _isJumping = true;
             }
 
             private void Interact()
             {
-                if (camera.GetComponentInChildren<Pickup>() & target is SoundObjectPlatform)
-                    PlayerPickupContainer.GetComponentInChildren<Pickup>().Place(target as SoundObjectPlatform);
+                if (_camera.GetComponentInChildren<Pickup>() & _target is SoundObjectPlatform)
+                    PlayerPickupContainer.GetComponentInChildren<Pickup>().Place(_target as SoundObjectPlatform);
                 else if (PlayerPickupContainer.childCount > 0)
                     PlayerPickupContainer.GetComponentInChildren<Pickup>().Drop();
 
-                else if (target != null) target.Interact();
+                else if (_target != null) _target.Interact();
             }
         }
     }

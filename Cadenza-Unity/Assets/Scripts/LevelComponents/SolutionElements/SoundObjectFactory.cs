@@ -12,8 +12,8 @@ namespace LevelComponents.SolutionElements
         [SerializeField] private PitchButton[] pitchButtons;
         [SerializeField] private InstrumentButton[] instrumentButtons;
 
-        private GameObject soundObject;
-        private bool creatingSoundObject = false;
+        private GameObject _soundObject;
+        private bool _creatingSoundObject = false;
         
         private void Start()
         {
@@ -26,9 +26,9 @@ namespace LevelComponents.SolutionElements
 
         private void Update()
         {
-            if (soundObjectHolder.childCount == 0 && !creatingSoundObject)
+            if (soundObjectHolder.childCount == 0 && !_creatingSoundObject)
             {
-                creatingSoundObject = true;
+                _creatingSoundObject = true;
                 StartCoroutine(CreateNewBall());
             }
         }
@@ -36,8 +36,8 @@ namespace LevelComponents.SolutionElements
         private IEnumerator CreateNewBall()
         {
             yield return new WaitForSeconds(1);
-            soundObject = Instantiate(soundObjectPrefab, soundObjectHolder);
-            creatingSoundObject = false;
+            _soundObject = Instantiate(soundObjectPrefab, soundObjectHolder);
+            _creatingSoundObject = false;
         }
 
         private IEnumerator PlayNewPitch(AudioSource source)
@@ -50,7 +50,7 @@ namespace LevelComponents.SolutionElements
         private void OnApplyPitch(int id, AudioClip clip)
         {
             if (GetInstanceID() != id) return;
-            AudioSource source = soundObject.GetComponent<SoundObject>().aSource;
+            AudioSource source = _soundObject.GetComponent<SoundObject>().aSource;
             source.clip = clip;
             StopCoroutine(PlayNewPitch(source));
             StartCoroutine(PlayNewPitch(source));

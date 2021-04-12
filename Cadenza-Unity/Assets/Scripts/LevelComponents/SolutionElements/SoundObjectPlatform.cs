@@ -8,7 +8,7 @@ namespace LevelComponents.SolutionElements
     public class SoundObjectPlatform : Interactable
     {
         public UnityEvent onCorrectPlaceEvent;
-        private AudioSource noSound;
+        private AudioSource _noSound;
 
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
@@ -21,9 +21,9 @@ namespace LevelComponents.SolutionElements
         protected override void Start()
         {
             UseInfo = "Play Current Sound";
-            noSound = gameObject.AddComponent<AudioSource>();
-            noSound.spatialBlend = 0.8f;
-            noSound.clip = noSoundClip;
+            _noSound = gameObject.AddComponent<AudioSource>();
+            _noSound.spatialBlend = 0.8f;
+            _noSound.clip = noSoundClip;
 
             levelController = GetComponentInParent<LevelController>();
         }
@@ -46,7 +46,7 @@ namespace LevelComponents.SolutionElements
 
         public override void Interact()
         {
-            if ((CurrentSoundObject == null)) noSound.Play();
+            if ((CurrentSoundObject == null)) _noSound.Play();
 
             else CurrentSoundObject.aSource.Play();
         }

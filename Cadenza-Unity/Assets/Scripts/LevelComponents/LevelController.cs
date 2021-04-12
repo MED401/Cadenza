@@ -16,7 +16,7 @@ namespace LevelComponents
         [SerializeField] private Transform exitDoor;
         [SerializeField] private Transform moveTransformTarget;
         
-        private bool pillarRisen = false;
+        private bool _pillarRisen = false;
         
         public AudioClip[] CorrectSoundClips { get; set; }
 
@@ -49,11 +49,11 @@ namespace LevelComponents
 
         public void EMoveTransform()
         {
-            if (!pillarRisen)
+            if (!_pillarRisen)
             {
                 StartCoroutine(LerpPosition(moveTransformTarget, new Vector3(0, 5, 0), 3f));
                 pillarSound.Play();
-                pillarRisen = true;
+                _pillarRisen = true;
             }
         }
             
