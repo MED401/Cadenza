@@ -14,8 +14,10 @@ namespace LevelComponents.SolutionElements
             aSource.spatialBlend = 0.8f;
         }
 
+
         public override void Place(SoundObjectPlatform target)
         {
+            if (target.soundObjectContainer.childCount > 0) return;
             GetComponent<Collider>().enabled = true;
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;

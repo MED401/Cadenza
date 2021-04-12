@@ -146,3 +146,4 @@ MonoBehaviour:
   correctInstrument: 0
   correctPitch: 1
   noSoundClip: {fileID: 8300000, guid: 33737b258338e3649944f194d2069d1f, type: 3}
+  soundObjectContainer: {fileID: 2479671069627630030}
