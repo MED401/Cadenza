@@ -32,7 +32,7 @@ namespace LevelComponents.SolutionElements
         public void Place(SoundObject soundObject)
         {
             CurrentSoundObject = soundObject;
-            if (CurrentSoundObject.aSource.clip == GetCorrectAudioClip())
+            if (CurrentSoundObject.ASource.clip == GetCorrectAudioClip())
             {
                 HasCorrectAudioClip = true;
                 onCorrectPlaceEvent?.Invoke();
@@ -49,7 +49,7 @@ namespace LevelComponents.SolutionElements
         {
             if ((CurrentSoundObject == null)) _noSound.Play();
             
-            else CurrentSoundObject.aSource.Play();
+            else CurrentSoundObject.ASource.Play();
         }
 
         private enum CorrectInstrument

@@ -1,19 +1,20 @@
-﻿using Interactions;
+﻿using System.Collections;
+using Interactions;
 using UnityEngine;
 
 namespace LevelComponents.SolutionElements
 {
     public class SoundObject : Pickup
     {
-        public AudioSource aSource;
+        private IEnumerator playSoundCoroutine;
+        public AudioSource ASource { get; set; }
 
         protected override void Awake()
         {
             base.Awake();
-            aSource = gameObject.AddComponent<AudioSource>();
-            aSource.spatialBlend = 0.8f;
+            ASource = gameObject.AddComponent<AudioSource>();
+            ASource.spatialBlend = 0.8f;
         }
-
 
         public override void Place(SoundObjectPlatform target)
         {
@@ -24,6 +25,21 @@ namespace LevelComponents.SolutionElements
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
             target.Place(this);
+        }
+
+        public void PlaySound()
+        {
+            ASource.Stop();
+            playSoundCoroutine = PlaySoundRoutine();
+            StopCoroutine(playSoundCoroutine);
+            StartCoroutine(playSoundCoroutine);
+        }
+
+        private IEnumerator PlaySoundRoutine()
+        {
+            ASource.Play();
+            yield return new WaitForSeconds(2f);
+            ASource.Stop();
         }
     }
 }

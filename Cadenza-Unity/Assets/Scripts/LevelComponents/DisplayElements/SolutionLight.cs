@@ -6,7 +6,7 @@ namespace LevelComponents.DisplayElements
     {
         [SerializeField] private Material onMaterial;
         [SerializeField] private Material offMaterial;
-        private new Light _light;
+        private Light _light;
 
         private void Awake()
         {

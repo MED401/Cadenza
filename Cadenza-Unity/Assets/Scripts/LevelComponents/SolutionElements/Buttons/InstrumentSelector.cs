@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace LevelComponents.SolutionElements.Buttons
 {
-    public class InstrumentButton : Interactable
+    public class InstrumentSelector : Interactable
     {
-        [SerializeField] private Instrument instrument;
         private SoundObjectFactory _soundObjectFactory;
+        [SerializeField] private Instrument instrument;
 
         protected override void Start()
         {
@@ -17,7 +17,7 @@ namespace LevelComponents.SolutionElements.Buttons
 
         public override void Interact()
         {
-            GameEvents.Current.ChangeInstrument(_soundObjectFactory.GetInstanceID(), "Audio/Sounds/" + instrument);
+            _soundObjectFactory.SetInstrument("Audio/Sounds/" + instrument);
         }
 
         private enum Instrument

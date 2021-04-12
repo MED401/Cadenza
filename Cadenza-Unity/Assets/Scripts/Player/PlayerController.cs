@@ -7,7 +7,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public static Transform PlayerPickupContainer;
+        private static Transform _playerPickupContainer;
 
         [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
         [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
@@ -16,7 +16,7 @@ namespace Player
         [SerializeField] [Range(0.0f, 5.0f)] private float gravityMultiplier = 2.0f;
         [SerializeField] [Range(0.0f, 5.0f)] private float interactDistance = 2.0f;
         [SerializeField] private bool lockCursor = true;
-        private new Camera _camera;
+        private Camera _camera;
         private float _cameraPitch;
         private CharacterController _controller;
         private Vector3 _currentDirection = Vector3.zero;
@@ -31,7 +31,7 @@ namespace Player
             _playerInput = new InputMaster();
             _controller = GetComponent<CharacterController>();
             _camera = GetComponentInChildren<Camera>();
-            PlayerPickupContainer = _camera.transform.GetChild(1);
+            _playerPickupContainer = _camera.transform.GetChild(1);
             _useInfo = _camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
 
             _playerInput.OnFoot.Interact.performed += _ => Interact();
@@ -105,7 +105,7 @@ namespace Player
 
         private void UpdateInfoText()
         {
-            if (_target is SoundObjectPlatform && PlayerPickupContainer.childCount > 0)
+            if (_target is SoundObjectPlatform && _playerPickupContainer.childCount > 0)
             {
                 _useInfo.text = "Place";
             }
@@ -162,9 +162,9 @@ namespace Player
             private void Interact()
             {
                 if (_camera.GetComponentInChildren<Pickup>() & _target is SoundObjectPlatform)
-                    PlayerPickupContainer.GetComponentInChildren<Pickup>().Place(_target as SoundObjectPlatform);
-                else if (PlayerPickupContainer.childCount > 0)
-                    PlayerPickupContainer.GetComponentInChildren<Pickup>().Drop();
+                    _playerPickupContainer.GetComponentInChildren<Pickup>().Place(_target as SoundObjectPlatform);
+                else if (_playerPickupContainer.childCount > 0)
+                    _playerPickupContainer.GetComponentInChildren<Pickup>().Drop();
 
                 else if (_target != null) _target.Interact();
             }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Event_System;
 using LevelComponents.SolutionElements.Buttons;
 using UnityEngine;
 
@@ -9,19 +8,16 @@ namespace LevelComponents.SolutionElements
     {
         [SerializeField] private GameObject soundObjectPrefab;
         [SerializeField] private Transform soundObjectHolder;
-        [SerializeField] private PitchButton[] pitchButtons;
-        [SerializeField] private InstrumentButton[] instrumentButtons;
+        [SerializeField] private PitchSelector[] pitchButtons;
+        [SerializeField] private InstrumentSelector[] instrumentButtons;
+        private bool _creatingSoundObject;
 
-        private GameObject _soundObject;
-        private bool _creatingSoundObject = false;
-        
+        private SoundObject _soundObject;
+
         private void Start()
         {
-            pitchButtons = transform.GetChild(1).GetComponentsInChildren<PitchButton>();
-            instrumentButtons = transform.GetChild(2).GetComponentsInChildren<InstrumentButton>();
-
-            GameEvents.Current.ONChangeInstrument += OnChangeInstrument;
-            GameEvents.Current.ONApplyPitch += OnApplyPitch;
+            pitchButtons = transform.GetChild(1).GetComponentsInChildren<PitchSelector>();
+            instrumentButtons = transform.GetChild(2).GetComponentsInChildren<InstrumentSelector>();
         }
 
         private void Update()
@@ -36,36 +32,34 @@ namespace LevelComponents.SolutionElements
         private IEnumerator CreateNewBall()
         {
             yield return new WaitForSeconds(1);
-            _soundObject = Instantiate(soundObjectPrefab, soundObjectHolder);
+            _soundObject = Instantiate(soundObjectPrefab, soundObjectHolder).GetComponent<SoundObject>();
             _creatingSoundObject = false;
         }
 
-        private IEnumerator PlayNewPitch(AudioSource source)
+        public void SetPitch(AudioClip clip)
+        {
+            _soundObject.ASource.clip = clip;
+            _soundObject.PlaySound();
+        }
+
+        public void SetInstrument(string path)
+        { 
+            var index = 1;
+            foreach (var btn in pitchButtons)
+            {
+                btn.Clip = Resources.Load<AudioClip>(path + "/" + index); 
+                index++;
+            }
+
+            _soundObject.ASource.clip = pitchButtons[2].Clip;
+            _soundObject.PlaySound();
+        }
+
+        private static IEnumerator PlayNewPitch(AudioSource source)
         {
             source.Play();
             yield return new WaitForSeconds(2f);
             source.Stop();
-        }
-
-        private void OnApplyPitch(int id, AudioClip clip)
-        {
-            if (GetInstanceID() != id) return;
-            AudioSource source = _soundObject.GetComponent<SoundObject>().aSource;
-            source.clip = clip;
-            StopCoroutine(PlayNewPitch(source));
-            StartCoroutine(PlayNewPitch(source));
-        }
-
-        private void OnChangeInstrument(int id, string path)
-        {
-            if (GetInstanceID() != id) return;
-            
-            var index = 1;
-            foreach (var btn in pitchButtons)
-            {
-                btn.Clip = Resources.Load<AudioClip>(path + "/" + index);
-                ++index;
-            }
         }
     }
 }

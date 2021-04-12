@@ -45386,6 +45386,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1626487107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4126867985956069964, guid: 968ca2149fec3c3419e22ea15711d307, type: 3}
+  m_PrefabInstance: {fileID: 4433141531693439722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1650402526
 Mesh:
   m_ObjectHideFlags: 0
@@ -53094,6 +53099,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1923392469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7782963899815913481, guid: 968ca2149fec3c3419e22ea15711d307, type: 3}
+  m_PrefabInstance: {fileID: 4433141531693439722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1930900965
 Mesh:
   m_ObjectHideFlags: 0
@@ -62583,6 +62593,10 @@ PrefabInstance:
       propertyPath: noSoundClip
       value: 
       objectReference: {fileID: 8300000, guid: 33737b258338e3649944f194d2069d1f, type: 3}
+    - target: {fileID: 4126867984417401446, guid: 968ca2149fec3c3419e22ea15711d307, type: 3}
+      propertyPath: soundObjectContainer
+      value: 
+      objectReference: {fileID: 1626487107}
     - target: {fileID: 4176451704031278068, guid: 968ca2149fec3c3419e22ea15711d307, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -62691,6 +62705,10 @@ PrefabInstance:
       propertyPath: noSoundClip
       value: 
       objectReference: {fileID: 8300000, guid: 33737b258338e3649944f194d2069d1f, type: 3}
+    - target: {fileID: 7782963899271290915, guid: 968ca2149fec3c3419e22ea15711d307, type: 3}
+      propertyPath: soundObjectContainer
+      value: 
+      objectReference: {fileID: 1923392469}
     - target: {fileID: 8053017897127805031, guid: 968ca2149fec3c3419e22ea15711d307, type: 3}
       propertyPath: m_Mesh
       value: 

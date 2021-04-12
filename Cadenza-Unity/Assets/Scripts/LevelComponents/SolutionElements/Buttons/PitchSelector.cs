@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LevelComponents.SolutionElements.Buttons
 {
-    public class PitchButton : Interactable
+    public class PitchSelector : Interactable
     {
         private SoundObjectFactory _soundObjectFactory;
         public AudioClip Clip { get; set; }
@@ -17,7 +17,7 @@ namespace LevelComponents.SolutionElements.Buttons
 
         public override void Interact()
         {
-            GameEvents.Current.ApplyPitch(_soundObjectFactory.GetInstanceID(), Clip);
+            _soundObjectFactory.SetPitch(clip: Clip);
         }
     }
 }
