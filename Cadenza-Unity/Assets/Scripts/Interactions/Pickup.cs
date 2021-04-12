@@ -38,8 +38,9 @@ namespace Interactions
 
         protected virtual void OnPlace(int id, SoundObjectPlatform target)
         {
-            if (GetInstanceID() != id) return;
+            if (GetInstanceID() != id || target.soundObjectContainer.childCount > 0) return;
 
+            Debug.Log(target.soundObjectContainer.childCount);
             GetComponent<Collider>().enabled = true;
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;

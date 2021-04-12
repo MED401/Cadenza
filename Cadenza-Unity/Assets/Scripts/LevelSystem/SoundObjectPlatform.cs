@@ -14,6 +14,7 @@ namespace LevelSystem
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
         [SerializeField] private AudioClip noSoundClip;
+        [SerializeField] public Transform soundObjectContainer;
 
         private LevelController levelController;
         public SoundObject CurrentSoundObject { get; set; }
@@ -49,7 +50,7 @@ namespace LevelSystem
         {
             if ((GetInstanceID() != id)) return;
             
-            if ((CurrentSoundObject == null)) NoSound.Play();
+            if ((soundObjectContainer.childCount == 0)) NoSound.Play();
             
             else CurrentSoundObject.aSource.Play();
         }

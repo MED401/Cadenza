@@ -1,5 +1,6 @@
 ﻿using Interactions;
 using LevelSystem;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace SoundMachine
@@ -17,7 +18,7 @@ namespace SoundMachine
         
         protected override void OnPlace(int id, SoundObjectPlatform target)
         {
-            if (GetInstanceID() != id) return;
+            if (GetInstanceID() != id || target.soundObjectContainer.childCount > 0) return;
 
             GetComponent<Collider>().enabled = true;
             rigidbody.isKinematic = true;
