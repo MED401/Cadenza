@@ -362,7 +362,7 @@ MonoBehaviour:
   stickToGroundForce: 10
   jumpStrength: 10
   gravityMultiplier: 2
-  interactDistance: 2
+  interactDistance: 3
   lockCursor: 1
 --- !u!1 &3861551287715711239
 GameObject:
