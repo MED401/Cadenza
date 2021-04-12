@@ -1,7 +1,6 @@
 using Event_System;
 using Interactions;
 using LevelSystem;
-using SoundMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -87,7 +86,7 @@ namespace Player
                 if (hit.transform.GetComponent<Interactable>())
                 {
                     newTarget = hit.transform.GetComponent<Interactable>();
-                    if(target != null && target != newTarget) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                    if (target != null && target != newTarget) GameEvents.Current.RemoveTarget(target.GetInstanceID());
                     target = newTarget;
                     GameEvents.Current.TakeTarget(target.GetInstanceID());
                     UpdateInfoText(target);
@@ -113,7 +112,7 @@ namespace Player
             if (target is Pickup) useInfo.text = "Pick Up";
             if (target is IButton) useInfo.text = "Activate";
             if (target is SoundObjectPlatform) useInfo.text = "Activate";
-            if (target is SoundObjectPlatform & _playerPickupContainer.childCount > 0) useInfo.text = "Place";
+            if (target is SoundObjectPlatform & (_playerPickupContainer.childCount > 0)) useInfo.text = "Place";
         }
 
         private Vector3 UpdateMovement()
