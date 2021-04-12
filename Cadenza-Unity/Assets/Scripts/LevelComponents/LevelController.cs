@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Event_System;
-using SoundMachine;
+using LevelComponents.DisplayElements;
+using LevelComponents.SolutionElements;
 using UnityEngine;
 
-namespace LevelSystem
+namespace LevelComponents
 {
     public class LevelController : MonoBehaviour
     {

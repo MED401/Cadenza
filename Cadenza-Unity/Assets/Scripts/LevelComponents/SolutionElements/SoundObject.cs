@@ -1,9 +1,7 @@
 ﻿using Interactions;
-using LevelSystem;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace SoundMachine
+namespace LevelComponents.SolutionElements
 {
     public class SoundObject : Pickup
     {
@@ -15,17 +13,17 @@ namespace SoundMachine
             aSource = gameObject.AddComponent<AudioSource>();
             aSource.spatialBlend = 0.8f;
         }
-        
-        protected override void OnPlace(int id, SoundObjectPlatform target)
-        {
-            if (GetInstanceID() != id || target.soundObjectContainer.childCount > 0) return;
 
+
+        public override void Place(SoundObjectPlatform target)
+        {
+            if (target.soundObjectContainer.childCount > 0) return;
             GetComponent<Collider>().enabled = true;
-            rigidbody.isKinematic = true;
-            rigidbody.useGravity = false;
+            Rigidbody.isKinematic = true;
+            Rigidbody.useGravity = false;
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
-            target.OnPlace(this);
+            target.Place(this);
         }
     }
 }

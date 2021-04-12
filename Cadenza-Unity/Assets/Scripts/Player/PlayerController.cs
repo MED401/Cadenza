@@ -1,6 +1,5 @@
-using Event_System;
 using Interactions;
-using LevelSystem;
+using LevelComponents.SolutionElements;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public static Transform _playerPickupContainer;
+        public static Transform PlayerPickupContainer;
 
         [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
         [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
@@ -32,7 +31,7 @@ namespace Player
             playerInput = new InputMaster();
             controller = GetComponent<CharacterController>();
             camera = GetComponentInChildren<Camera>();
-            _playerPickupContainer = camera.transform.GetChild(1);
+            PlayerPickupContainer = camera.transform.GetChild(1);
             useInfo = camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
 
             playerInput.OnFoot.Interact.performed += _ => Interact();
@@ -78,92 +77,97 @@ namespace Player
 
         private void UpdateTarget()
         {
-            Interactable newTarget = null;
             if (Physics.Raycast(
                 camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, camera.nearClipPlane)),
                 camera.transform.forward, out var hit, interactDistance))
             {
                 if (hit.transform.GetComponent<Interactable>())
                 {
-                    newTarget = hit.transform.GetComponent<Interactable>();
-                    if (target != null && target != newTarget) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                    var newTarget = hit.transform.GetComponent<Interactable>();
+                    if (target != null && target != newTarget) target.RemoveTarget();
+
                     target = newTarget;
-                    GameEvents.Current.TakeTarget(target.GetInstanceID());
-                    UpdateInfoText(target);
+                    target.Target();
                 }
                 else
                 {
-                    if (target != null) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                    if (target != null) target.RemoveTarget();
                     target = null;
-                    UpdateInfoText(target);
                 }
             }
             else
             {
-                if (target != null) GameEvents.Current.RemoveTarget(target.GetInstanceID());
+                if (target != null) target.RemoveTarget();
                 target = null;
-                UpdateInfoText(target);
             }
+            
+            UpdateInfoText();
         }
 
-        private void UpdateInfoText(Interactable target)
+        private void UpdateInfoText()
         {
-            useInfo.text = "";
-            if (target is Pickup) useInfo.text = "Pick Up";
-            if (target is IButton) useInfo.text = "Activate";
-            if (target is SoundObjectPlatform) useInfo.text = "Activate";
-            if (target is SoundObjectPlatform & (_playerPickupContainer.childCount > 0)) useInfo.text = "Place";
-        }
-
-        private Vector3 UpdateMovement()
-        {
-            var verticalMovement = playerInput.OnFoot.VerticalMovement.ReadValue<float>();
-            var horizontalMovement = playerInput.OnFoot.HorizontalMovement.ReadValue<float>();
-
-            var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
-            targetDirection.Normalize();
-
-            // always move along the camera forward as it is the direction that it being aimed at
-            var transform1 = transform;
-            var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
-
-            // get a normal for the surface that is being touched to move along it
-            Physics.SphereCast(transform1.position, controller.radius, Vector3.down, out var hitInfo,
-                controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
-
-            currentDirection.x = desiredMove.x * movementSpeed;
-            currentDirection.z = desiredMove.z * movementSpeed;
-
-            if (controller.isGrounded)
+            if (target is SoundObjectPlatform && PlayerPickupContainer.childCount > 0)
             {
-                currentDirection.y = -stickToGroundForce;
-
-                if (isJumping) currentDirection.y = jumpStrength;
-                isJumping = false;
+                useInfo.text = "Place";
+            }
+            else if (target)
+            {
+                useInfo.text = target.UseInfo;
             }
             else
             {
-                currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
+                useInfo.text = "";
+            }
+        }
+
+        private Vector3 UpdateMovement()
+            {
+                var verticalMovement = playerInput.OnFoot.VerticalMovement.ReadValue<float>();
+                var horizontalMovement = playerInput.OnFoot.HorizontalMovement.ReadValue<float>();
+
+                var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
+                targetDirection.Normalize();
+
+                // always move along the camera forward as it is the direction that it being aimed at
+                var transform1 = transform;
+                var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
+
+                // get a normal for the surface that is being touched to move along it
+                Physics.SphereCast(transform1.position, controller.radius, Vector3.down, out var hitInfo,
+                    controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+                desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+
+                currentDirection.x = desiredMove.x * movementSpeed;
+                currentDirection.z = desiredMove.z * movementSpeed;
+
+                if (controller.isGrounded)
+                {
+                    currentDirection.y = -stickToGroundForce;
+
+                    if (isJumping) currentDirection.y = jumpStrength;
+                    isJumping = false;
+                }
+                else
+                {
+                    currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
+                }
+
+                return currentDirection;
             }
 
-            return currentDirection;
-        }
+            private void Jump()
+            {
+                isJumping = true;
+            }
 
-        private void Jump()
-        {
-            isJumping = true;
-        }
+            private void Interact()
+            {
+                if (camera.GetComponentInChildren<Pickup>() & target is SoundObjectPlatform)
+                    PlayerPickupContainer.GetComponentInChildren<Pickup>().Place(target as SoundObjectPlatform);
+                else if (PlayerPickupContainer.childCount > 0)
+                    PlayerPickupContainer.GetComponentInChildren<Pickup>().Drop();
 
-        private void Interact()
-        {
-            if (camera.GetComponentInChildren<Pickup>() & target is SoundObjectPlatform)
-                GameEvents.Current.Place(camera.GetComponentInChildren<Pickup>().GetInstanceID(),
-                    target as SoundObjectPlatform);
-            else if (camera.GetComponentInChildren<Pickup>())
-                GameEvents.Current.Drop(camera.GetComponentInChildren<Pickup>().GetInstanceID());
-
-            else if (target != null) GameEvents.Current.Interact(target.GetInstanceID());
+                else if (target != null) target.Interact();
+            }
         }
     }
-}

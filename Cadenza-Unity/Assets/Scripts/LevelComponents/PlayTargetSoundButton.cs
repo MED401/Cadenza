@@ -1,28 +1,23 @@
 ﻿using System.Collections;
-using Event_System;
 using Interactions;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace LevelSystem
+namespace LevelComponents
 {
-    public class PlayTargetSoundButton : Interactable, IButton
+    public class PlayTargetSoundButton : Interactable
     {
         private AudioSource audioSource;
         private LevelController levelController;
 
         protected override void Start()
         {
-            base.Start();
-
+            UseInfo = "Play Target Sound";
             levelController = GetComponentInParent<LevelController>();
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        protected override void OnInteract(int id)
+        public override void Interact()
         {
-            if(GetInstanceID() != id) return;
-            
             StartCoroutine(PlayCorrectSounds(levelController.CorrectSoundClips));
         }
 

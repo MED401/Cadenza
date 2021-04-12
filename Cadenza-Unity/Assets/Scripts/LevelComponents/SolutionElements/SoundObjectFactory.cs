@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Event_System;
-using Interactions;
-using Unity.Mathematics;
+using LevelComponents.SolutionElements.Buttons;
 using UnityEngine;
 
-namespace SoundMachine
+namespace LevelComponents.SolutionElements
 {
-    public class SoundBox : MonoBehaviour
+    public class SoundObjectFactory : MonoBehaviour
     {
         [SerializeField] private GameObject soundObjectPrefab;
         [SerializeField] private Transform soundObjectHolder;
@@ -16,7 +13,8 @@ namespace SoundMachine
         [SerializeField] private InstrumentButton[] instrumentButtons;
 
         private GameObject soundObject;
-
+        private bool creatingSoundObject = false;
+        
         private void Start()
         {
             pitchButtons = transform.GetChild(1).GetComponentsInChildren<PitchButton>();
@@ -24,20 +22,22 @@ namespace SoundMachine
 
             GameEvents.Current.ONChangeInstrument += OnChangeInstrument;
             GameEvents.Current.ONApplyPitch += OnApplyPitch;
-            GameEvents.Current.ONInteract += OnSoundObjectPickUp;
-            StartCoroutine(CreateNewBall());
         }
 
-        private void OnSoundObjectPickUp(int id)
+        private void Update()
         {
-            if (soundObjectHolder.transform.GetComponentInChildren<SoundObject>().GetInstanceID() != id) return;
-            StartCoroutine(CreateNewBall());
+            if (soundObjectHolder.childCount == 0 && !creatingSoundObject)
+            {
+                creatingSoundObject = true;
+                StartCoroutine(CreateNewBall());
+            }
         }
 
         private IEnumerator CreateNewBall()
         {
             yield return new WaitForSeconds(1);
             soundObject = Instantiate(soundObjectPrefab, soundObjectHolder);
+            creatingSoundObject = false;
         }
 
         private IEnumerator PlayNewPitch(AudioSource source)

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace LevelSystem
+namespace LevelComponents.DisplayElements
 {
     public class SolutionLight : MonoBehaviour
     {
