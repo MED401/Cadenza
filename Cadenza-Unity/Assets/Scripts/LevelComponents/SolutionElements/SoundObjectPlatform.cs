@@ -15,7 +15,7 @@ namespace LevelComponents.SolutionElements
         [SerializeField] private AudioClip noSoundClip;
         [SerializeField] public Transform soundObjectContainer;
 
-        private LevelController levelController;
+        private LevelController _levelController;
         public SoundObject CurrentSoundObject { get; set; }
         public bool HasCorrectAudioClip { get; private set; }
 
@@ -26,7 +26,7 @@ namespace LevelComponents.SolutionElements
             _noSound.spatialBlend = 0.8f;
             _noSound.clip = noSoundClip;
 
-            levelController = GetComponentInParent<LevelController>();
+            _levelController = GetComponentInParent<LevelController>();
         }
 
         public void Place(SoundObject soundObject)
@@ -36,7 +36,7 @@ namespace LevelComponents.SolutionElements
             {
                 HasCorrectAudioClip = true;
                 onCorrectPlaceEvent?.Invoke();
-                GameEvents.Current.ValidateSolution(levelController.GetInstanceID());
+                GameEvents.Current.ValidateSolution(_levelController.GetInstanceID());
             }
         }
 
