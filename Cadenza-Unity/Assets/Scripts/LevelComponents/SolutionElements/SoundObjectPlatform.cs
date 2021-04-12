@@ -1,15 +1,14 @@
 ﻿using Event_System;
 using Interactions;
-using SoundMachine;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace LevelSystem
+namespace LevelComponents.SolutionElements
 {
     public class SoundObjectPlatform : Interactable
     {
         public UnityEvent onCorrectPlaceEvent;
-        private AudioSource NoSound;
+        private AudioSource noSound;
 
         [SerializeField] private CorrectInstrument correctInstrument;
         [SerializeField] private CorrectPitch correctPitch;
@@ -21,15 +20,15 @@ namespace LevelSystem
 
         protected override void Start()
         {
-            base.Start();
-            NoSound = gameObject.AddComponent<AudioSource>();
-            NoSound.spatialBlend = 0.8f;
-            NoSound.clip = noSoundClip;
+            UseInfo = "Play Current Sound";
+            noSound = gameObject.AddComponent<AudioSource>();
+            noSound.spatialBlend = 0.8f;
+            noSound.clip = noSoundClip;
 
             levelController = GetComponentInParent<LevelController>();
         }
 
-        public void OnPlace(SoundObject soundObject)
+        public void Place(SoundObject soundObject)
         {
             CurrentSoundObject = soundObject;
             if (CurrentSoundObject.aSource.clip == GetCorrectAudioClip())
@@ -42,15 +41,13 @@ namespace LevelSystem
 
         public AudioClip GetCorrectAudioClip()
         {
-            return Resources.Load<AudioClip>("Audio/Sounds/" + correctInstrument + "/" + (int) correctPitch);
+            return Resources.Load<AudioClip>("Audio/Sounds/" + correctInstrument + "/" + (int)correctPitch);
         }
 
-        protected override void OnInteract(int id)
+        public override void Interact()
         {
-            if ((GetInstanceID() != id)) return;
-            
-            if ((CurrentSoundObject == null)) NoSound.Play();
-            
+            if ((CurrentSoundObject == null)) noSound.Play();
+
             else CurrentSoundObject.aSource.Play();
         }
 

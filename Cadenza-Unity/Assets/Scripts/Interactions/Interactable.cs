@@ -1,43 +1,38 @@
-using Event_System;
+using System;
 using UnityEngine;
 
 namespace Interactions
 {
     public abstract class Interactable : MonoBehaviour
     {
-        protected Outline outline;
+        public string UseInfo { get; protected set; }
+        protected Outline Outline;
 
         protected virtual void Awake()
         {
-            outline = gameObject.AddComponent<Outline>();
-            outline.OutlineColor = Color.white;
-            outline.OutlineWidth = 3;
-            outline.OutlineMode = Outline.Mode.OutlineVisible;
-            outline.enabled = false;
+            Outline = gameObject.AddComponent<Outline>();
+            Outline.OutlineColor = Color.white;
+            Outline.OutlineWidth = 3;
+            Outline.OutlineMode = Outline.Mode.OutlineVisible;
+            Outline.enabled = false;
         }
 
         protected virtual void Start()
         {
-            GameEvents.Current.ONInteract += OnInteract;
-            GameEvents.Current.ONRemoveTarget += OnRemoveTarget;
-            GameEvents.Current.ONTarget += OnTarget;
+            UseInfo = "Interact";
         }
 
-        protected abstract void OnInteract(int id);
+        public abstract void Interact();
 
 
-        protected virtual void OnTarget(int id)
+        public virtual void Target()
         {
-            if (GetInstanceID() != id) return;
-
-            outline.enabled = true;
+            Outline.enabled = true;
         }
 
-        protected virtual void OnRemoveTarget(int id)
+        public virtual void RemoveTarget()
         {
-            if (GetInstanceID() != id) return;
-
-            outline.enabled = false;
+            Outline.enabled = false;
         }
     }
 }
