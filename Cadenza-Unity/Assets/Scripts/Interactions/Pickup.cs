@@ -7,8 +7,8 @@ namespace Interactions
 {
     public class Pickup : Interactable
     {
-        private bool interactable = true;
-        private Transform playerHand;
+        private bool _interactable = true;
+        private Transform _playerHand;
         protected Rigidbody Rigidbody;
 
         protected override void Start()
@@ -18,7 +18,7 @@ namespace Interactions
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;
 
-            playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
+            _playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
                 .Find("PickupContainer");
         }
 
@@ -41,12 +41,12 @@ namespace Interactions
 
         public override void Interact()
         {
-            if (!interactable) return;
+            if (!_interactable) return;
             GetComponent<Collider>().enabled = false;
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;
 
-            StartCoroutine(LerpPosition(playerHand, 0.05f));
+            StartCoroutine(LerpPosition(_playerHand, 0.05f));
         }
 
         public void Drop()
@@ -55,13 +55,13 @@ namespace Interactions
             transform.parent = null;
             Rigidbody.isKinematic = false;
             Rigidbody.useGravity = true;
-            Rigidbody.AddForce(playerHand.forward * 200f);
+            Rigidbody.AddForce(_playerHand.forward * 200f);
         }
 
         protected IEnumerator LerpPosition(Transform target, float duration)
         {
             float time = 0;
-            interactable = false;
+            _interactable = false;
             var startPosition = transform.position;
 
             while (time < duration)
@@ -75,7 +75,7 @@ namespace Interactions
             thisTransform.SetParent(target);
             thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
             thisTransform.position = target.position;
-            interactable = true;
+            _interactable = true;
         }
     }
 }
