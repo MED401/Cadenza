@@ -85,6 +85,7 @@ namespace Player
                 {
                     var newTarget = hit.transform.GetComponent<Interactable>();
                     if (target != null && target != newTarget) target.RemoveTarget();
+
                     target = newTarget;
                     target.Target();
                 }
