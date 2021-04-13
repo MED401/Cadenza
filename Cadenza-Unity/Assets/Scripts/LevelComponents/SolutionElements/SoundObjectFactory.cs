@@ -8,16 +8,14 @@ namespace LevelComponents.SolutionElements
     {
         [SerializeField] private GameObject soundObjectPrefab;
         [SerializeField] private Transform soundObjectHolder;
-        [SerializeField] private PitchSelector[] pitchButtons;
-        [SerializeField] private InstrumentSelector[] instrumentButtons;
+        
+        private PitchSelector[] _pitchButtons;
         private bool _creatingSoundObject;
-
         private SoundObject _soundObject;
 
         private void Start()
         {
-            pitchButtons = transform.GetChild(1).GetComponentsInChildren<PitchSelector>();
-            instrumentButtons = transform.GetChild(2).GetComponentsInChildren<InstrumentSelector>();
+            _pitchButtons = transform.GetChild(1).GetComponentsInChildren<PitchSelector>();
         }
 
         private void Update()
@@ -45,21 +43,14 @@ namespace LevelComponents.SolutionElements
         public void SetInstrument(string path)
         { 
             var index = 1;
-            foreach (var btn in pitchButtons)
+            foreach (var btn in _pitchButtons)
             {
                 btn.Clip = Resources.Load<AudioClip>(path + "/" + index); 
                 index++;
             }
 
-            _soundObject.ASource.clip = pitchButtons[2].Clip;
+            _soundObject.ASource.clip = _pitchButtons[2].Clip;
             _soundObject.PlaySound();
-        }
-
-        private static IEnumerator PlayNewPitch(AudioSource source)
-        {
-            source.Play();
-            yield return new WaitForSeconds(2f);
-            source.Stop();
         }
     }
 }

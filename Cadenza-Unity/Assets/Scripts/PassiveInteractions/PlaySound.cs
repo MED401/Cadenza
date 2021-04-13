@@ -17,7 +17,7 @@ namespace PassiveInteractions
         private void OnTriggerEnter()
         {
             if (alreadyPlayed) return;
-            
+
             audioClip.Play();
             door.Play();
             alreadyPlayed = true;
