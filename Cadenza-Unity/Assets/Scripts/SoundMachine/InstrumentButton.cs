@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SoundMachine
 {
-    public class InstrumentButton : Interactable, IButton
+    public class  InstrumentButton : Interactable, IButton
     {
         [SerializeField] private Instrument instrument;
         private SoundBox soundBox;
