@@ -22,11 +22,6 @@ namespace Interactions
                 .Find("PickupContainer");
         }
 
-        public override void Target()
-        {
-            Outline.enabled = true;
-        }
-
         public virtual void Place(SoundObjectPlatform target)
         {
             if (target.soundObjectContainer.childCount > 0) return;

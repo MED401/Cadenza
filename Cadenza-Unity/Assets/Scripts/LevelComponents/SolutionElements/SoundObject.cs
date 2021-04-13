@@ -6,8 +6,8 @@ namespace LevelComponents.SolutionElements
 {
     public class SoundObject : Pickup
     {
-        private IEnumerator playSoundCoroutine;
-        public AudioSource ASource { get; set; }
+        private Coroutine _playSoundCoroutine;
+        public AudioSource ASource { get; private set; }
 
         protected override void Awake()
         {
@@ -29,14 +29,14 @@ namespace LevelComponents.SolutionElements
 
         public void PlaySound()
         {
-            ASource.Stop();
-            playSoundCoroutine = PlaySoundRoutine();
-            StopCoroutine(playSoundCoroutine);
-            StartCoroutine(playSoundCoroutine);
+            if (_playSoundCoroutine != null) StopCoroutine(_playSoundCoroutine);
+
+            _playSoundCoroutine = StartCoroutine(PlaySoundRoutine());
         }
 
         private IEnumerator PlaySoundRoutine()
         {
+            ASource.Stop();
             ASource.Play();
             yield return new WaitForSeconds(2f);
             ASource.Stop();
