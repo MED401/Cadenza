@@ -1,23 +1,34 @@
-﻿using Event_System;
-using Interactions;
+﻿using Interactions;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace LevelComponents.SolutionElements
 {
+    public abstract class LevelEvent : MonoBehaviour
+    {
+        /// <summary>
+        ///     The correct not to check against in the Event().
+        /// </summary>
+        public NoteScriptableObject correctNoteForEvent;
+
+        /// <summary>
+        ///     The function which is called when the user places a soundObject on the SoundObjectPlatform.
+        /// </summary>
+        /// <param name="note">The note from the SoundObject which can be checked against correctNoteForEvent.</param>
+        public abstract void Event(NoteScriptableObject note);
+    }
+
     public class SoundObjectPlatform : Interactable
     {
-        [SerializeField] private NoteScriptableObject sound;
-        [SerializeField] private CorrectInstrument correctInstrument;
-        [SerializeField] private CorrectPitch correctPitch;
+        public NoteScriptableObject correctNote;
         [SerializeField] private AudioClip noSoundClip;
-        [SerializeField] public Transform soundObjectContainer;
 
+        private LevelEvent[] _events;
         private LevelController _levelController;
         private AudioSource _noSound;
-        private LevelEvent[] _events;
-        public SoundObject CurrentSoundObject { get; set; }
-        public bool HasCorrectAudioClip { get; private set; }
+
+        public Transform SoundObjectContainer { get; set; }
+        private SoundObject CurrentSoundObject { get; set; }
 
         protected override void Start()
         {
@@ -28,53 +39,30 @@ namespace LevelComponents.SolutionElements
 
             _levelController = GetComponentInParent<LevelController>();
             _events = GetComponents<LevelEvent>();
+            SoundObjectContainer = transform.GetChild(0).GetComponent<Transform>();
         }
 
-        public void Place(SoundObject soundObject)
+        public bool Validate()
+        {
+            if (CurrentSoundObject == null) return false;
+            return CurrentSoundObject.note == correctNote;
+        }
+
+        public void OnPlace(SoundObject soundObject)
         {
             CurrentSoundObject = soundObject;
 
-            foreach (var evnt in _events)
-            {
-                evnt.Event(soundObject.note);
-            }
-            
-            if (CurrentSoundObject.ASource.clip == GetCorrectAudioClip())
-            {
-                HasCorrectAudioClip = true;
-                GameEvents.Current.ValidateSolution(_levelController.GetInstanceID());
-            }
+            foreach (var evnt in _events) evnt.Event(soundObject.note);
+
+            _levelController.ValidateSolution();
         }
 
-        public AudioClip GetCorrectAudioClip()
-        {
-            return Resources.Load<AudioClip>("Audio/Sounds/" + correctInstrument + "/" + (int) correctPitch);
-        }
 
         public override void Interact()
         {
             if (CurrentSoundObject == null) _noSound.Play();
 
-            else CurrentSoundObject.ASource.Play();
-        }
-
-        private enum CorrectInstrument
-        {
-            Guitar,
-            Vocal,
-            Oboe,
-            Organ,
-            SpaceBot,
-            Tuba
-        }
-
-        private enum CorrectPitch
-        {
-            Low = 1,
-            LowMedium = 2,
-            Medium = 3,
-            HighMedium = 4,
-            High = 5
+            else CurrentSoundObject.PlaySound();
         }
     }
 }

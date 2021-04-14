@@ -1,52 +1,38 @@
-using Event_System;
+using System.Collections.Generic;
+using System.Linq;
 using LevelComponents.DisplayElements;
 using LevelComponents.SolutionElements;
-using ScriptableObjects;
 using UnityEngine;
 
 namespace LevelComponents
 {
-    public abstract class LevelEvent : MonoBehaviour
-    {
-        public NoteScriptableObject correctNote;
-        public abstract void Event(NoteScriptableObject note);
-    }
-
     public class LevelController : MonoBehaviour
     {
         public AudioSource doorSound;
-
         public SolutionLight[] solutionLights;
 
         [SerializeField] private SoundObjectPlatform[] soundObjectPlatforms;
         [SerializeField] private Transform exitDoor;
-
-        public AudioClip[] CorrectSoundClips { get; set; }
+        public List<AudioClip> correctSoundClips;
 
         private void Start()
         {
-            GameEvents.Current.ONValidateSolution += OnValidateSolution;
-
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
-            CorrectSoundClips = new AudioClip[soundObjectPlatforms.Length];
-
-            doorSound.spatialBlend = 0.8f;
-
+            //doorSound.spatialBlend = 0.8f;
             solutionLights = GetComponentsInChildren<SolutionLight>();
+
             for (var i = 0; i < soundObjectPlatforms.Length; i++)
-                CorrectSoundClips[i] = soundObjectPlatforms[i].GetCorrectAudioClip();
+                  correctSoundClips.Add(soundObjectPlatforms[i].correctNote.clip);
         }
 
-        private void OnValidateSolution(int id)
+        public void ValidateSolution()
         {
-            if (GetInstanceID() != id) return;
-
             foreach (var soundObjectPlatform in soundObjectPlatforms)
-                if (!soundObjectPlatform.HasCorrectAudioClip)
+                if (!soundObjectPlatform.Validate())
                     return;
 
             exitDoor.gameObject.SetActive(false);
-            doorSound.Play();
+            //doorSound.Play();
         }
     }
 }

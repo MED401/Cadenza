@@ -1,3 +1,4 @@
+using LevelComponents.SolutionElements;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace LevelComponents.LevelEvents
 
         public override void Event(NoteScriptableObject note)
         {
-            if (note != correctNote) return;
+            if (note != correctNoteForEvent) return;
 
             target.GetComponent<MeshRenderer>().material = material;
         }

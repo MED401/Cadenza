@@ -1,10 +1,11 @@
 ﻿using System.Collections;
+using LevelComponents.SolutionElements;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace LevelComponents.LevelEvents
 {
-    public class RaisePillarLevelEvent : LevelEvent 
+    public class RaisePillarLevelEvent : LevelEvent
     {
         [SerializeField] private NoteScriptableObject _correctNote;
         [SerializeField] private Transform _pillar;

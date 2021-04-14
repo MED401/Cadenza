@@ -1,7 +1,5 @@
-﻿using Event_System;
-using Interactions;
+﻿using Interactions;
 using ScriptableObjects;
-using UnityEngine;
 
 namespace LevelComponents.SolutionElements.Buttons
 {
@@ -20,8 +18,5 @@ namespace LevelComponents.SolutionElements.Buttons
         {
             _soundObjectFactory.SetInstrument(instrument);
         }
-      
-
-   
     }
 }

@@ -21,13 +21,13 @@ namespace LevelComponents.SolutionElements
 
         public override void Place(SoundObjectPlatform target)
         {
-            if (target.soundObjectContainer.childCount > 0) return;
+            if (target.SoundObjectContainer.childCount > 0) return;
             GetComponent<Collider>().enabled = true;
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
-            target.Place(this);
+            target.OnPlace(this);
         }
 
         public void PlaySound()
