@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using Interactions;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace LevelComponents.SolutionElements
 {
     public class SoundObject : Pickup
     {
+        public NoteScriptableObject note;
         private Coroutine _playSoundCoroutine;
+
         public AudioSource ASource { get; private set; }
 
         protected override void Awake()
@@ -31,6 +34,7 @@ namespace LevelComponents.SolutionElements
         {
             if (_playSoundCoroutine != null) StopCoroutine(_playSoundCoroutine);
 
+            ASource.clip = note.clip;
             _playSoundCoroutine = StartCoroutine(PlaySoundRoutine());
         }
 

@@ -18,6 +18,5 @@ namespace Event_System
         {
             ONValidateSolution?.Invoke(id);
         }
-        
     }
 }
