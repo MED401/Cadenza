@@ -1,13 +1,12 @@
-﻿using Event_System;
-using Interactions;
-using UnityEngine;
+﻿using Interactions;
+using ScriptableObjects;
 
 namespace LevelComponents.SolutionElements.Buttons
 {
     public class InstrumentSelector : Interactable
     {
+        public InstrumentScriptableObject instrument;
         private SoundObjectFactory _soundObjectFactory;
-        [SerializeField] private Instrument instrument;
 
         protected override void Start()
         {
@@ -17,17 +16,7 @@ namespace LevelComponents.SolutionElements.Buttons
 
         public override void Interact()
         {
-            _soundObjectFactory.SetInstrument("Audio/Sounds/" + instrument);
-        }
-
-        private enum Instrument
-        {
-            Guitar,
-            Vocal,
-            Oboe,
-            Organ,
-            SpaceBot,
-            Tuba
+            _soundObjectFactory.SetInstrument(instrument);
         }
     }
 }

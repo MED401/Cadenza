@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using LevelComponents.SolutionElements.Buttons;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace LevelComponents.SolutionElements
@@ -8,9 +9,9 @@ namespace LevelComponents.SolutionElements
     {
         [SerializeField] private GameObject soundObjectPrefab;
         [SerializeField] private Transform soundObjectHolder;
-        
-        private PitchSelector[] _pitchButtons;
         private bool _creatingSoundObject;
+
+        private PitchSelector[] _pitchButtons;
         private SoundObject _soundObject;
 
         private void Start()
@@ -20,36 +21,31 @@ namespace LevelComponents.SolutionElements
 
         private void Update()
         {
-            if (soundObjectHolder.childCount == 0 && !_creatingSoundObject)
-            {
-                _creatingSoundObject = true;
-                StartCoroutine(CreateNewBall());
-            }
+            if (soundObjectHolder.childCount == 0 && !_creatingSoundObject) StartCoroutine(CreateNewBall());
         }
 
         private IEnumerator CreateNewBall()
         {
+            _creatingSoundObject = true;
             yield return new WaitForSeconds(1);
             _soundObject = Instantiate(soundObjectPrefab, soundObjectHolder).GetComponent<SoundObject>();
             _creatingSoundObject = false;
         }
 
-        public void SetPitch(AudioClip clip)
+        public void SetPitch(NoteScriptableObject aNote)
         {
-            _soundObject.ASource.clip = clip;
+            _soundObject.note = aNote;
             _soundObject.PlaySound();
         }
 
-        public void SetInstrument(string path)
-        { 
-            var index = 1;
-            foreach (var btn in _pitchButtons)
+        public void SetInstrument(InstrumentScriptableObject instrument)
+        {
+            for (int i = 0; i < _pitchButtons.Length; i++)
             {
-                btn.Clip = Resources.Load<AudioClip>(path + "/" + index); 
-                index++;
+                _pitchButtons[i].note = instrument.notes[i];
             }
-
-            _soundObject.ASource.clip = _pitchButtons[2].Clip;
+            
+            _soundObject.note = instrument.notes[2];
             _soundObject.PlaySound();
         }
     }

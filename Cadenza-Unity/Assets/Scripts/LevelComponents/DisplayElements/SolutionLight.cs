@@ -7,25 +7,27 @@ namespace LevelComponents.DisplayElements
         [SerializeField] private Material onMaterial;
         [SerializeField] private Material offMaterial;
         private Light _light;
+        private MeshRenderer _meshRenderer;
 
         private void Awake()
         {
-            offMaterial = GetComponent<MeshRenderer>().material;
+            _meshRenderer = GetComponent<MeshRenderer>();
+            offMaterial = _meshRenderer.material;
             _light = gameObject.AddComponent<Light>();
             _light.enabled = false;
-            _light.color = offMaterial.color; 
+            _light.color = offMaterial.color;
         }
 
         public virtual void TurnOn()
         {
             _light.enabled = true;
-            GetComponent<MeshRenderer>().material = onMaterial;
+            _meshRenderer.material = onMaterial;
         }
 
         public virtual void TurnOff()
         {
             _light.enabled = false;
-            GetComponent<MeshRenderer>().material = offMaterial;
+            _meshRenderer.material = offMaterial;
         }
     }
 }

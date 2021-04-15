@@ -1,23 +1,22 @@
-﻿using Event_System;
-using Interactions;
-using UnityEngine;
+﻿using Interactions;
+using ScriptableObjects;
 
 namespace LevelComponents.SolutionElements.Buttons
 {
     public class PitchSelector : Interactable
     {
+        public NoteScriptableObject note;
         private SoundObjectFactory _soundObjectFactory;
-        public AudioClip Clip { get; set; }
 
         protected override void Start()
         {
-            UseInfo = "Change Pitch"; 
+            UseInfo = "Change Pitch";
             _soundObjectFactory = transform.parent.parent.GetComponent<SoundObjectFactory>();
         }
 
         public override void Interact()
         {
-            _soundObjectFactory.SetPitch(clip: Clip);
+            _soundObjectFactory.SetPitch(note);
         }
     }
 }
