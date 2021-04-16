@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6251f13954346cc8d3b5b1f182d328d, type: 3}
+  m_Name: Tuba
+  m_EditorClassIdentifier: 
+  notes:
+  - {fileID: 11400000, guid: f118f54562b1a104aa10e4b177f5bbca, type: 2}
+  - {fileID: 11400000, guid: 561e409fd61f6df4cb6fddbef2453d2f, type: 2}
+  - {fileID: 11400000, guid: 501b579d6ae093c4f921fe2683610fe7, type: 2}
+  - {fileID: 11400000, guid: 79b2ed334125cee45a33028b6751db61, type: 2}
+  - {fileID: 11400000, guid: 675aeada46b3e364c88c643d58a39d76, type: 2}

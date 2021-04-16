@@ -5,12 +5,12 @@ namespace PassiveInteractions
     public class PressurePlateDoor : MonoBehaviour
     {
         [SerializeField] private GameObject door;
-        private bool isOpened;
+        private bool _isOpened;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (isOpened) return;
-            isOpened = true;
+            if (_isOpened) return;
+            _isOpened = true;
             door.transform.position += new Vector3(0, -4, 0);
         }
     }

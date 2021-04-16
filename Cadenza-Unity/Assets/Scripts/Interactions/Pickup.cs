@@ -1,78 +1,62 @@
 using System.Collections;
-using Event_System;
-using LevelSystem;
+using LevelComponents.SolutionElements;
 using Player;
-using SoundMachine;
 using UnityEngine;
 
 namespace Interactions
 {
     public class Pickup : Interactable
     {
-        protected bool interactable = true;
-        protected Transform playerHand;
-        protected new Rigidbody rigidbody;
+        private bool _interactable = true;
+        private Transform _playerHand;
+        protected Rigidbody Rigidbody;
 
         protected override void Start()
         {
-            base.Start();
+            UseInfo = "Pick Up";
+            Rigidbody = gameObject.AddComponent<Rigidbody>();
+            Rigidbody.isKinematic = true;
+            Rigidbody.useGravity = false;
 
-            rigidbody = gameObject.AddComponent<Rigidbody>();
-            rigidbody.isKinematic = true;
-            rigidbody.useGravity = false;
-
-            playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
+            _playerHand = FindObjectOfType<PlayerController>().transform.Find("Camera").transform
                 .Find("PickupContainer");
-
-            GameEvents.Current.ONPlace += OnPlace;
-            GameEvents.Current.ONTarget += OnTarget;
-            GameEvents.Current.ONDrop += OnDrop;
         }
 
-        protected override void OnTarget(int id)
+        public virtual void Place(SoundObjectPlatform target)
         {
-            if ((GetInstanceID() != id) | !interactable) return;
+            if (target.SoundObjectContainer.childCount > 0) return;
 
-            outline.enabled = true;
-        }
-
-        protected virtual void OnPlace(int id, SoundObjectPlatform target)
-        {
-            if (GetInstanceID() != id) return;
-
+            Debug.Log(target.SoundObjectContainer.childCount);
             GetComponent<Collider>().enabled = true;
-            rigidbody.isKinematic = true;
-            rigidbody.useGravity = false;
+            Rigidbody.isKinematic = true;
+            Rigidbody.useGravity = false;
 
             StartCoroutine(LerpPosition(target.transform.GetChild(0), 0.05f));
         }
-        
-        protected override void OnInteract(int id)
+
+        public override void Interact()
         {
-            if (GetInstanceID() != id) return;
-
+            if (!_interactable) return;
             GetComponent<Collider>().enabled = false;
-            rigidbody.isKinematic = true;
-            rigidbody.useGravity = false;
+            Rigidbody.isKinematic = true;
+            Rigidbody.useGravity = false;
 
-            StartCoroutine(LerpPosition(playerHand, 0.05f));
+            StartCoroutine(LerpPosition(_playerHand, 0.05f));
         }
 
-        private void OnDrop(int id)
+        public void Drop()
         {
-            if (GetInstanceID() != id) return;
-
             GetComponent<Collider>().enabled = true;
             transform.parent = null;
-            rigidbody.isKinematic = false;
-            rigidbody.useGravity = true;
-            rigidbody.AddForce(playerHand.forward * 200f);
+            Rigidbody.isKinematic = false;
+            Rigidbody.useGravity = true;
+            Rigidbody.AddForce(_playerHand.forward * 200f);
         }
 
         protected IEnumerator LerpPosition(Transform target, float duration)
         {
             float time = 0;
-            interactable = false;
+            _interactable = false;
             var startPosition = transform.position;
 
             while (time < duration)
@@ -86,7 +70,7 @@ namespace Interactions
             thisTransform.SetParent(target);
             thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
             thisTransform.position = target.position;
-            interactable = true;
+            _interactable = true;
         }
     }
 }

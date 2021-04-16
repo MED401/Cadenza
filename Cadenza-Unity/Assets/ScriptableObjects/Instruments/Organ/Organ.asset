@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6251f13954346cc8d3b5b1f182d328d, type: 3}
+  m_Name: Organ
+  m_EditorClassIdentifier: 
+  notes:
+  - {fileID: 11400000, guid: b105dad311e14cf43b077308bad69f07, type: 2}
+  - {fileID: 11400000, guid: 3bd1d0829a1a40e47b20c86044a84bcc, type: 2}
+  - {fileID: 11400000, guid: 5e8b80a3c477a23419728f64b1c52d0f, type: 2}
+  - {fileID: 11400000, guid: fe6bb44f10b0fc942beecd2597e3cc19, type: 2}
+  - {fileID: 11400000, guid: 60d20f1207116834ebd613609f0799fe, type: 2}
