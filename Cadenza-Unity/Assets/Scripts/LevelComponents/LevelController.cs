@@ -18,7 +18,7 @@ namespace LevelComponents
         private void Start()
         {
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
-            //doorSound.spatialBlend = 0.8f;
+            doorSound.spatialBlend = 0.8f;
             solutionLights = GetComponentsInChildren<SolutionLight>();
 
             for (var i = 0; i < soundObjectPlatforms.Length; i++)
@@ -32,7 +32,7 @@ namespace LevelComponents
                     return;
 
             exitDoor.gameObject.SetActive(false);
-            //doorSound.Play();
+            doorSound.Play();
         }
     }
 }
