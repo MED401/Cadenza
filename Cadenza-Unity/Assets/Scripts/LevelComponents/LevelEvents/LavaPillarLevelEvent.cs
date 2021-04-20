@@ -19,7 +19,7 @@ namespace LevelComponents.LevelEvents
             if (note != correctNoteForEvent) return;
             if (_pillarRisen) return;
             var PillarPosition = _pillar.position;
-            StartCoroutine(LerpPosition(_pillar, PillarPosition+ new Vector3(0,5,0), 3));
+            StartCoroutine(LerpPosition(_pillar, PillarPosition += new Vector3(0,2,0), 3));
 
             pillarSound.Play();
             _pillarRisen = true;
@@ -33,7 +33,7 @@ namespace LevelComponents.LevelEvents
             while (time < duration)
             {
                 targetObject.position =
-                    Vector3.Lerp(startPosition, startPosition + targetLocation, time / duration);
+                    Vector3.Lerp(startPosition, targetLocation, time / duration);
                 time += Time.deltaTime;
                 yield return null;
             }
