@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &662069303672840378
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ GameObject:
   - component: {fileID: 362873061028356905}
   - component: {fileID: 1027664645102975388}
   m_Layer: 0
-  m_Name: SoundBox
+  m_Name: SoundObjectFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,11 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d44f311174ad087414ca762352ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundObjectPrefab: {fileID: 5588006414964482964, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
-  soundObject: {fileID: 5588006414964482964, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
+  soundObjectPrefab: {fileID: 447443187419345660, guid: 8f69683862474934b9d6671dc950ca81, type: 3}
   soundObjectHolder: {fileID: 5961328660892579341}
-  pitchButtons: []
-  instrumentButtons: []
+  rotationSpeed: 30
 --- !u!1 &2309612684949939156
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &2309612684949939158
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a40b4e322f4b9b84136d99d77a6a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrument: 0
+  instrument: {fileID: 0}
 --- !u!64 &2621072302466862815
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &3475298713349458636
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -680,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a40b4e322f4b9b84136d99d77a6a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrument: 1
+  instrument: {fileID: 0}
 --- !u!64 &4030313647573806228
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -887,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &8405084214111135219
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -996,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &8808119256925594582
 MeshCollider:
   m_ObjectHideFlags: 0

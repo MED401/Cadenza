@@ -140,10 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2bdcea3d91422f81c984c24730ccab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCorrectPlaceEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  correctInstrument: 0
-  correctPitch: 1
+  correctNote: {fileID: 0}
   noSoundClip: {fileID: 8300000, guid: 33737b258338e3649944f194d2069d1f, type: 3}
-  soundObjectContainer: {fileID: 2479671069627630030}
+  rotationSpeed: 20
