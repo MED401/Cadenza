@@ -9,6 +9,7 @@ namespace LevelComponents.SolutionElements
     {
         [SerializeField] private GameObject soundObjectPrefab;
         [SerializeField] private Transform soundObjectHolder;
+        [SerializeField] private float rotationSpeed = 10f; 
         private bool _creatingSoundObject;
 
         private PitchSelector[] _pitchButtons;
@@ -22,7 +23,9 @@ namespace LevelComponents.SolutionElements
         private void Update()
         {
             if (soundObjectHolder.childCount == 0 && !_creatingSoundObject) StartCoroutine(CreateNewBall());
-        }
+
+            if (_soundObject != null) _soundObject.transform.Rotate(new Vector3(1, 2, 5) * (rotationSpeed * Time.deltaTime));
+    }
 
         private IEnumerator CreateNewBall()
         {
@@ -40,10 +43,10 @@ namespace LevelComponents.SolutionElements
 
         public void SetInstrument(InstrumentScriptableObject instrument)
         {
-            for (int i = 0; i < _pitchButtons.Length; i++)
-            {
-                _pitchButtons[i].note = instrument.notes[i];
-            }
+            for (var i = 0; i < _pitchButtons.Length; i++) _pitchButtons[i].note = instrument.notes[i];
+
+            var mesh = _soundObject.GetComponent<MeshRenderer>();
+            mesh.materials = new[] {mesh.material, instrument.material};
             
             _soundObject.note = instrument.notes[2];
             _soundObject.PlaySound();

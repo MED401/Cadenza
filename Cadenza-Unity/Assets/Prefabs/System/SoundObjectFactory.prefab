@@ -253,9 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d44f311174ad087414ca762352ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundObjectPrefab: {fileID: 447443187419345660, guid: 8f69683862474934b9d6671dc950ca81, type: 3}
+  soundObjectPrefab: {fileID: 8466354246561399898, guid: 9a531b2214f21a0449161f09cb88a25b, type: 3}
   soundObjectHolder: {fileID: 5961328660892579341}
-  rotationSpeed: 30
 --- !u!1 &2309612684949939156
 GameObject:
   m_ObjectHideFlags: 0
