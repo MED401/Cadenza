@@ -7,6 +7,7 @@ namespace Interactions
     public class SwitchScene : MonoBehaviour
     {
         public int _nextSceneToLoad;
+        public AudioSource playSound;
 
         private void Start()
         {
@@ -15,6 +16,7 @@ namespace Interactions
 
         private void OnTriggerEnter(Collider id)
         {
+            playSound.Play();
             SceneManager.LoadScene(_nextSceneToLoad);
         }
     }
