@@ -29,6 +29,7 @@ namespace LevelComponents.SolutionElements
 
         private IEnumerator CreateNewBall()
         {
+            _soundObject = null;
             _creatingSoundObject = true;
             yield return new WaitForSeconds(1);
             _soundObject = Instantiate(soundObjectPrefab, soundObjectHolder).GetComponent<SoundObject>();
