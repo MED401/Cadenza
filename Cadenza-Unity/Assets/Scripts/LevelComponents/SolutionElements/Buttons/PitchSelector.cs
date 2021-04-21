@@ -5,6 +5,7 @@ namespace LevelComponents.SolutionElements.Buttons
 {
     public class PitchSelector : Interactable
     {
+        public int index;
         public NoteScriptableObject note;
         private SoundObjectFactory _soundObjectFactory;
 
@@ -16,7 +17,7 @@ namespace LevelComponents.SolutionElements.Buttons
 
         public override void Interact()
         {
-            _soundObjectFactory.SetPitch(note);
+            _soundObjectFactory.SetPitch(note, index);
         }
     }
 }
