@@ -21,11 +21,15 @@ namespace LevelComponents.SolutionElements
     public class SoundObjectPlatform : Interactable
     {
         public NoteScriptableObject correctNote;
+
         [SerializeField] private AudioClip noSoundClip;
+        [SerializeField] private Material lightMaterial;
+        private Material _baseMaterial;
 
         private LevelEvent[] _events;
         private LevelController _levelController;
         private AudioSource _noSound;
+        private MeshRenderer _numberRenderer;
 
         public Transform SoundObjectContainer { get; set; }
         private SoundObject CurrentSoundObject { get; set; }
@@ -40,6 +44,9 @@ namespace LevelComponents.SolutionElements
             _levelController = GetComponentInParent<LevelController>();
             _events = GetComponents<LevelEvent>();
             SoundObjectContainer = transform.GetChild(0).GetComponent<Transform>();
+
+            _numberRenderer = transform.GetChild(1).GetComponent<MeshRenderer>();
+            _baseMaterial = _numberRenderer.material;
         }
 
         public bool Validate()
@@ -57,12 +64,21 @@ namespace LevelComponents.SolutionElements
             _levelController.ValidateSolution();
         }
 
-
         public override void Interact()
         {
             if (CurrentSoundObject == null) _noSound.Play();
 
             else CurrentSoundObject.PlaySound();
+        }
+
+        public void EnableLight()
+        {
+            _numberRenderer.material = lightMaterial;
+        }
+
+        public void DisableLight()
+        {
+            _numberRenderer.material = _baseMaterial;
         }
     }
 }
