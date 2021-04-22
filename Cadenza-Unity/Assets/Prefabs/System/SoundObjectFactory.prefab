@@ -157,7 +157,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &662069303672840378
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ GameObject:
   - component: {fileID: 362873061028356905}
   - component: {fileID: 1027664645102975388}
   m_Layer: 0
-  m_Name: SoundBox
+  m_Name: SoundObjectFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,8 +230,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027664645102975379}
-  m_LocalRotation: {x: -0, y: -0.7108334, z: -0, w: 0.70336056}
-  m_LocalPosition: {x: 0.17, y: -0.013, z: 3.246}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5961328660892579341}
@@ -239,7 +240,7 @@ Transform:
   - {fileID: 3564750504050980940}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.606, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1027664645102975388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,11 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d44f311174ad087414ca762352ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundObjectPrefab: {fileID: 5588006414964482964, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
-  soundObject: {fileID: 5588006414964482964, guid: 8396ec83dcf23bc4da272571cec29949, type: 3}
+  soundObjectPrefab: {fileID: 8466354246561399898, guid: 9a531b2214f21a0449161f09cb88a25b, type: 3}
   soundObjectHolder: {fileID: 5961328660892579341}
-  pitchButtons: []
-  instrumentButtons: []
+  rotationSpeed: 10
 --- !u!1 &2309612684949939156
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -352,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &2309612684949939158
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a40b4e322f4b9b84136d99d77a6a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrument: 0
+  instrument: {fileID: 0}
 --- !u!64 &2621072302466862815
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &3475298713349458636
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -646,7 +647,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -680,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a40b4e322f4b9b84136d99d77a6a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrument: 1
+  instrument: {fileID: 0}
 --- !u!64 &4030313647573806228
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -751,7 +752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5961328660892579340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.099, z: 0}
+  m_LocalPosition: {x: -0.088, y: 2.091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 362873061028356905}
@@ -853,7 +854,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -887,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &8405084214111135219
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -962,7 +964,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1330581024282824822, guid: c8ed4aae92119af4a8d965c4a1693b51, type: 3}
+  - {fileID: 2100000, guid: 467aa52eb0f8843418d0b856b6598ebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -996,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  note: {fileID: 0}
 --- !u!64 &8808119256925594582
 MeshCollider:
   m_ObjectHideFlags: 0

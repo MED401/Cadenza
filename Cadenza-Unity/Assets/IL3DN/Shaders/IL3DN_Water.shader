@@ -8,7 +8,7 @@ Shader "IL3DN/Water"
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		[NoScaleOffset][Normal]_Normal("Normal", 2D) = "bump" {}
 		_NormalStrenght("Normal Strenght", Range( 0 , 1)) = 0.5
-		_Size("Size", Range( 0 , 2)) = 0
+		_Size("Size", Range( 0 , 100)) = 0
 		_Speed("Speed", Range( 0 , 1)) = 0
 		_Transparency("Transparency", Range( 0 , 10)) = 0
 		_Smoothness("Smoothness", Range( 0 , 10)) = 1
