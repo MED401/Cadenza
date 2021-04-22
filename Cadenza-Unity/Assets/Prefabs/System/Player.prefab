@@ -361,7 +361,7 @@ MonoBehaviour:
   movementSpeed: 6
   stickToGroundForce: 10
   jumpStrength: 10
-  gravityMultiplier: 2
+  gravityMultiplier: 3
   interactDistance: 3
   lockCursor: 1
 --- !u!1 &3861551287715711239
