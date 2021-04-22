@@ -13,10 +13,12 @@ namespace LevelComponents
 
         [SerializeField] private SoundObjectPlatform[] soundObjectPlatforms;
         [SerializeField] private Transform exitDoor;
+        [SerializeField] private Transform portalActive;
         public List<AudioClip> correctSoundClips;
 
         private void Start()
         {
+            portalActive.gameObject.SetActive(false);
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
             doorSound.spatialBlend = 0.8f;
             solutionLights = GetComponentsInChildren<SolutionLight>();
@@ -31,6 +33,7 @@ namespace LevelComponents
                 if (!soundObjectPlatform.Validate())
                     return;
 
+            portalActive.gameObject.SetActive(true);
             exitDoor.gameObject.SetActive(false);
             doorSound.Play();
         }
