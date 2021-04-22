@@ -1,3 +1,4 @@
+using System.Collections;
 using Interactions;
 using LevelComponents.SolutionElements;
 using UnityEngine;
@@ -26,6 +27,9 @@ namespace Player
         private Interactable _target;
         private Text _useInfo;
 
+        public bool IsDead { get; set; }
+        private Vector3 SpawnPoint { get; set; }
+
         private void Awake()
         {
             _playerInput = new InputMaster();
@@ -36,6 +40,8 @@ namespace Player
 
             _playerInput.OnFoot.Interact.performed += _ => Interact();
             _playerInput.OnFoot.Jump.performed += _ => Jump();
+
+            SpawnPoint = transform.position;
         }
 
         private void Start()
@@ -49,9 +55,16 @@ namespace Player
 
         private void Update()
         {
-            UpdateMouseLook();
-            UpdateTarget();
-            _controller.Move(UpdateMovement() * Time.deltaTime);
+            if (IsDead)
+            {
+                StartCoroutine(Respawn());
+            }
+            else
+            {
+                UpdateMouseLook();
+                UpdateTarget();
+                _controller.Move(UpdateMovement() * Time.deltaTime);
+            }
         }
 
         private void OnEnable()
@@ -62,6 +75,13 @@ namespace Player
         private void OnDisable()
         {
             _playerInput.Disable();
+        }
+
+        private IEnumerator Respawn()
+        {
+            transform.position = SpawnPoint;
+            yield return new WaitForSeconds(1);
+            IsDead = false;
         }
 
         private void UpdateMouseLook()
@@ -99,74 +119,68 @@ namespace Player
                 if (_target != null) _target.RemoveTarget();
                 _target = null;
             }
-            
+
             UpdateInfoText();
         }
 
         private void UpdateInfoText()
         {
             if (_target is SoundObjectPlatform && _playerPickupContainer.childCount > 0)
-            {
                 _useInfo.text = "Place";
-            }
             else if (_target)
-            {
                 _useInfo.text = _target.UseInfo;
-            }
             else
-            {
                 _useInfo.text = "";
-            }
         }
 
         private Vector3 UpdateMovement()
+        {
+            var verticalMovement = _playerInput.OnFoot.VerticalMovement.ReadValue<float>();
+            var horizontalMovement = _playerInput.OnFoot.HorizontalMovement.ReadValue<float>();
+
+            var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
+            targetDirection.Normalize();
+
+            // always move along the camera forward as it is the direction that it being aimed at
+            var transform1 = transform;
+            var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
+
+            // get a normal for the surface that is being touched to move along it
+            Physics.SphereCast(transform1.position, _controller.radius, Vector3.down, out var hitInfo,
+                _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+
+            _currentDirection.x = desiredMove.x * movementSpeed;
+            _currentDirection.z = desiredMove.z * movementSpeed;
+
+            if (_controller.isGrounded)
             {
-                var verticalMovement = _playerInput.OnFoot.VerticalMovement.ReadValue<float>();
-                var horizontalMovement = _playerInput.OnFoot.HorizontalMovement.ReadValue<float>();
+                _currentDirection.y = -stickToGroundForce;
 
-                var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
-                targetDirection.Normalize();
-
-                // always move along the camera forward as it is the direction that it being aimed at
-                var transform1 = transform;
-                var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
-
-                // get a normal for the surface that is being touched to move along it
-                Physics.SphereCast(transform1.position, _controller.radius, Vector3.down, out var hitInfo,
-                    _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-                desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
-
-                _currentDirection.x = desiredMove.x * movementSpeed;
-                _currentDirection.z = desiredMove.z * movementSpeed;
-
-                if (_controller.isGrounded)
-                {
-                    _currentDirection.y = -stickToGroundForce;
-
-                    if (_isJumping) _currentDirection.y = jumpStrength;
-                    _isJumping = false;
-                }
-                else
-                {
-                    _currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
-                }
-
-                return _currentDirection;
+                if (_isJumping) _currentDirection.y = jumpStrength;
+                _isJumping = false;
+            }
+            else
+            {
+                _currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
             }
 
-            private void Jump()
-            {
-                _isJumping = true;
-            }
+            return _currentDirection;
+        }
 
-            private void Interact()
-            {
-                if (_camera.GetComponentInChildren<Pickup>() & _target is SoundObjectPlatform)
-                    _playerPickupContainer.GetComponentInChildren<Pickup>().Place(_target as SoundObjectPlatform);
-                else if (_playerPickupContainer.childCount > 0)
-                    _playerPickupContainer.GetComponentInChildren<Pickup>().Drop();
+        private void Jump()
+        {
+            _isJumping = true;
+        }
 
-                else if (_target != null) _target.Interact();
-            }
+        private void Interact()
+        {
+            if (_camera.GetComponentInChildren<Pickup>() & _target is SoundObjectPlatform)
+                _playerPickupContainer.GetComponentInChildren<Pickup>().Place(_target as SoundObjectPlatform);
+            else if (_playerPickupContainer.childCount > 0)
+                _playerPickupContainer.GetComponentInChildren<Pickup>().Drop();
+
+            else if (_target != null) _target.Interact();
         }
     }
+}

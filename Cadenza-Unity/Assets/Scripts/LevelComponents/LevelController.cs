@@ -10,8 +10,8 @@ namespace LevelComponents
     {
         public AudioSource doorSound;
         public SolutionLight[] solutionLights;
-
-        [SerializeField] private SoundObjectPlatform[] soundObjectPlatforms;
+        public SoundObjectPlatform[] soundObjectPlatforms;
+        
         [SerializeField] private Transform exitDoor;
         public List<AudioClip> correctSoundClips;
 
