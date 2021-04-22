@@ -6,5 +6,6 @@ namespace ScriptableObjects
     public class InstrumentScriptableObject : ScriptableObject
     {
         public NoteScriptableObject[] notes;
+        public Material material;
     }
 }

@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 5a31b57bf4856e940b34c99ac2bf12b6, type: 3}
   m_ShaderKeywords: EFFECT_HUE_VARIATION GEOM_TYPE_LEAF _ALPHATEST_ON _BEND_ON _EMISSION
     _SHOWBACKFACES_ON _SHOWFRONTFACES_ON
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -146,7 +146,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 0.4178815, g: 0.57547164, b: 0.30130804, a: 1}
+    - _Color: {r: 0.6981132, g: 0.45772517, b: 0.68005, a: 1}
     - _Color0: {r: 0.51193607, g: 1, b: 0, a: 1}
     - _CurveSphereTip: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
@@ -156,3 +156,4 @@ Material:
     - _TranslucencyColor: {r: 0.72321427, g: 1, b: 0, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

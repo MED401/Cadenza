@@ -27,9 +27,9 @@ namespace LevelComponents
             var i = 0;
             while (i < sounds.Count)
             {
-                if (i > 0) _levelController.solutionLights[i - 1].TurnOff();
+                if (i > 0) _levelController.soundObjectPlatforms[i - 1].DisableLight();
 
-                _levelController.solutionLights[i].TurnOn();
+                _levelController.soundObjectPlatforms[i].EnableLight();
 
                 _audioSource.clip = sounds[i];
                 _audioSource.Play();
@@ -38,7 +38,7 @@ namespace LevelComponents
             }
 
             _audioSource.Stop();
-            _levelController.solutionLights[_levelController.solutionLights.Length - 1].TurnOff();
+            _levelController.soundObjectPlatforms[_levelController.soundObjectPlatforms.Length - 1].DisableLight();
         }
     }
 }
