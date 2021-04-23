@@ -5,24 +5,27 @@ using UnityEngine;
 
 namespace LevelComponents.LevelEvents
 {
-    public class DoorLevelEvent : LevelEvent
+    public class OpenDoorLevelEvent : LevelEvent
     {
         
-        [SerializeField] private Transform _pillar;
-        public AudioSource pillarSound;
+        [SerializeField] private Transform _door;
+        public AudioSource doorSound;
 
-        private bool _pillarRisen;
+        private bool _doorRisen;
+
+
 
         public override void Event(NoteScriptableObject note)
         {
-            
-            if (note != correctNoteForEvent) return;
-            if (_pillarRisen) return;
-            var PillarPosition = _pillar.position;
-            StartCoroutine(LerpPosition(_pillar, PillarPosition += new Vector3(0,-3,0), 3));
 
-            pillarSound.Play();
-            _pillarRisen = true;
+            if (note != correctNoteForEvent) return;
+            if (_doorRisen) return;
+
+            var DoorPosition = _door.position;
+            StartCoroutine(LerpPosition(_door, DoorPosition += new Vector3(0,-3,0), 1));
+
+            doorSound.Play();
+            _doorRisen = true;
         }
 
         private IEnumerator LerpPosition(Transform targetObject, Vector3 targetLocation, float duration)
