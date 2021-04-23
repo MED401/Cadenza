@@ -21,7 +21,7 @@ namespace LevelComponents.SolutionElements
 
         public override void Place(SoundObjectPlatform target)
         {
-            if (target.SoundObjectContainer.childCount > 0) return;
+            if (target.soundObjectContainer.childCount > 0) return;
             GetComponent<Collider>().enabled = true;
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;

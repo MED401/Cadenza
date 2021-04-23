@@ -21,14 +21,18 @@ namespace LevelComponents.SolutionElements
     public class SoundObjectPlatform : Interactable
     {
         public NoteScriptableObject correctNote;
-        [SerializeField] private AudioClip noSoundClip;
+        public Transform soundObjectContainer;
 
+        [SerializeField] private AudioClip noSoundClip;
+        [SerializeField] private Material lightMaterial;
+        [SerializeField] private float rotationSpeed = 10f;
+
+        private Material _baseMaterial;
+        private SoundObject _currentSoundObject;
         private LevelEvent[] _events;
         private LevelController _levelController;
         private AudioSource _noSound;
-
-        public Transform SoundObjectContainer { get; set; }
-        private SoundObject CurrentSoundObject { get; set; }
+        private MeshRenderer _numberRenderer;
 
         protected override void Start()
         {
@@ -39,30 +43,48 @@ namespace LevelComponents.SolutionElements
 
             _levelController = GetComponentInParent<LevelController>();
             _events = GetComponents<LevelEvent>();
-            SoundObjectContainer = transform.GetChild(0).GetComponent<Transform>();
+            soundObjectContainer = transform.GetChild(0).GetComponent<Transform>();
+
+            _numberRenderer = transform.GetChild(2).GetComponent<MeshRenderer>();
+            _baseMaterial = _numberRenderer.material;
+        }
+
+        private void Update()
+        {
+            if (_currentSoundObject != null)
+                _currentSoundObject.transform.Rotate(new Vector3(1, 2, 5) * (rotationSpeed * Time.deltaTime));
         }
 
         public bool Validate()
         {
-            if (CurrentSoundObject == null) return false;
-            return CurrentSoundObject.note == correctNote;
+            if (_currentSoundObject == null) return false;
+            return _currentSoundObject.note == correctNote;
         }
 
         public void OnPlace(SoundObject soundObject)
         {
-            CurrentSoundObject = soundObject;
+            _currentSoundObject = soundObject;
 
             foreach (var evnt in _events) evnt.Event(soundObject.note);
 
             _levelController.ValidateSolution();
         }
 
-
         public override void Interact()
         {
-            if (CurrentSoundObject == null) _noSound.Play();
+            if (_currentSoundObject == null) _noSound.Play();
 
-            else CurrentSoundObject.PlaySound();
+            else _currentSoundObject.PlaySound();
+        }
+
+        public void EnableLight()
+        {
+            _numberRenderer.material = lightMaterial;
+        }
+
+        public void DisableLight()
+        {
+            _numberRenderer.material = _baseMaterial;
         }
     }
 }
