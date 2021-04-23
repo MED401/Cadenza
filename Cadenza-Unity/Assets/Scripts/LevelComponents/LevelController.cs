@@ -1,41 +1,50 @@
 using System.Collections.Generic;
 using System.Linq;
-using LevelComponents.DisplayElements;
 using LevelComponents.SolutionElements;
 using UnityEngine;
 
 namespace LevelComponents
 {
+    public abstract class LevelSolutionEvent : MonoBehaviour
+    {
+        public abstract void OnLevelSolution();
+    }
+
     public class LevelController : MonoBehaviour
     {
-        public AudioSource doorSound;
-        public SolutionLight[] solutionLights;
         public SoundObjectPlatform[] soundObjectPlatforms;
-        
+        public List<AudioClip> correctSoundClips;
+
         [SerializeField] private Transform exitDoor;
         [SerializeField] private Transform portalActive;
-        public List<AudioClip> correctSoundClips;
+
+        private LevelSolutionEvent _solutionEvent;
 
         private void Start()
         {
-            portalActive.gameObject.SetActive(false);
-            soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
-            doorSound.spatialBlend = 0.8f;
-            solutionLights = GetComponentsInChildren<SolutionLight>();
+            if (portalActive) portalActive.gameObject.SetActive(false);
 
-            for (var i = 0; i < soundObjectPlatforms.Length; i++)
-                  correctSoundClips.Add(soundObjectPlatforms[i].correctNote.clip);
+            soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
+
+            _solutionEvent = GetComponent<LevelSolutionEvent>();
+
+            foreach (var platform in soundObjectPlatforms)
+                correctSoundClips.Add(platform.correctNote.clip);
         }
 
         public void ValidateSolution()
         {
-            foreach (var soundObjectPlatform in soundObjectPlatforms)
-                if (!soundObjectPlatform.Validate())
-                    return;
+            if (soundObjectPlatforms.Any(soundObjectPlatform => !soundObjectPlatform.Validate())) return;
 
-            portalActive.gameObject.SetActive(true);
-            exitDoor.gameObject.SetActive(false);
-            doorSound.Play();
+            if (_solutionEvent)
+            {
+                _solutionEvent.OnLevelSolution();
+            }
+            else
+            {
+                portalActive.gameObject.SetActive(true);
+                exitDoor.gameObject.SetActive(false);
+            }
         }
     }
 }
