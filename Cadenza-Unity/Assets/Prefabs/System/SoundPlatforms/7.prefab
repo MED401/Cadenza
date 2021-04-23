@@ -29,6 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1163511832547936337}
   - {fileID: 3419300087944808104}
   - {fileID: 968028152391893834}
   m_Father: {fileID: 0}
@@ -47,8 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctNote: {fileID: 11400000, guid: 675aeada46b3e364c88c643d58a39d76, type: 2}
+  soundObjectContainer: {fileID: 0}
   noSoundClip: {fileID: 8300000, guid: 33737b258338e3649944f194d2069d1f, type: 3}
   lightMaterial: {fileID: 2100000, guid: 3ed2cf7eef2c044409d84a45b53a9578, type: 2}
+  rotationSpeed: 10
 --- !u!65 &6093269678355376034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93,7 +96,7 @@ Transform:
   m_LocalScale: {x: 48.274143, y: 48.274143, z: 48.274143}
   m_Children: []
   m_Father: {fileID: 1946238670538579405}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6237092687258120246
 MeshFilter:
@@ -158,6 +161,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 153fee964563943478c9e59001dcca85, type: 3}
+--- !u!1 &2562597184600117837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163511832547936337}
+  m_Layer: 0
+  m_Name: SoundObjectContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1163511832547936337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2562597184600117837}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1134, y: 1.3, z: 0.0326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946238670538579405}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4773405372018420068
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +221,7 @@ Transform:
   m_LocalScale: {x: 88.11552, y: 88.115524, z: 88.115524}
   m_Children: []
   m_Father: {fileID: 1946238670538579405}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2129170662014141922
 MeshFilter:
