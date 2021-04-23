@@ -11,7 +11,7 @@ namespace PassiveInteractions
         {
             if (_isOpened) return;
             _isOpened = true;
-            door.transform.position += new Vector3(0, -4, 0);
+            door.transform.position += new Vector3(0, (float) -3.4, 0);
         }
     }
 }
