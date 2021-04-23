@@ -178,7 +178,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Snow: 1
-    - _SoftParticleFactor: 7.46
+    - _SoftParticleFactor: 7.3
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
