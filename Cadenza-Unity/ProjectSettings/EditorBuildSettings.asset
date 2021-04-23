@@ -11,8 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1st Iteration Scenes/Finalize box.unity
     guid: 6f26d882e432a9e479ad5dc842149d99
-    path: Assets/Scenes/2nd Iteration Scenes/Menu.unity
-    guid: 9b8100d148e5e9f45b9dc0b3c7210000
   - enabled: 1
     path: Assets/Scenes/1st Iteration Scenes/LevelEditor1stIteration.unity
     guid: 591a03de2c36e1d4f9eb6876cec07bc9
