@@ -40,10 +40,10 @@ namespace Interactions
             GetComponent<Collider>().enabled = false;
             Rigidbody.isKinematic = true;
             Rigidbody.useGravity = false;
-
+            
             StartCoroutine(LerpPosition(_playerHand, 0.05f));
         }
-
+        
         public void Drop()
         {
             GetComponent<Collider>().enabled = true;
