@@ -7,16 +7,20 @@ namespace LevelComponents.LevelEvents
 {
     public class RaisePillarLevelEvent : LevelEvent
     {
-        [SerializeField] private NoteScriptableObject _correctNote;
+        
         [SerializeField] private Transform _pillar;
+        [SerializeField] private float Raise;
         public AudioSource pillarSound;
 
         private bool _pillarRisen;
 
         public override void Event(NoteScriptableObject note)
         {
-            if (note != _correctNote) return;
+            
+            if (note != correctNoteForEvent) return;
             if (_pillarRisen) return;
+            var PillarPosition = _pillar.position;
+            StartCoroutine(LerpPosition(_pillar, PillarPosition += new Vector3(0,Raise,0), 3));
 
             pillarSound.Play();
             _pillarRisen = true;
@@ -30,7 +34,7 @@ namespace LevelComponents.LevelEvents
             while (time < duration)
             {
                 targetObject.position =
-                    Vector3.Lerp(startPosition, startPosition + targetLocation, time / duration);
+                    Vector3.Lerp(startPosition, targetLocation, time / duration);
                 time += Time.deltaTime;
                 yield return null;
             }
