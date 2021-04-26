@@ -872,6 +872,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610765063}
     m_Modifications:
+    - target: {fileID: 4875164510258071467, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
+      propertyPath: correctNote
+      value: 
+      objectReference: {fileID: 11400000, guid: 0896531fdb79c68418119dd0dc35580f, type: 2}
     - target: {fileID: 6969252549740434605, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1268,7 +1272,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-262232
+  m_Name: pb_Mesh-30746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1924,6 +1928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4149884449329640117, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
+      propertyPath: correctNote
+      value: 
+      objectReference: {fileID: 11400000, guid: 60d20f1207116834ebd613609f0799fe, type: 2}
     - target: {fileID: 4475980539853575456, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1977,6 +1985,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610765063}
     m_Modifications:
+    - target: {fileID: 4741188206338220110, guid: 641e4f58722b2d2408959ae84af626c9, type: 3}
+      propertyPath: correctNote
+      value: 
+      objectReference: {fileID: 11400000, guid: bab80533eca49514ba6b61f2b90a23c8, type: 2}
     - target: {fileID: 4741188206338220111, guid: 641e4f58722b2d2408959ae84af626c9, type: 3}
       propertyPath: m_Name
       value: 1
@@ -2220,7 +2232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7388fe3fdf0241809e3f09cf170ee434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctNoteForEvent: {fileID: 11400000, guid: 2fcd7d7541ffaab42b1f1104f3714dc7, type: 2}
+  correctNoteForEvent: {fileID: 11400000, guid: 3bd1d0829a1a40e47b20c86044a84bcc, type: 2}
   _pillar: {fileID: 41733589}
   Raise: 5
   pillarSound: {fileID: 41733588}
@@ -6230,6 +6242,25 @@ Transform:
   m_Father: {fileID: 1997003352}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1637810032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6137884077477487532, guid: 88db894838f980f439e9bf7a12d18972, type: 3}
+  m_PrefabInstance: {fileID: 1694357565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1637810034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637810032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b43bbb9d8304c7c820a9f827979e915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pillarPedestal: 2
+  _correctNote: {fileID: 11400000, guid: 3bd1d0829a1a40e47b20c86044a84bcc, type: 2}
 --- !u!4 &1640883405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2231553363348906855, guid: c3ab327de1f25f5478bae651b90f8067, type: 3}
@@ -6376,7 +6407,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SolutionButton (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7513278035808537285, guid: 88db894838f980f439e9bf7a12d18972, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 88db894838f980f439e9bf7a12d18972, type: 3}
 --- !u!4 &1694357566 stripped
 Transform:
