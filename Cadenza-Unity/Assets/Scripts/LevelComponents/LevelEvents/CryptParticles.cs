@@ -19,7 +19,7 @@ namespace LevelComponents.LevelEvents
             if (note != correctNoteForEvent) return;
             if (_pillarRisen) return;
             var PillarPosition = Road.position;
-            StartCoroutine(LerpPosition(Road, PillarPosition += new Vector3(0,40,0), 5));
+            StartCoroutine(LerpPosition(Road, PillarPosition += new Vector3(0,35,0), 6));
 
             pillarSound.Play();
             _pillarRisen = true;
