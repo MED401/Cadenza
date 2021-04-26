@@ -4825,6 +4825,101 @@ Transform:
   m_Father: {fileID: 1339185802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &87154362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87154363}
+  - component: {fileID: 87154366}
+  - component: {fileID: 87154365}
+  - component: {fileID: 87154364}
+  m_Layer: 0
+  m_Name: ExitDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87154363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87154362}
+  m_LocalRotation: {x: -0, y: 0.38268322, z: -0, w: 0.9238796}
+  m_LocalPosition: {x: -3.45, y: -2.7, z: 20.88}
+  m_LocalScale: {x: 0.991437, y: 11.569971, z: 3.23064}
+  m_Children: []
+  m_Father: {fileID: 1339185802}
+  m_RootOrder: 122
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!65 &87154364
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87154362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &87154365
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87154362}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 4894151730927233692, guid: 6637ddba38e276042be578db79b5c288, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &87154366
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87154362}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &91987312
 GameObject:
   m_ObjectHideFlags: 0
@@ -6090,7 +6185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4279089839971115869, guid: 17d9ad315059e96488491be693f57f57, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4279089839971115869, guid: 17d9ad315059e96488491be693f57f57, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15758,7 +15853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a45b6a3a88eb14891c5d7b7f7fa2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctNoteForEvent: {fileID: 11400000, guid: 5e8b80a3c477a23419728f64b1c52d0f, type: 2}
+  correctNoteForEvent: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
   _door: {fileID: 645684294}
   doorSound: {fileID: 1223815142}
 --- !u!4 &439280279 stripped
@@ -17448,7 +17543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a45b6a3a88eb14891c5d7b7f7fa2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctNoteForEvent: {fileID: 11400000, guid: 0896531fdb79c68418119dd0dc35580f, type: 2}
+  correctNoteForEvent: {fileID: 11400000, guid: 3b376d52dbb2b274d8e39d5481442a54, type: 2}
   _door: {fileID: 109489052}
   doorSound: {fileID: 1223815142}
 --- !u!1001 &506627403
@@ -19098,7 +19193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a45b6a3a88eb14891c5d7b7f7fa2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctNoteForEvent: {fileID: 11400000, guid: 451342aa365a29342989aa6b10150971, type: 2}
+  correctNoteForEvent: {fileID: 11400000, guid: 2665f5c7e5833de4595d8eb78ae5372a, type: 2}
   _door: {fileID: 80237857}
   doorSound: {fileID: 1223815142}
 --- !u!1 &633991954
@@ -20802,7 +20897,7 @@ PrefabInstance:
     - target: {fileID: 6384905869590007525, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 5e8b80a3c477a23419728f64b1c52d0f, type: 2}
+      objectReference: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
     - target: {fileID: 7415121476060967637, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: m_Name
       value: 5 (1)
@@ -21815,14 +21910,14 @@ PrefabInstance:
     - target: {fileID: 4741188206338220110, guid: 641e4f58722b2d2408959ae84af626c9, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 6df9d50cff6e14c45a8bd8aa9b6afbad, type: 2}
+      objectReference: {fileID: 11400000, guid: 2aadafc7b900cf84fbb987b6a132887d, type: 2}
     - target: {fileID: 4741188206338220111, guid: 641e4f58722b2d2408959ae84af626c9, type: 3}
       propertyPath: m_Name
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5370477827776838389, guid: 641e4f58722b2d2408959ae84af626c9, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5370477827776838389, guid: 641e4f58722b2d2408959ae84af626c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42800,10 +42895,10 @@ PrefabInstance:
     - target: {fileID: 4875164510258071467, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
+      objectReference: {fileID: 11400000, guid: 561e409fd61f6df4cb6fddbef2453d2f, type: 2}
     - target: {fileID: 6969252549740434605, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6969252549740434605, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43644,7 +43739,7 @@ PrefabInstance:
     - target: {fileID: 6384905869590007525, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 451342aa365a29342989aa6b10150971, type: 2}
+      objectReference: {fileID: 11400000, guid: 2665f5c7e5833de4595d8eb78ae5372a, type: 2}
     - target: {fileID: 7415121476060967637, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: m_Name
       value: 5 (1)
@@ -52502,7 +52597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310753705403782998, guid: e6fff08357956974dabcddf76116cbca, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5310753705403782998, guid: e6fff08357956974dabcddf76116cbca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53070,12 +53165,12 @@ Transform:
   - {fileID: 1565126385}
   - {fileID: 128200523}
   - {fileID: 922914743}
-  - {fileID: 1517562824}
-  - {fileID: 499024898}
-  - {fileID: 626615145}
-  - {fileID: 438291042}
-  - {fileID: 1672271376}
   - {fileID: 851071561}
+  - {fileID: 1672271376}
+  - {fileID: 438291042}
+  - {fileID: 626615145}
+  - {fileID: 499024898}
+  - {fileID: 1517562824}
   - {fileID: 2096387858}
   - {fileID: 1553068647}
   - {fileID: 1538888603}
@@ -53181,6 +53276,7 @@ Transform:
   - {fileID: 968898552}
   - {fileID: 360640963}
   - {fileID: 93360295}
+  - {fileID: 87154363}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53198,7 +53294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundObjectPlatforms: []
   correctSoundClips: []
-  exitDoor: {fileID: 0}
+  exitDoor: {fileID: 87154363}
   portalActive: {fileID: 1250107086}
 --- !u!4 &1339355497 stripped
 Transform:
@@ -53229,10 +53325,10 @@ PrefabInstance:
     - target: {fileID: 4149884449329640117, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 2665f5c7e5833de4595d8eb78ae5372a, type: 2}
+      objectReference: {fileID: 11400000, guid: 5e8b80a3c477a23419728f64b1c52d0f, type: 2}
     - target: {fileID: 4475980539853575456, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4475980539853575456, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54916,14 +55012,14 @@ PrefabInstance:
     - target: {fileID: 6384905869590007525, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 3b376d52dbb2b274d8e39d5481442a54, type: 2}
+      objectReference: {fileID: 11400000, guid: 0896531fdb79c68418119dd0dc35580f, type: 2}
     - target: {fileID: 7415121476060967637, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: m_Name
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7902723463235479663, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7902723463235479663, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60499,7 +60595,7 @@ PrefabInstance:
     - target: {fileID: 6384905869590007525, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: correctNote
       value: 
-      objectReference: {fileID: 11400000, guid: 0896531fdb79c68418119dd0dc35580f, type: 2}
+      objectReference: {fileID: 11400000, guid: 3b376d52dbb2b274d8e39d5481442a54, type: 2}
     - target: {fileID: 7415121476060967637, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
       propertyPath: m_Name
       value: 5 (1)
