@@ -63,7 +63,7 @@ namespace Player
             {
                 UpdateMouseLook();
                 UpdateTarget();
-                UpdateMovement();
+                _controller.Move( UpdateMovement() * Time.deltaTime);
             }
         }
 
