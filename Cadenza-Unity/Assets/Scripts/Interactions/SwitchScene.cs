@@ -1,13 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Interactions
 {
     public class SwitchScene : MonoBehaviour
     {
-        public int _nextSceneToLoad;
         public AudioSource playSound;
+        private int _nextSceneToLoad;
 
         private void Start()
         {
