@@ -157,7 +157,7 @@ Material:
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.129
+    - _Speed: 0.044
     - _SquashAmount: 1
     - _SrcBlend: 1
     - _TessValue: 16
