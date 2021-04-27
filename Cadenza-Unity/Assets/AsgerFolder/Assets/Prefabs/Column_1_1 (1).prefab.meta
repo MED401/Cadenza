@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Cadenza-Unity/Assets/AsgerFolder/Assets/Prefabs/Column_1_1 (1).prefab.meta
 guid: acf031aca6b4bab439eaf9cb435659bb
 PrefabImporter:
+=======
+guid: 3adbd5e6e90499b44b7477d9e8bad80b
+NativeFormatImporter:
+>>>>>>> main:Cadenza-Unity/Assets/Resources/Materials/Mansion.mat.meta
   externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
