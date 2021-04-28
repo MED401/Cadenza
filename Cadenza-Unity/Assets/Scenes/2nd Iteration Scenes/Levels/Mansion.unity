@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9a192ad03e89d524494871815f9987e6, type: 2}
   m_LightingSettings: {fileID: 916766503}
 --- !u!196 &4
 NavMeshSettings:
@@ -23076,7 +23076,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9884
+  m_Name: pb_Mesh-117094
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -38123,7 +38123,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9896
+  m_Name: pb_Mesh-117106
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -41699,7 +41699,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9690
+  m_Name: pb_Mesh-116900
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -86753,7 +86753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9678
+  m_Name: pb_Mesh-116888
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
