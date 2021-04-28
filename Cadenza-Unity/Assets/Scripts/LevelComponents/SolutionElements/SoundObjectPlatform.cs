@@ -22,6 +22,7 @@ namespace LevelComponents.SolutionElements
     {
         public NoteScriptableObject correctNote;
         public Transform soundObjectContainer;
+        public AudioSource audioSource;
 
         [SerializeField] private AudioClip noSoundClip;
         [SerializeField] private Material lightMaterial;
@@ -31,15 +32,14 @@ namespace LevelComponents.SolutionElements
         private SoundObject _currentSoundObject;
         private LevelEvent[] _events;
         private LevelController _levelController;
-        private AudioSource _noSound;
         private MeshRenderer _numberRenderer;
 
         protected override void Start()
         {
             UseInfo = "Play Current Sound";
-            _noSound = gameObject.AddComponent<AudioSource>();
-            _noSound.spatialBlend = 0.8f;
-            _noSound.clip = noSoundClip;
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 0.8f;
+            audioSource.clip = noSoundClip;
 
             _levelController = GetComponentInParent<LevelController>();
             _events = GetComponents<LevelEvent>();
@@ -72,7 +72,7 @@ namespace LevelComponents.SolutionElements
 
         public override void Interact()
         {
-            if (_currentSoundObject == null) _noSound.Play();
+            if (_currentSoundObject == null) audioSource.Play();
 
             else _currentSoundObject.PlaySound();
         }
