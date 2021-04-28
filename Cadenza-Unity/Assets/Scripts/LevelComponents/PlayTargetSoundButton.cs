@@ -26,18 +26,21 @@ namespace LevelComponents
             var i = 0;
             while (i < soundsPlatforms.Count)
             {
-                if (i > 0) _levelController.soundObjectPlatforms[i - 1].DisableLight();
+                if (i > 0)
+                {
+                    soundsPlatforms[i - 1].DisableLight();
+                    soundsPlatforms[i - 1].audioSource.Stop();
+                }
 
                 soundsPlatforms[i].EnableLight();
                 soundsPlatforms[i].audioSource.clip = soundsPlatforms[i].correctNote.clip;
                 soundsPlatforms[i].audioSource.Play();
                 i++;
                 yield return new WaitForSeconds(2);
-                soundsPlatforms[i].audioSource.Stop();
             }
 
-            soundsPlatforms[i].audioSource.Stop();
-            _levelController.soundObjectPlatforms[_levelController.soundObjectPlatforms.Length - 1].DisableLight();
+            soundsPlatforms[soundsPlatforms.Count - 1].audioSource.Stop();
+            soundsPlatforms[soundsPlatforms.Count - 1].DisableLight();
         }
     }
 }

@@ -17,9 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2nd Iteration Scenes/Lava/LavaLevel.unity
     guid: 48359c9ad6b21c8469c0bf2f81fcaf4c
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/2nd Iteration Scenes/Levels/Mansion.unity
+    guid: cb233bb54613d97469f36c59e3c436d7
   - enabled: 1
     path: Assets/Scenes/2nd Iteration Scenes/Ruins/Ruins.unity
     guid: 3b36833a54a347d448d11a413d483cd1
