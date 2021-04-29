@@ -8434,7 +8434,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-74522
+  m_Name: pb_Mesh-11270
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13842,10 +13842,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.5666981, b: 0, a: 1}
-  m_Intensity: 122720
+  m_Intensity: 140000
   m_Range: 149
-  m_SpotAngle: 43.42231
-  m_InnerSpotAngle: 15.166407
+  m_SpotAngle: 65.07107
+  m_InnerSpotAngle: 36.815178
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -13900,7 +13900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934515466}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 25.35035, y: 130.14691, z: -17.88}
+  m_LocalPosition: {x: 26.2, y: 130.14691, z: -11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 979234595}
@@ -14719,7 +14719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475980539853575456, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.68
+      value: 11.038
       objectReference: {fileID: 0}
     - target: {fileID: 4475980539853575456, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14765,7 +14765,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-74656
+  m_Name: pb_Mesh-11356
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21247,7 +21247,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-74644
+  m_Name: pb_Mesh-11344
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26505,7 +26505,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-74510
+  m_Name: pb_Mesh-11258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
