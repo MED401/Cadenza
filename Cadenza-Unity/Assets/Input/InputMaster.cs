@@ -57,6 +57,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SkipScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7449776-dfd5-4308-8337-163718ade721"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Horizontal Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d90e408c-6309-40f1-96bc-427959faa5e6"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -171,6 +190,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_OnFoot_HorizontalMovement = m_OnFoot.FindAction("Horizontal Movement", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
+        m_OnFoot_SkipScene = m_OnFoot.FindAction("SkipScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -225,6 +245,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_OnFoot_HorizontalMovement;
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Jump;
+    private readonly InputAction m_OnFoot_SkipScene;
     public struct OnFootActions
     {
         private @InputMaster m_Wrapper;
@@ -234,6 +255,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @HorizontalMovement => m_Wrapper.m_OnFoot_HorizontalMovement;
         public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
+        public InputAction @SkipScene => m_Wrapper.m_OnFoot_SkipScene;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +280,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnJump;
+                @SkipScene.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSkipScene;
+                @SkipScene.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSkipScene;
+                @SkipScene.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSkipScene;
             }
             m_Wrapper.m_OnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,6 +302,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @SkipScene.started += instance.OnSkipScene;
+                @SkipScene.performed += instance.OnSkipScene;
+                @SkipScene.canceled += instance.OnSkipScene;
             }
         }
     }
@@ -288,5 +316,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSkipScene(InputAction.CallbackContext context);
     }
 }
