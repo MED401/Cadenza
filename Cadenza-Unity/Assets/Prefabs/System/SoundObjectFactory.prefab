@@ -709,6 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d44f311174ad087414ca762352ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missingNoteScriptableObject: {fileID: 11400000, guid: 79d9c9ac0dd9e194d86d8146ac7836de, type: 2}
   soundObjectPrefab: {fileID: 8466354246561399898, guid: 9a531b2214f21a0449161f09cb88a25b, type: 3}
   soundObjectHolder: {fileID: 7437992352613409180}
   rotationSpeed: 10
