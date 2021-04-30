@@ -1,44 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Interactions;
+using LevelComponents.SolutionElements;
 using UnityEngine;
 
 namespace LevelComponents
 {
     public class PlayTargetSoundButton : Interactable
     {
-        private AudioSource _audioSource;
         private LevelController _levelController;
 
         protected override void Start()
         {
             UseInfo = "Play Target Sound";
             _levelController = GetComponentInParent<LevelController>();
-            _audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         public override void Interact()
         {
-            StartCoroutine(PlayCorrectSounds(_levelController.correctSoundClips));
+            StartCoroutine(PlayCorrectSounds(_levelController.soundObjectPlatforms));
         }
 
-        private IEnumerator PlayCorrectSounds(IReadOnlyList<AudioClip> sounds)
+        private IEnumerator PlayCorrectSounds(IReadOnlyList<SoundObjectPlatform> soundsPlatforms)
         {
             var i = 0;
-            while (i < sounds.Count)
+            while (i < soundsPlatforms.Count)
             {
-                if (i > 0) _levelController.soundObjectPlatforms[i - 1].DisableLight();
+                if (i > 0)
+                {
+                    soundsPlatforms[i - 1].DisableLight();
+                    soundsPlatforms[i - 1].audioSource.Stop();
+                }
 
-                _levelController.soundObjectPlatforms[i].EnableLight();
-
-                _audioSource.clip = sounds[i];
-                _audioSource.Play();
+                soundsPlatforms[i].EnableLight();
+                soundsPlatforms[i].audioSource.clip = soundsPlatforms[i].correctNote.clip;
+                soundsPlatforms[i].audioSource.Play();
                 i++;
                 yield return new WaitForSeconds(2);
             }
 
-            _audioSource.Stop();
-            _levelController.soundObjectPlatforms[_levelController.soundObjectPlatforms.Length - 1].DisableLight();
+            soundsPlatforms[soundsPlatforms.Count - 1].audioSource.Stop();
+            soundsPlatforms[soundsPlatforms.Count - 1].DisableLight();
         }
     }
 }
