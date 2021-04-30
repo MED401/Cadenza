@@ -2,6 +2,7 @@ using System.Collections;
 using Interactions;
 using LevelComponents.SolutionElements;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Player
@@ -40,8 +41,14 @@ namespace Player
 
             _playerInput.OnFoot.Interact.performed += _ => Interact();
             _playerInput.OnFoot.Jump.performed += _ => Jump();
+            _playerInput.OnFoot.SkipScene.performed += _ => SkipScene();
 
             SpawnPoint = transform.position;
+        }
+
+        private void SkipScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         private void Start()
