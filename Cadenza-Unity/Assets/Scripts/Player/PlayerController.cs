@@ -11,6 +11,7 @@ namespace Player
     {
         private static Transform _playerPickupContainer;
 
+        [SerializeField] private GameObject playMenu;
         [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
         [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
         [SerializeField] private float stickToGroundForce = 10;
@@ -24,6 +25,7 @@ namespace Player
         private float _cameraPitch;
         private CharacterController _controller;
         private Vector3 _currentDirection = Vector3.zero;
+        private bool _inMenu;
         private bool _isJumping;
         private InputMaster _playerInput;
         private Interactable _target;
@@ -45,6 +47,7 @@ namespace Player
             _playerInput.OnFoot.Interact.performed += _ => Interact();
             _playerInput.OnFoot.Jump.performed += _ => Jump();
             _playerInput.OnFoot.SkipScene.performed += _ => SkipScene();
+            _playerInput.OnFoot.OpenMenu.performed += _ => ToggleMenu();
 
             SpawnPoint = transform.position;
         }
@@ -64,7 +67,7 @@ namespace Player
             {
                 StartCoroutine(Respawn());
             }
-            else
+            else if (!_inMenu)
             {
                 UpdateMouseLook();
                 UpdateTarget();
@@ -80,6 +83,14 @@ namespace Player
         private void OnDisable()
         {
             _playerInput.Disable();
+        }
+
+        private void ToggleMenu()
+        {
+            _inMenu = !_inMenu;
+            playMenu.SetActive(_inMenu);
+
+            Cursor.lockState = _inMenu ? CursorLockMode.None : CursorLockMode.Locked;
         }
 
         private void SkipScene()
