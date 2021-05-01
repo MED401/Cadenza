@@ -5783,11 +5783,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4093150761176514, guid: 42e949fded9304745a989ca004f5bf58, type: 3}
   m_PrefabInstance: {fileID: 210110184}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &220750102 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6059995729920152454, guid: 89f0b00393837b14f999e3b2d6279012, type: 3}
-  m_PrefabInstance: {fileID: 1764356375}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &223269842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42832,7 +42827,6 @@ MonoBehaviour:
   soundObjectPlatforms: []
   correctSoundClips: []
   exitDoor: {fileID: 857377820}
-  portalActive: {fileID: 220750102}
 --- !u!4 &1593850289
 Transform:
   m_ObjectHideFlags: 0
@@ -44850,7 +44844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4584072122745854, guid: 2955c9e25b5689241aa77f1655c69b25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 64.09
+      value: 64.73
       objectReference: {fileID: 0}
     - target: {fileID: 4584072122745854, guid: 2955c9e25b5689241aa77f1655c69b25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -61185,7 +61179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   note: {fileID: 0}
 --- !u!64 &7437992350987028663
 MeshCollider:
@@ -61532,7 +61525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   note: {fileID: 0}
 --- !u!64 &7437992351441315324
 MeshCollider:
@@ -61713,7 +61705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   note: {fileID: 0}
 --- !u!64 &7437992351910480106
 MeshCollider:
@@ -61934,7 +61925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   note: {fileID: 0}
 --- !u!64 &7437992352218879645
 MeshCollider:
@@ -62155,7 +62145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767bad7c47074b9eae36e6fa70b48964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   note: {fileID: 0}
 --- !u!64 &7437992352306382875
 MeshCollider:
@@ -62235,6 +62224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d44f311174ad087414ca762352ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missingNoteScriptableObject: {fileID: 0}
   soundObjectPrefab: {fileID: 8466354246561399898, guid: 9a531b2214f21a0449161f09cb88a25b, type: 3}
   soundObjectHolder: {fileID: 7437992351292798548}
   rotationSpeed: 10
