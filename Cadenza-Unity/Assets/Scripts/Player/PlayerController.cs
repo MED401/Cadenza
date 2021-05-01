@@ -18,14 +18,16 @@ namespace Player
         [SerializeField] [Range(0.0f, 5.0f)] private float gravityMultiplier = 2.0f;
         [SerializeField] [Range(0.0f, 5.0f)] private float interactDistance = 2.0f;
         [SerializeField] private bool lockCursor = true;
+        [SerializeField] private CanvasRenderer textRenderer;
+
         private Camera _camera;
         private float _cameraPitch;
         private CharacterController _controller;
         private Vector3 _currentDirection = Vector3.zero;
         private bool _isJumping;
         private InputMaster _playerInput;
-
         private Interactable _target;
+        private Image _textBackground;
         private Text _useInfo;
 
         public bool IsDead { get; set; }
@@ -33,22 +35,18 @@ namespace Player
 
         private void Awake()
         {
-            _playerInput = new InputMaster();
             _controller = GetComponent<CharacterController>();
             _camera = GetComponentInChildren<Camera>();
             _playerPickupContainer = _camera.transform.GetChild(1);
             _useInfo = _camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
+            _playerInput = new InputMaster();
+            _textBackground = textRenderer.GetComponent<Image>();
 
             _playerInput.OnFoot.Interact.performed += _ => Interact();
             _playerInput.OnFoot.Jump.performed += _ => Jump();
             _playerInput.OnFoot.SkipScene.performed += _ => SkipScene();
 
             SpawnPoint = transform.position;
-        }
-
-        private void SkipScene()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         private void Start()
@@ -70,7 +68,7 @@ namespace Player
             {
                 UpdateMouseLook();
                 UpdateTarget();
-                _controller.Move( UpdateMovement() * Time.deltaTime);
+                _controller.Move(UpdateMovement() * Time.deltaTime);
             }
         }
 
@@ -82,6 +80,11 @@ namespace Player
         private void OnDisable()
         {
             _playerInput.Disable();
+        }
+
+        private void SkipScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         private IEnumerator Respawn()
@@ -132,12 +135,23 @@ namespace Player
 
         private void UpdateInfoText()
         {
+            textRenderer.gameObject.SetActive(false);
             if (_target is SoundObjectPlatform && _playerPickupContainer.childCount > 0)
+            {
+                textRenderer.gameObject.SetActive(true);
                 _useInfo.text = "Place";
+                _textBackground.rectTransform.sizeDelta = new Vector2(72, 30);
+            }
             else if (_target)
+            {
+                textRenderer.gameObject.SetActive(true);
                 _useInfo.text = _target.UseInfo;
+                _textBackground.rectTransform.sizeDelta = new Vector2(_useInfo.text.Length * 13, 30);
+            }
             else
+            {
                 _useInfo.text = "";
+            }
         }
 
         private Vector3 UpdateMovement()

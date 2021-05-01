@@ -6801,5 +6801,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78256493c5dd4309b9a6ebe98fac3c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextSceneToLoad: 2
-  playSound: {fileID: 0}
+  portalActivateAudioClip: {fileID: 8300000, guid: 7502d427f58a3fe4fae2e2e4d0fdfc5c, type: 3}
