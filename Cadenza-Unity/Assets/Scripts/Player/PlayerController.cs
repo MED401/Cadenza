@@ -101,7 +101,14 @@ namespace Player
         private IEnumerator Respawn()
         {
             transform.position = SpawnPoint;
-            yield return new WaitForSeconds(1);
+            
+            int i = 0;
+
+            while (i < 3)
+            {
+                i++;
+                yield return new WaitForEndOfFrame();
+            }
             IsDead = false;
         }
 
