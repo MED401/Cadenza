@@ -4227,7 +4227,7 @@ GameObject:
   - component: {fileID: 992899650}
   - component: {fileID: 992899649}
   m_Layer: 0
-  m_Name: ForesSounds
+  m_Name: ForestSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4242,7 +4242,7 @@ AudioSource:
   m_GameObject: {fileID: 992899648}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4904529316294576247, guid: d0f179ec1df925545a0abfc8151b4ee6, type: 2}
   m_audioClip: {fileID: 8300000, guid: efac1659cf5284244b55bdb54b36cc12, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.334
@@ -7241,6 +7241,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309828156776234467, guid: c3ab327de1f25f5478bae651b90f8067, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421930642339172310, guid: c3ab327de1f25f5478bae651b90f8067, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7660221719700552691, guid: c3ab327de1f25f5478bae651b90f8067, type: 3}

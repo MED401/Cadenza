@@ -13,6 +13,7 @@ namespace LevelComponents.SolutionElements
         [SerializeField] private float rotationSpeed = 10f;
         private bool _creatingSoundObject;
 
+        private Material _instrumentMaterial;
         private PitchSelector[] _pitchButtons;
         private SoundObject _soundObject;
 
@@ -50,6 +51,9 @@ namespace LevelComponents.SolutionElements
             {
                 _soundObject.note = aNote;
                 _soundObject.PlaySound();
+
+                var mesh = _soundObject.GetComponent<MeshRenderer>();
+                mesh.materials = new[] {mesh.material, _instrumentMaterial};
             }
         }
 
@@ -59,6 +63,7 @@ namespace LevelComponents.SolutionElements
 
             var mesh = _soundObject.GetComponent<MeshRenderer>();
             mesh.materials = new[] {mesh.material, instrument.material};
+            _instrumentMaterial = instrument.material;
 
             _soundObject.note = instrument.notes[2];
             _soundObject.PlaySound();

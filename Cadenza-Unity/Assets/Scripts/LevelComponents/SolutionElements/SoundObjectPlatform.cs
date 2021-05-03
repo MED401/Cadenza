@@ -1,6 +1,7 @@
 ﻿using Interactions;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace LevelComponents.SolutionElements
 {
@@ -27,7 +28,8 @@ namespace LevelComponents.SolutionElements
         [SerializeField] private AudioClip noSoundClip;
         [SerializeField] private Material lightMaterial;
         [SerializeField] private float rotationSpeed = 10f;
-
+        [SerializeField] private AudioMixerGroup audioMixerGroup;
+        
         private Material _baseMaterial;
         private Material _currentMaterial;
         private SoundObject _currentSoundObject;
@@ -43,6 +45,7 @@ namespace LevelComponents.SolutionElements
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.spatialBlend = 0.8f;
             audioSource.clip = noSoundClip;
+            audioSource.outputAudioMixerGroup = audioMixerGroup;
 
             _events = GetComponents<LevelEvent>();
             soundObjectContainer = transform.GetChild(0).GetComponent<Transform>();

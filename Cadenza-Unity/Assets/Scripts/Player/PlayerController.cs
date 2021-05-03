@@ -102,7 +102,7 @@ namespace Player
         {
             transform.position = SpawnPoint;
             
-            int i = 0;
+            var i = 0;
 
             while (i < 3)
             {
@@ -126,7 +126,7 @@ namespace Player
         private void UpdateTarget()
         {
             if (Physics.Raycast(
-                _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, _camera.nearClipPlane)),
+                _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, _camera.nearClipPlane)),
                 _camera.transform.forward, out var hit, interactDistance))
             {
                 if (hit.transform.GetComponent<Interactable>())
@@ -180,11 +180,11 @@ namespace Player
             var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
             targetDirection.Normalize();
 
-            // always move along the camera forward as it is the direction that it being aimed at
+            // Always move along the camera forward as it is the direction that it being aimed at
             var transform1 = transform;
             var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
 
-            // get a normal for the surface that is being touched to move along it
+            // Get a normal for the surface that is being touched to move along it
             Physics.SphereCast(transform1.position, _controller.radius, Vector3.down, out var hitInfo,
                 _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
