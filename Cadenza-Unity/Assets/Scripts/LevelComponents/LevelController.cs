@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Interactions;
 using LevelComponents.SolutionElements;
 using UnityEngine;
 
@@ -16,16 +17,16 @@ namespace LevelComponents
         public List<AudioClip> correctSoundClips;
 
         [SerializeField] private Transform exitDoor;
-        [SerializeField] private Transform portalActive;
+        private Portal _portal;
 
         private LevelSolutionEvent _solutionEvent;
 
         private void Start()
         {
-            if (portalActive) portalActive.gameObject.SetActive(false);
-
+            _portal = FindObjectOfType<Portal>();
+            _portal.gameObject.SetActive(false);
+            
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
-
             _solutionEvent = GetComponent<LevelSolutionEvent>();
 
             foreach (var platform in soundObjectPlatforms)
@@ -42,7 +43,7 @@ namespace LevelComponents
             }
             else
             {
-                portalActive.gameObject.SetActive(true);
+                _portal.OpenPortal();
                 exitDoor.gameObject.SetActive(false);
             }
         }

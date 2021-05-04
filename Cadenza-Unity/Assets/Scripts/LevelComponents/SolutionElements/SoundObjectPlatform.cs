@@ -38,7 +38,7 @@ namespace LevelComponents.SolutionElements
         {
             UseInfo = "Play Current Sound";
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.spatialBlend = 0.8f;
+            audioSource.spatialBlend = 1f;
             audioSource.clip = noSoundClip;
 
             _levelController = GetComponentInParent<LevelController>();
@@ -57,8 +57,11 @@ namespace LevelComponents.SolutionElements
 
         public bool Validate()
         {
-            if (_currentSoundObject == null) return false;
-            return _currentSoundObject.note == correctNote;
+            if (_currentSoundObject == null || _currentSoundObject.note != correctNote) return false;
+
+            _numberRenderer.material = lightMaterial;
+            _baseMaterial = lightMaterial;
+            return true;
         }
 
         public void OnPlace(SoundObject soundObject)
@@ -72,9 +75,15 @@ namespace LevelComponents.SolutionElements
 
         public override void Interact()
         {
-            if (_currentSoundObject == null) audioSource.Play();
-
-            else _currentSoundObject.PlaySound();
+            if (_currentSoundObject == null)
+            {
+                audioSource.clip = noSoundClip;
+                audioSource.Play();
+            }
+            else
+            {
+                _currentSoundObject.PlaySound();
+            }
         }
 
         public void EnableLight()

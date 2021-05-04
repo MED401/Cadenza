@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 27bd896ac5b839c4684fa6f759547d2d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - ITC Avant Garde Gothic Std
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8539663027e3189408dfb637e554c8f0, type: 3}
+  - {fileID: 12800000, guid: 20c9572ae0c0ce8459e5b666aebcd9e0, type: 3}
+  - {fileID: 12800000, guid: 22638a01403582b469c2e7e580cf98e0, type: 3}
+  - {fileID: 12800000, guid: 35d38fc4dbce01d45a002c3a6b648942, type: 3}
+  - {fileID: 12800000, guid: 36bc5f70c5ca09e43883f3f38a643bb7, type: 3}
+  - {fileID: 12800000, guid: 02541cebfcc209d4181a9bf6bf9cc023, type: 3}
+  - {fileID: 12800000, guid: 3311ca211630942408c2497ca01cce60, type: 3}
+  - {fileID: 12800000, guid: 540a2316a496b434db60e5b62ce0ec3a, type: 3}
+  - {fileID: 12800000, guid: c09925ac5019b6d41a51b703185ff9eb, type: 3}
+  - {fileID: 12800000, guid: a188ff02a632a3042b5c4db2c5d79f12, type: 3}
+  - {fileID: 12800000, guid: 0143dc42f6c60a74587936bacf29bd03, type: 3}
+  - {fileID: 12800000, guid: b5f6b5691ce36434ea9b56a4f7d917cd, type: 3}
+  - {fileID: 12800000, guid: e0059c0106efdd34a963e0ed967a7c60, type: 3}
+  - {fileID: 12800000, guid: e647705c8bf3eae4491050ef3c2f1e65, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
