@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Transparency: 0.321
+    - Transparency: 0.076
     - Vector1_e9485bc5691a48de8612d5de6558ddd7: 0.2
     m_Colors:
     - HeatSpeed: {r: 0, g: 0, b: 0, a: 0}
