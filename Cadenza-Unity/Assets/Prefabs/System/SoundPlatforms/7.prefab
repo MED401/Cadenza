@@ -49,9 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctNote: {fileID: 11400000, guid: 675aeada46b3e364c88c643d58a39d76, type: 2}
   soundObjectContainer: {fileID: 0}
+  audioSource: {fileID: 0}
   noSoundClip: {fileID: 8300000, guid: 33737b258338e3649944f194d2069d1f, type: 3}
   lightMaterial: {fileID: 2100000, guid: 3ed2cf7eef2c044409d84a45b53a9578, type: 2}
   rotationSpeed: 10
+  audioMixerGroup: {fileID: -1110685282926520673, guid: d0f179ec1df925545a0abfc8151b4ee6, type: 2}
 --- !u!65 &6093269678355376034
 BoxCollider:
   m_ObjectHideFlags: 0

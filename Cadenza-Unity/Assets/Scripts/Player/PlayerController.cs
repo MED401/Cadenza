@@ -11,6 +11,7 @@ namespace Player
     {
         private static Transform _playerPickupContainer;
 
+        [SerializeField] private GameObject playMenu;
         [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
         [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
         [SerializeField] private float stickToGroundForce = 10;
@@ -24,6 +25,7 @@ namespace Player
         private float _cameraPitch;
         private CharacterController _controller;
         private Vector3 _currentDirection = Vector3.zero;
+        private bool _inMenu;
         private bool _isJumping;
         private InputMaster _playerInput;
         private Interactable _target;
@@ -45,6 +47,7 @@ namespace Player
             _playerInput.OnFoot.Interact.performed += _ => Interact();
             _playerInput.OnFoot.Jump.performed += _ => Jump();
             _playerInput.OnFoot.SkipScene.performed += _ => SkipScene();
+            _playerInput.OnFoot.OpenMenu.performed += _ => ToggleMenu();
 
             SpawnPoint = transform.position;
         }
@@ -64,7 +67,7 @@ namespace Player
             {
                 StartCoroutine(Respawn());
             }
-            else
+            else if (!_inMenu)
             {
                 UpdateMouseLook();
                 UpdateTarget();
@@ -82,6 +85,14 @@ namespace Player
             _playerInput.Disable();
         }
 
+        private void ToggleMenu()
+        {
+            _inMenu = !_inMenu;
+            playMenu.SetActive(_inMenu);
+
+            Cursor.lockState = _inMenu ? CursorLockMode.None : CursorLockMode.Locked;
+        }
+
         private void SkipScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -90,7 +101,14 @@ namespace Player
         private IEnumerator Respawn()
         {
             transform.position = SpawnPoint;
-            yield return new WaitForSeconds(1);
+            
+            var i = 0;
+
+            while (i < 3)
+            {
+                i++;
+                yield return new WaitForEndOfFrame();
+            }
             IsDead = false;
         }
 
@@ -108,7 +126,7 @@ namespace Player
         private void UpdateTarget()
         {
             if (Physics.Raycast(
-                _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, _camera.nearClipPlane)),
+                _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, _camera.nearClipPlane)),
                 _camera.transform.forward, out var hit, interactDistance))
             {
                 if (hit.transform.GetComponent<Interactable>())
@@ -162,11 +180,11 @@ namespace Player
             var targetDirection = new Vector3(horizontalMovement, verticalMovement, 0.0f);
             targetDirection.Normalize();
 
-            // always move along the camera forward as it is the direction that it being aimed at
+            // Always move along the camera forward as it is the direction that it being aimed at
             var transform1 = transform;
             var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
 
-            // get a normal for the surface that is being touched to move along it
+            // Get a normal for the surface that is being touched to move along it
             Physics.SphereCast(transform1.position, _controller.radius, Vector3.down, out var hitInfo,
                 _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
