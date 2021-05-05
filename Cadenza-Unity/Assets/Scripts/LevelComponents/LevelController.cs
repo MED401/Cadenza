@@ -72,12 +72,14 @@ namespace LevelComponents
                     _solutionEventActivated)
                 {
                     _portal.ClosePortal();
+                    _solutionEventActivated = false;
                 }
                 else if (soundObjectPlatforms.All(soundObjectPlatform => soundObjectPlatform.HasValidSolution) &&
                          !_solutionEventActivated)
                 {
                     _portal.OpenPortal();
                     exitDoor.gameObject.SetActive(false);
+                    _solutionEventActivated = true;
                 }
             }
         }
