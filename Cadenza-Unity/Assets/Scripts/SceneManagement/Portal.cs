@@ -22,8 +22,11 @@ namespace SceneManagement
 
         private void OnTriggerEnter(Collider id)
         {
-            LevelLoadingScreen.LoadingScreen.BeginLoad();
-            if (_portalOpen) SceneManager.LoadSceneAsync(_nextSceneToLoad);
+            if (_portalOpen)
+            {
+                LevelLoadingScreen.LoadingScreen.BeginLoad();
+                SceneManager.LoadSceneAsync(_nextSceneToLoad);
+            }
         }
 
         public void OpenPortal()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SceneManagement;
+using UnityEngine;
 
 namespace LevelComponents.SolutionElements.LevelSolutions.CastleSolution
 {
@@ -6,20 +7,19 @@ namespace LevelComponents.SolutionElements.LevelSolutions.CastleSolution
     {
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameObject door;
-        [SerializeField] private Transform portal;
-        private LevelSolutionEvent _levelSolutionEventImplementation;
+        [SerializeField] private Portal portal;
 
         public override void OnLevelSolution()
         {
             audioSource.Play();
-            Portal.OpenPortal();
+            portal.OpenPortal();
             door.SetActive(false);
         }
 
         public override void OnNoLevelSolution()
         {
             audioSource.Play();
-            Portal.ClosePortal();
+            portal.ClosePortal();
             door.SetActive(true);
         }
     }
