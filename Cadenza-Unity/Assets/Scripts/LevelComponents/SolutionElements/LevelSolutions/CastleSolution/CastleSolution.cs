@@ -7,19 +7,18 @@ namespace LevelComponents.SolutionElements.LevelSolutions.CastleSolution
     {
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameObject door;
-        [SerializeField] private Portal portal;
 
         public override void OnLevelSolution()
         {
             audioSource.Play();
-            portal.OpenPortal();
+            Portal.OpenPortal();
             door.SetActive(false);
         }
 
         public override void OnNoLevelSolution()
         {
             audioSource.Play();
-            portal.ClosePortal();
+            Portal.ClosePortal();
             door.SetActive(true);
         }
     }

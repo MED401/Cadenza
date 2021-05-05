@@ -52,6 +52,9 @@ namespace LevelComponents.SolutionElements
             audioSource.clip = noSoundClip;
             audioSource.outputAudioMixerGroup = audioMixerGroup;
 
+            audioSource.maxDistance = 100;
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+
             _events = GetComponents<LevelEvent>();
             soundObjectContainer = transform.GetChild(0).GetComponent<Transform>();
 

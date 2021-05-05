@@ -20,8 +20,11 @@ namespace LevelComponents.SolutionElements
         protected override void Awake()
         {
             base.Awake();
+            
             _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.spatialBlend = 0.8f;
+            _audioSource.maxDistance = 100;
+            _audioSource.rolloffMode = AudioRolloffMode.Linear;
             _audioSource.outputAudioMixerGroup = audioMixerGroup;
         }
 

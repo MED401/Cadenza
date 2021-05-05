@@ -33,8 +33,6 @@ namespace LevelComponents.SolutionElements
 
                 soundPlatforms[i].EnableLight();
                 soundPlatforms[i].audioSource.clip = soundPlatforms[i].correctNote.clip;
-                soundPlatforms[i].audioSource.maxDistance = 100;
-                soundPlatforms[i].audioSource.rolloffMode = AudioRolloffMode.Linear;
                 soundPlatforms[i].audioSource.Play();
 
                 yield return new WaitForSeconds(2);
