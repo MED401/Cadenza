@@ -535,7 +535,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "21e74bc3003d4033adeabb8283f9a0c7",
     "m_Id": 0,
-    "m_DisplayName": "Float",
+    "m_DisplayName": "Transparency",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -581,10 +581,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2478.000244140625,
-            "y": 28.99998664855957,
-            "width": 126.00000762939453,
-            "height": 173.00001525878907
+            "x": -2271.0,
+            "y": -193.0,
+            "width": 126.0,
+            "height": 173.0
         }
     },
     "m_Slots": [
@@ -677,8 +677,8 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": -413.0,
-            "y": 53.000003814697269,
-            "width": 102.00000762939453,
+            "y": 39.00000762939453,
+            "width": 146.00001525878907,
             "height": 34.0
         }
     },
@@ -711,9 +711,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1561.0001220703125,
-            "y": -297.0000305175781,
-            "width": 208.0,
+            "x": -1303.0,
+            "y": -263.0,
+            "width": 208.00001525878907,
             "height": 302.0
         }
     },
@@ -845,10 +845,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2139.000244140625,
-            "y": -3.0000088214874269,
+            "x": -1864.0,
+            "y": -215.0,
             "width": 130.0,
-            "height": 118.00000762939453
+            "height": 118.0
         }
     },
     "m_Slots": [
@@ -1012,10 +1012,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -318.0,
-            "y": -37.99999237060547,
-            "width": 208.0,
-            "height": 326.0000305175781
+            "x": -243.99996948242188,
+            "y": -54.99997329711914,
+            "width": 130.0,
+            "height": 142.0
         }
     },
     "m_Slots": [
@@ -1147,9 +1147,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2343.000244140625,
-            "y": 37.0000114440918,
-            "width": 135.00001525878907,
+            "x": -2123.0,
+            "y": -177.0,
+            "width": 135.0,
             "height": 34.0
         }
     },
@@ -1622,9 +1622,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1831.000244140625,
-            "y": -39.99998474121094,
-            "width": 155.00001525878907,
+            "x": -1588.0,
+            "y": -263.0,
+            "width": 155.0,
             "height": 142.0
         }
     },
@@ -2008,9 +2008,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -897.0001831054688,
-            "y": -297.0000305175781,
-            "width": 208.0,
+            "x": -869.0,
+            "y": -340.0000305175781,
+            "width": 208.00001525878907,
             "height": 302.0
         }
     },
@@ -2077,9 +2077,9 @@
     "m_Guid": {
         "m_GuidSerialized": "08484daa-79fa-4d8e-bfd9-b580d466aceb"
     },
-    "m_Name": "Float",
+    "m_Name": "Transparency",
     "m_DefaultReferenceName": "Vector1_e9485bc5691a48de8612d5de6558ddd7",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "Transparency",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2199,9 +2199,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -931.0000610351563,
-            "y": 97.99996185302735,
-            "width": 208.0,
+            "x": -1066.0,
+            "y": 19.00004005432129,
+            "width": 208.00001525878907,
             "height": 314.0
         }
     },
