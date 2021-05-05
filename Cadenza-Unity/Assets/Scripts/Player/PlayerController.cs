@@ -85,7 +85,7 @@ namespace Player
             _playerInput.Disable();
         }
 
-        private void ToggleMenu()
+        public void ToggleMenu()
         {
             _inMenu = !_inMenu;
             playMenu.SetActive(_inMenu);
