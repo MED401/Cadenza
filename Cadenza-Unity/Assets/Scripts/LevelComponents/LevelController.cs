@@ -1,13 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using LevelComponents.SolutionElements;
+using SceneManagement;
 using UnityEngine;
 
 namespace LevelComponents
 {
     public abstract class LevelSolutionEvent : MonoBehaviour
     {
+        protected Portal Portal;
+
+        protected void Start()
+        {
+            Portal = FindObjectOfType<Portal>();
+        }
+
         public abstract void OnLevelSolution();
+        public abstract void OnNoLevelSolution();
     }
 
     public class LevelController : MonoBehaviour
@@ -16,34 +25,60 @@ namespace LevelComponents
         public List<AudioClip> correctSoundClips;
 
         [SerializeField] private Transform exitDoor;
-        [SerializeField] private Transform portalActive;
-
+        private bool _hasSolutionEvent;
+        private Portal _portal;
         private LevelSolutionEvent _solutionEvent;
+        private bool _solutionEventActivated;
 
         private void Start()
         {
-            if (portalActive) portalActive.gameObject.SetActive(false);
+            _portal = FindObjectOfType<Portal>();
+            _portal.ClosePortal();
 
             soundObjectPlatforms = GetComponentsInChildren<SoundObjectPlatform>();
-
             _solutionEvent = GetComponent<LevelSolutionEvent>();
 
             foreach (var platform in soundObjectPlatforms)
                 correctSoundClips.Add(platform.correctNote.clip);
+
+            _hasSolutionEvent = _solutionEvent != null;
         }
 
-        public void ValidateSolution()
+        private void Update()
         {
-            if (soundObjectPlatforms.Any(soundObjectPlatform => !soundObjectPlatform.Validate())) return;
+            ValidateSolution();
+        }
 
-            if (_solutionEvent)
+        private void ValidateSolution()
+        {
+            if (_hasSolutionEvent)
             {
-                _solutionEvent.OnLevelSolution();
+                if (soundObjectPlatforms.Any(soundObjectPlatform => !soundObjectPlatform.HasValidSolution) &&
+                    _solutionEventActivated)
+                {
+                    _solutionEvent.OnNoLevelSolution();
+                    _solutionEventActivated = false;
+                }
+                else if (soundObjectPlatforms.All(soundObjectPlatform => soundObjectPlatform.HasValidSolution) &&
+                         !_solutionEventActivated)
+                {
+                    _solutionEvent.OnLevelSolution();
+                    _solutionEventActivated = true;
+                }
             }
             else
             {
-                portalActive.gameObject.SetActive(true);
-                exitDoor.gameObject.SetActive(false);
+                if (soundObjectPlatforms.Any(soundObjectPlatform => !soundObjectPlatform.HasValidSolution) &&
+                    _solutionEventActivated)
+                {
+                    _portal.ClosePortal();
+                }
+                else if (soundObjectPlatforms.All(soundObjectPlatform => soundObjectPlatform.HasValidSolution) &&
+                         !_solutionEventActivated)
+                {
+                    _portal.OpenPortal();
+                    exitDoor.gameObject.SetActive(false);
+                }
             }
         }
     }

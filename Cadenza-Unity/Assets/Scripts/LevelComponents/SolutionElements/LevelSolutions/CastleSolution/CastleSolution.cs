@@ -1,18 +1,26 @@
-﻿using UnityEngine;
+﻿using SceneManagement;
+using UnityEngine;
 
 namespace LevelComponents.SolutionElements.LevelSolutions.CastleSolution
 {
     public class CastleSolution : LevelSolutionEvent
     {
-        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameObject door;
-        [SerializeField] private Transform portal;
+        [SerializeField] private Portal portal;
 
         public override void OnLevelSolution()
         {
-            portal.gameObject.SetActive(true);
+            audioSource.Play();
+            portal.OpenPortal();
             door.SetActive(false);
-            _audioSource.Play();
+        }
+
+        public override void OnNoLevelSolution()
+        {
+            audioSource.Play();
+            portal.ClosePortal();
+            door.SetActive(true);
         }
     }
 }

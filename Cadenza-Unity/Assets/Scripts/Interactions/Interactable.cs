@@ -1,20 +1,19 @@
-using System;
 using UnityEngine;
 
 namespace Interactions
 {
     public abstract class Interactable : MonoBehaviour
     {
+        private Outline _outline;
         public string UseInfo { get; protected set; }
-        protected Outline Outline;
 
         protected virtual void Awake()
         {
-            Outline = gameObject.AddComponent<Outline>();
-            Outline.OutlineColor = Color.white;
-            Outline.OutlineWidth = 3;
-            Outline.OutlineMode = Outline.Mode.OutlineVisible;
-            Outline.enabled = false;
+            _outline = gameObject.AddComponent<Outline>();
+            _outline.OutlineColor = Color.white;
+            _outline.OutlineWidth = 3;
+            _outline.OutlineMode = Outline.Mode.OutlineVisible;
+            _outline.enabled = false;
         }
 
         protected virtual void Start()
@@ -27,12 +26,12 @@ namespace Interactions
 
         public virtual void Target()
         {
-            Outline.enabled = true;
+            _outline.enabled = true;
         }
 
         public virtual void RemoveTarget()
         {
-            Outline.enabled = false;
+            _outline.enabled = false;
         }
     }
 }

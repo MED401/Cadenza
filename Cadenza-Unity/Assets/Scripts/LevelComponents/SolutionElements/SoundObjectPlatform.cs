@@ -1,6 +1,7 @@
 ﻿using Interactions;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace LevelComponents.SolutionElements
 {
@@ -23,68 +24,96 @@ namespace LevelComponents.SolutionElements
         public NoteScriptableObject correctNote;
         public Transform soundObjectContainer;
         public AudioSource audioSource;
+        public AudioReverbZone audioReverbZone;
 
         [SerializeField] private AudioClip noSoundClip;
         [SerializeField] private Material lightMaterial;
         [SerializeField] private float rotationSpeed = 10f;
-
+        [SerializeField] private AudioMixerGroup audioMixerGroup;
+        
         private Material _baseMaterial;
+        private Material _currentMaterial;
         private SoundObject _currentSoundObject;
         private LevelEvent[] _events;
-        private LevelController _levelController;
+        private bool _lightOn;
         private MeshRenderer _numberRenderer;
+
+        public bool HasValidSolution { get; private set; }
 
         protected override void Start()
         {
             UseInfo = "Play Current Sound";
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.spatialBlend = 0.8f;
+            audioReverbZone = gameObject.AddComponent<AudioReverbZone>();
+            audioReverbZone.minDistance = 20;
+            audioReverbZone.maxDistance = 100;
+            audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot; 
+            audioSource.spatialBlend = 1f;
             audioSource.clip = noSoundClip;
+            audioSource.outputAudioMixerGroup = audioMixerGroup;
 
-            _levelController = GetComponentInParent<LevelController>();
             _events = GetComponents<LevelEvent>();
             soundObjectContainer = transform.GetChild(0).GetComponent<Transform>();
 
             _numberRenderer = transform.GetChild(2).GetComponent<MeshRenderer>();
             _baseMaterial = _numberRenderer.material;
+            _currentMaterial = _baseMaterial;
         }
 
         private void Update()
         {
-            if (_currentSoundObject != null)
+            _currentSoundObject = soundObjectContainer.childCount == 0
+                ? null
+                : soundObjectContainer.GetChild(0).GetComponent<SoundObject>();
+
+            if (_currentSoundObject)
                 _currentSoundObject.transform.Rotate(new Vector3(1, 2, 5) * (rotationSpeed * Time.deltaTime));
+
+            _numberRenderer.material = _lightOn ? lightMaterial : _currentMaterial;
+
+            Validate();
         }
 
-        public bool Validate()
+        private void Validate()
         {
-            if (_currentSoundObject == null) return false;
-            return _currentSoundObject.note == correctNote;
+            if (!_currentSoundObject || _currentSoundObject.note != correctNote)
+            {
+                _currentMaterial = _baseMaterial;
+                HasValidSolution = false;
+            }
+            else
+            {
+                _currentMaterial = lightMaterial;
+                HasValidSolution = true;
+            }
         }
 
         public void OnPlace(SoundObject soundObject)
         {
-            _currentSoundObject = soundObject;
-
             foreach (var evnt in _events) evnt.Event(soundObject.note);
-
-            _levelController.ValidateSolution();
         }
 
         public override void Interact()
         {
-            if (_currentSoundObject == null) audioSource.Play();
-
-            else _currentSoundObject.PlaySound();
+            if (_currentSoundObject == null)
+            {
+                audioSource.clip = noSoundClip;
+                audioSource.Play();
+            }
+            else
+            {
+                _currentSoundObject.PlaySound();
+            }
         }
 
         public void EnableLight()
         {
-            _numberRenderer.material = lightMaterial;
+            _lightOn = true;
         }
 
         public void DisableLight()
         {
-            _numberRenderer.material = _baseMaterial;
+            _lightOn = false;
         }
     }
 }

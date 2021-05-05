@@ -2,21 +2,27 @@
 using Interactions;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace LevelComponents.SolutionElements
 {
     public class SoundObject : Pickup
     {
         public NoteScriptableObject note;
+
+        [SerializeField] private AudioMixerGroup audioMixerGroup;
+        
         private Coroutine _playSoundCoroutine;
 
-        public AudioSource ASource { get; private set; }
+
+        private AudioSource _audioSource;
 
         protected override void Awake()
         {
             base.Awake();
-            ASource = gameObject.AddComponent<AudioSource>();
-            ASource.spatialBlend = 0.8f;
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.spatialBlend = 0.8f;
+            _audioSource.outputAudioMixerGroup = audioMixerGroup;
         }
 
         public override void Place(SoundObjectPlatform target)
@@ -34,16 +40,16 @@ namespace LevelComponents.SolutionElements
         {
             if (_playSoundCoroutine != null) StopCoroutine(_playSoundCoroutine);
 
-            ASource.clip = note.clip;
+            _audioSource.clip = note.clip;
             _playSoundCoroutine = StartCoroutine(PlaySoundRoutine());
         }
 
         private IEnumerator PlaySoundRoutine()
         {
-            ASource.Stop();
-            ASource.Play();
+            _audioSource.Stop();
+            _audioSource.Play();
             yield return new WaitForSeconds(2f);
-            ASource.Stop();
+            _audioSource.Stop();
         }
     }
 }

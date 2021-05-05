@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LightControl : MonoBehaviour {
-
-    float nRand = 0;
-	
-	void Update ()
+namespace RasmusFolder.TinyFire_VFX
+{
+    public class LightControl : MonoBehaviour
     {
-        nRand = Random.RandomRange(4f, 5f);
-        this.transform.GetComponent<Light>().intensity = nRand;
-	}
+        private float _nRand;
+
+        private void Update()
+        {
+            _nRand = Random.Range(4f, 5f);
+            transform.GetComponent<Light>().intensity = _nRand;
+        }
+    }
 }
