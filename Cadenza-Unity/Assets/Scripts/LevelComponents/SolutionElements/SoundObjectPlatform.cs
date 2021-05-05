@@ -43,7 +43,7 @@ namespace LevelComponents.SolutionElements
         {
             UseInfo = "Play Current Sound";
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.spatialBlend = 0.8f;
+            audioSource.spatialBlend = 1f;
             audioSource.clip = noSoundClip;
             audioSource.outputAudioMixerGroup = audioMixerGroup;
 
