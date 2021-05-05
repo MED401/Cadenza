@@ -6,10 +6,15 @@ namespace LevelComponents.SolutionElements.LevelSolutions.BlackTowerSolutionEven
     public class BlackTowerWardSolution : LevelSolutionEvent
     {
         [SerializeField] private GateController gateController;
-        
+
         public override void OnLevelSolution()
         {
             gateController.OpenGate();
+        }
+
+        public override void OnNoLevelSolution()
+        {
+            gateController.CloseGate();
         }
     }
 }

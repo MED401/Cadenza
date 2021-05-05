@@ -7,7 +7,7 @@ namespace SceneManagement
     {
         public override void Interact()
         {
-            SceneManager.LoadScene("Finalize box");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

@@ -65,6 +65,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f591ed72-4bbf-45f8-9e93-1684cbdfe571"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,6 +185,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""SkipScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8e37cbc-a475-4119-9023-04e064c24e93"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -191,6 +210,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
         m_OnFoot_SkipScene = m_OnFoot.FindAction("SkipScene", throwIfNotFound: true);
+        m_OnFoot_OpenMenu = m_OnFoot.FindAction("OpenMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +266,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Jump;
     private readonly InputAction m_OnFoot_SkipScene;
+    private readonly InputAction m_OnFoot_OpenMenu;
     public struct OnFootActions
     {
         private @InputMaster m_Wrapper;
@@ -256,6 +277,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
         public InputAction @SkipScene => m_Wrapper.m_OnFoot_SkipScene;
+        public InputAction @OpenMenu => m_Wrapper.m_OnFoot_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @SkipScene.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSkipScene;
                 @SkipScene.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSkipScene;
                 @SkipScene.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnSkipScene;
+                @OpenMenu.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnOpenMenu;
             }
             m_Wrapper.m_OnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +330,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @SkipScene.started += instance.OnSkipScene;
                 @SkipScene.performed += instance.OnSkipScene;
                 @SkipScene.canceled += instance.OnSkipScene;
+                @OpenMenu.started += instance.OnOpenMenu;
+                @OpenMenu.performed += instance.OnOpenMenu;
+                @OpenMenu.canceled += instance.OnOpenMenu;
             }
         }
     }
@@ -317,5 +345,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSkipScene(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
 }

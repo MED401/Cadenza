@@ -6,8 +6,14 @@ namespace LevelComponents.LevelSpecificComponents.Royal_Woods
 {
     public class OpenGateButton : Interactable
     {
-        [SerializeField] private GateController gateController;
+        private GateController _gateController;
         private bool _isRunning;
+
+        protected override void Start()
+        {
+            base.Start();
+            _gateController = transform.parent.GetComponentInChildren<GateController>();
+        }
 
         public override void Interact()
         {
@@ -17,11 +23,11 @@ namespace LevelComponents.LevelSpecificComponents.Royal_Woods
         private IEnumerator ActivateGate()
         {
             _isRunning = true;
-            gateController.OpenGate();
+            _gateController.OpenGate();
 
             yield return new WaitForSeconds(4);
 
-            gateController.CloseGate();
+            _gateController.CloseGate();
             _isRunning = false;
         }
     }

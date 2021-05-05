@@ -1,23 +1,21 @@
 using UnityEngine;
-using System.Collections;
 
-public class RotateGameObject : MonoBehaviour {
-	public float rot_speed_x=0;
-	public float rot_speed_y=0;
-	public float rot_speed_z=0;
-	public bool local=false;
-	
-	// Use this for initialization
-	void Start () { 
-	
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		if (local) {
-			transform.RotateAroundLocal(transform.up, Time.fixedDeltaTime*rot_speed_x);
-		} else {
-			transform.Rotate(Time.fixedDeltaTime*new Vector3(rot_speed_x,rot_speed_y,rot_speed_z), Space.World);
-		}
-	}
+namespace Scenes._2nd_Iteration_Scenes.Lava.Rocks_and_Boulders_2.Shaders
+{
+    public class RotateGameObject : MonoBehaviour
+    {
+        public float rotSpeedX;
+        public float rotSpeedY;
+        public float rotSpeedZ;
+        public bool local;
+
+
+        private void FixedUpdate()
+        {
+            if (local)
+                transform.Rotate(transform.up, Time.fixedDeltaTime * rotSpeedX);
+            else
+                transform.Rotate(Time.fixedDeltaTime * new Vector3(rotSpeedX, rotSpeedY, rotSpeedZ), Space.World);
+        }
+    }
 }

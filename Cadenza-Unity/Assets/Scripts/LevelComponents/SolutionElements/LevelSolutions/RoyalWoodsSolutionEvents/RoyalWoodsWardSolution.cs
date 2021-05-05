@@ -7,11 +7,24 @@ namespace LevelComponents.SolutionElements.LevelSolutions.RoyalWoodsSolutionEven
     {
         [SerializeField] private GateController gateController;
         [SerializeField] private GameObject doorButton;
-        
+        private OpenGateButton _openGateButton;
+
+        protected new void Start()
+        {
+            base.Start();
+            _openGateButton = doorButton.AddComponent<OpenGateButton>();
+        }
+
         public override void OnLevelSolution()
         {
             gateController.OpenGate();
-            Destroy(doorButton.GetComponent<OpenGateButton>());
+            Destroy(_openGateButton);
+        }
+
+        public override void OnNoLevelSolution()
+        {
+            gateController.CloseGate();
+            if (!_openGateButton) _openGateButton = doorButton.AddComponent<OpenGateButton>();
         }
     }
 }
