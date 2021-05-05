@@ -24,6 +24,7 @@ namespace LevelComponents.SolutionElements
         public NoteScriptableObject correctNote;
         public Transform soundObjectContainer;
         public AudioSource audioSource;
+        public AudioReverbZone audioReverbZone;
 
         [SerializeField] private AudioClip noSoundClip;
         [SerializeField] private Material lightMaterial;
@@ -43,6 +44,10 @@ namespace LevelComponents.SolutionElements
         {
             UseInfo = "Play Current Sound";
             audioSource = gameObject.AddComponent<AudioSource>();
+            audioReverbZone = gameObject.AddComponent<AudioReverbZone>();
+            audioReverbZone.minDistance = 20;
+            audioReverbZone.maxDistance = 100;
+            audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot; 
             audioSource.spatialBlend = 1f;
             audioSource.clip = noSoundClip;
             audioSource.outputAudioMixerGroup = audioMixerGroup;
