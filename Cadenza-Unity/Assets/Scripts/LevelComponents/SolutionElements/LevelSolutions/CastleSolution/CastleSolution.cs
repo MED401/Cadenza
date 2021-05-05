@@ -6,6 +6,8 @@ namespace LevelComponents.SolutionElements.LevelSolutions.CastleSolution
     {
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameObject door;
+        [SerializeField] private Transform portal;
+        private LevelSolutionEvent _levelSolutionEventImplementation;
 
         public override void OnLevelSolution()
         {

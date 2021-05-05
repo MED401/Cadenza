@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Cadenza-Unity/Assets/RasmusFolder/RasmusSimpleNaturePack/SimpleNaturePack_HDRP_2018.3.unitypackage.meta
+guid: 4b2b34cb330d39343a181ba202f2b036
+DefaultImporter:
+=======
 guid: feb47ed68f1b3a74f96457c50c4413a9
 PrefabImporter:
+>>>>>>> main:Cadenza-Unity/Assets/Prefabs/BlackTower/BlackTowerTorch.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
