@@ -9,9 +9,14 @@ namespace LevelComponents.LevelSpecificComponents.Royal_Woods
         private Vector3 _closePosition;
         private IEnumerator _moveRoutine;
         private Vector3 _openPosition;
+        public AudioSource gateSound;
+
+        [SerializeField] private AudioClip gateClip;
 
         private void Awake()
         {
+            gateSound = gameObject.AddComponent<AudioSource>();
+            gateSound.clip = gateClip;
             var position = transform.position;
             _closePosition = position;
             _openPosition = position + new Vector3(0, 3, 0);
@@ -21,6 +26,7 @@ namespace LevelComponents.LevelSpecificComponents.Royal_Woods
         {
             if (_moveRoutine != null) StopCoroutine(_moveRoutine);
 
+            gateSound.Play();
             _moveRoutine = MoveGate(_openPosition);
             StartCoroutine(_moveRoutine);
         }
@@ -28,7 +34,8 @@ namespace LevelComponents.LevelSpecificComponents.Royal_Woods
         public void CloseGate()
         {
             if (_moveRoutine != null) StopCoroutine(_moveRoutine);
-
+            
+            gateSound.Play();    
             _moveRoutine = MoveGate(_closePosition);
             StartCoroutine(_moveRoutine);
         }
