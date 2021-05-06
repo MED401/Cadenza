@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5590640132995205188}
   - component: {fileID: 8629530665212617636}
   - component: {fileID: 4400497676335867172}
+  - component: {fileID: 1930552939324981218}
   m_Layer: 0
   m_Name: PortalEntrance
   m_TagString: Untagged
@@ -95,6 +96,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalActivateAudioClip: {fileID: 8300000, guid: 7502d427f58a3fe4fae2e2e4d0fdfc5c, type: 3}
+--- !u!64 &1930552939324981218
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321345374964610476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2332713668033502746, guid: d363b5f6735c7814cbfd877b3482ccd7, type: 3}
 --- !u!1 &6001788816151714961
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +153,7 @@ GameObject:
   - component: {fileID: 2698285082250929307}
   - component: {fileID: 7243313568394353928}
   - component: {fileID: 7860586743707966045}
+  - component: {fileID: 1809041611299275181}
   m_Layer: 0
   m_Name: PortalGate
   m_TagString: Untagged
@@ -208,3 +224,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1809041611299275181
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8728752044191342679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4159953194331869109, guid: d363b5f6735c7814cbfd877b3482ccd7, type: 3}

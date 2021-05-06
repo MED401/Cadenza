@@ -46,13 +46,13 @@ namespace LevelComponents.SolutionElements
             audioSource = gameObject.AddComponent<AudioSource>();
             audioReverbZone = gameObject.AddComponent<AudioReverbZone>();
             audioReverbZone.minDistance = 20;
-            audioReverbZone.maxDistance = 100;
+            audioReverbZone.maxDistance = 135;
             audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot; 
             audioSource.spatialBlend = 1f;
             audioSource.clip = noSoundClip;
             audioSource.outputAudioMixerGroup = audioMixerGroup;
 
-            audioSource.maxDistance = 100;
+            audioSource.maxDistance = 135;
             audioSource.rolloffMode = AudioRolloffMode.Linear;
 
             _events = GetComponents<LevelEvent>();
