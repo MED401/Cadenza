@@ -45,7 +45,6 @@ namespace Player
 
             _playerInput.OnFoot.Interact.performed += _ => Interact();
             _playerInput.OnFoot.Jump.performed += _ => Jump();
-            _playerInput.OnFoot.SkipScene.performed += _ => SkipScene();
             _playerInput.OnFoot.OpenMenu.performed += _ => ToggleMenu();
 
             SpawnPoint = transform.position;

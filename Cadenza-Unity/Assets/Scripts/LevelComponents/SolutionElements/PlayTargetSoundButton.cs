@@ -7,21 +7,45 @@ namespace LevelComponents.SolutionElements
 {
     public class PlayTargetSoundButton : Interactable
     {
+        private bool _isPlaying;
         private LevelController _levelController;
+        private IEnumerator _playSoundsRoutine;
 
         protected override void Start()
         {
-            UseInfo = "Play Target Sound";
             _levelController = GetComponentInParent<LevelController>();
+        }
+
+        private void Update()
+        {
+            UseInfo = _isPlaying ? "Stop Target Sound" : "Play Target Sound";
         }
 
         public override void Interact()
         {
-            StartCoroutine(PlayCorrectSounds(_levelController.soundObjectPlatforms));
+            if (!_isPlaying)
+            {
+                _playSoundsRoutine = PlayCorrectSounds(_levelController.soundObjectPlatforms);
+                StartCoroutine(_playSoundsRoutine);
+            }
+            else
+            {
+                StopCoroutine(_playSoundsRoutine);
+
+                foreach (var soundObjectPlatform in _levelController.soundObjectPlatforms)
+                {
+                    soundObjectPlatform.audioSource.Stop();
+                    soundObjectPlatform.PlayingSound = false;
+                }
+
+                _isPlaying = false;
+            }
         }
 
-        private static IEnumerator PlayCorrectSounds(IReadOnlyList<SoundObjectPlatform> soundPlatforms)
+        private IEnumerator PlayCorrectSounds(IReadOnlyList<SoundObjectPlatform> soundPlatforms)
         {
+            _isPlaying = true;
+
             for (var i = 0; i < soundPlatforms.Count; i++)
             {
                 if (i > 0)
@@ -41,6 +65,7 @@ namespace LevelComponents.SolutionElements
             soundPlatforms[soundPlatforms.Count - 1].PlayingSound = false;
             soundPlatforms[soundPlatforms.Count - 1].audioSource.Stop();
             soundPlatforms[soundPlatforms.Count - 1].audioSource.clip = null;
+            _isPlaying = false;
         }
     }
 }

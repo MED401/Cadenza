@@ -198,7 +198,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh71614
+  m_Name: pb_Mesh224592
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6582,7 +6582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillarPedestal: 2
-  correctNote: {fileID: 0}
+  correctNote: {fileID: 11400000, guid: 3bd1d0829a1a40e47b20c86044a84bcc, type: 2}
 --- !u!64 &1995600975
 MeshCollider:
   m_ObjectHideFlags: 0

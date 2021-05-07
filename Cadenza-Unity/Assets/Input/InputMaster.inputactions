@@ -46,14 +46,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SkipScene",
-                    "type": "Button",
-                    "id": "b7449776-dfd5-4308-8337-163718ade721",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "OpenMenu",
                     "type": "Button",
                     "id": "f591ed72-4bbf-45f8-9e93-1684cbdfe571",
@@ -161,17 +153,6 @@
                     "action": "Horizontal Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "d90e408c-6309-40f1-96bc-427959faa5e6",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SkipScene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
