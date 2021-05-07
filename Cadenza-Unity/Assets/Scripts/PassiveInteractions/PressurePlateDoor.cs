@@ -5,16 +5,16 @@ namespace PassiveInteractions
 {
     public class PressurePlateDoor : MonoBehaviour
     {
-        [SerializeField] private Transform _gate;
-        [SerializeField] AudioSource gateSound;
+        [SerializeField] private Transform gate;
+        [SerializeField] private AudioSource gateSound;
         private bool _isOpened;
 
         private void OnTriggerEnter(Collider id)
         {
             if (_isOpened) return;
-            var gatePosition = _gate.position;
-            StartCoroutine(LerpPosition(_gate, gatePosition += new Vector3(0,(float) -3.4,0), (float) 4.5));
-            
+            var gatePosition = gate.position;
+            StartCoroutine(LerpPosition(gate, gatePosition += new Vector3(0, (float) -3.4, 0), (float) 4.5));
+
             _isOpened = true;
             gateSound.Play();
         }
@@ -23,7 +23,7 @@ namespace PassiveInteractions
         {
             float time = 0;
             var startPosition = targetObject.position;
-            
+
             while (time < duration)
             {
                 targetObject.position =
@@ -34,20 +34,3 @@ namespace PassiveInteractions
         }
     }
 }
-
-
-
-
-
-/*public class PressurePlateDoor : MonoBehaviour
-{
-    [SerializeField] private GameObject door;
-    private bool _isOpened;
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_isOpened) return;
-        _isOpened = true;
-        door.transform.position += new Vector3(0, (float) -3.4, 0);
-    }
-}*/

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a638715295a25e54b91824b200c36a66, type: 2}
   m_LightingSettings: {fileID: 1488604027}
 --- !u!196 &4
 NavMeshSettings:
@@ -6552,7 +6552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillarPedestal: 3
-  _correctNote: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
+  correctNote: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
 --- !u!1 &202040019
 GameObject:
   m_ObjectHideFlags: 0
@@ -19780,7 +19780,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-19024
+  m_Name: pb_Mesh208220
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49260,7 +49260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctNoteForEvent: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
-  _door: {fileID: 1722947821}
+  door: {fileID: 1722947821}
   doorSound: {fileID: 2042109163}
 --- !u!1 &2085578358
 GameObject:

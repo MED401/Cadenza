@@ -11,8 +11,8 @@ namespace LevelComponents.SolutionElements
         [SerializeField] private GameObject soundObjectPrefab;
         [SerializeField] private Transform soundObjectHolder;
         [SerializeField] private float rotationSpeed = 10f;
-        private bool _creatingSoundObject;
 
+        private bool _creatingSoundObject;
         private Material _instrumentMaterial;
         private PitchSelector[] _pitchButtons;
         private SoundObject _soundObject;

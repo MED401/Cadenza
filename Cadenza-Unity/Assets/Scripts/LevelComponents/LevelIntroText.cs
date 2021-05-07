@@ -7,12 +7,10 @@ namespace LevelComponents
 {
     public class LevelIntroText : MonoBehaviour
     {
-        [SerializeField] private float waitUntilFade = 4;
-        [SerializeField] private float fadeSpeed = 2f;
+        [SerializeField] private float waitUntilFade = 4, fadeSpeed = 2f;
 
-        private Text _childText;
+        private Text _childText, _text;
         private bool _isFading;
-        private Text _text;
         private string _title;
 
         private void Start()

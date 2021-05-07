@@ -68,7 +68,6 @@ namespace Interactions
 
             var thisTransform = transform;
             thisTransform.SetParent(target);
-            thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
             thisTransform.position = target.position;
             _interactable = true;
         }

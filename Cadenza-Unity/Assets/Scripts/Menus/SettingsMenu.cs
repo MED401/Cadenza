@@ -35,9 +35,10 @@ namespace Menus
             resolutionDropDown.value = currentResolutionIndex;
             resolutionDropDown.RefreshShownValue();
 
-            if (CurrentSettings.MasterVolume != 0) masterVolumeSlider.value = CurrentSettings.MasterVolume;
-            if (CurrentSettings.AmbientVolume != 0) ambientVolumeSlider.value = CurrentSettings.AmbientVolume;
-            if (CurrentSettings.SoundObjectVolume != 0) soundObjectVolumeSlider.value = CurrentSettings.SoundObjectVolume;
+            if (CurrentAudioSettings.MasterVolume != 0) masterVolumeSlider.value = CurrentAudioSettings.MasterVolume;
+            if (CurrentAudioSettings.AmbientVolume != 0) ambientVolumeSlider.value = CurrentAudioSettings.AmbientVolume;
+            if (CurrentAudioSettings.SoundObjectVolume != 0)
+                soundObjectVolumeSlider.value = CurrentAudioSettings.SoundObjectVolume;
 
             graphicsQualityDropDown.value = QualitySettings.GetQualityLevel();
             fullscreenToggle.isOn = Screen.fullScreen;
@@ -46,19 +47,19 @@ namespace Menus
         public void SetMasterVolume(float volume)
         {
             audioMixer.SetFloat("masterVolume", Mathf.Log10(volume) * 20);
-            CurrentSettings.MasterVolume = volume;
+            CurrentAudioSettings.MasterVolume = volume;
         }
 
         public void SetAmbientVolume(float volume)
         {
             audioMixer.SetFloat("ambientVolume", Mathf.Log10(volume) * 20);
-            CurrentSettings.AmbientVolume = volume;
+            CurrentAudioSettings.AmbientVolume = volume;
         }
 
         public void SetSoundObjectVolume(float volume)
         {
             audioMixer.SetFloat("soundObjectVolume", Mathf.Log10(volume) * 20);
-            CurrentSettings.SoundObjectVolume = volume;
+            CurrentAudioSettings.SoundObjectVolume = volume;
         }
 
         public void SetResolution(int resolutionIndex)

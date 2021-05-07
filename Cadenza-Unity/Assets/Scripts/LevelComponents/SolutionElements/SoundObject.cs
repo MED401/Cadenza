@@ -11,21 +11,24 @@ namespace LevelComponents.SolutionElements
         public NoteScriptableObject note;
 
         [SerializeField] private AudioMixerGroup audioMixerGroup;
-        
-        private Coroutine _playSoundCoroutine;
 
-
+        private AudioReverbZone _audioReverbZone;
         private AudioSource _audioSource;
+        private Coroutine _playSoundCoroutine;
 
         protected override void Awake()
         {
             base.Awake();
-            
+
             _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.spatialBlend = 0.8f;
             _audioSource.maxDistance = 100;
             _audioSource.rolloffMode = AudioRolloffMode.Linear;
             _audioSource.outputAudioMixerGroup = audioMixerGroup;
+            _audioReverbZone = gameObject.AddComponent<AudioReverbZone>();
+            _audioReverbZone.minDistance = 20;
+            _audioReverbZone.maxDistance = 100;
+            _audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot;
         }
 
         public override void Place(SoundObjectPlatform target)

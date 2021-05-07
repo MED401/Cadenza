@@ -23,24 +23,23 @@ namespace Player
 
         private Camera _camera;
         private float _cameraPitch;
-        private CharacterController _controller;
+        private CharacterController _characterController;
         private Vector3 _currentDirection = Vector3.zero;
-        private bool _inMenu;
-        private bool _isJumping;
+        private bool _inMenu, _isJumping;
         private InputMaster _playerInput;
-        private Interactable _target;
+        private Interactable _targetInteractable;
+        private Text _targetUseHintText;
         private Image _textBackground;
-        private Text _useInfo;
 
         public bool IsDead { get; set; }
         private Vector3 SpawnPoint { get; set; }
 
         private void Awake()
         {
-            _controller = GetComponent<CharacterController>();
+            _characterController = GetComponent<CharacterController>();
             _camera = GetComponentInChildren<Camera>();
             _playerPickupContainer = _camera.transform.GetChild(1);
-            _useInfo = _camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
+            _targetUseHintText = _camera.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
             _playerInput = new InputMaster();
             _textBackground = textRenderer.GetComponent<Image>();
 
@@ -71,7 +70,7 @@ namespace Player
             {
                 UpdateMouseLook();
                 UpdateTarget();
-                _controller.Move(UpdateMovement() * Time.deltaTime);
+                _characterController.Move(UpdateMovement() * Time.deltaTime);
             }
         }
 
@@ -91,6 +90,7 @@ namespace Player
             playMenu.SetActive(_inMenu);
 
             Cursor.lockState = _inMenu ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = _inMenu;
         }
 
         private void SkipScene()
@@ -101,7 +101,7 @@ namespace Player
         private IEnumerator Respawn()
         {
             transform.position = SpawnPoint;
-            
+
             var i = 0;
 
             while (i < 3)
@@ -109,6 +109,7 @@ namespace Player
                 i++;
                 yield return new WaitForEndOfFrame();
             }
+
             IsDead = false;
         }
 
@@ -132,20 +133,21 @@ namespace Player
                 if (hit.transform.GetComponent<Interactable>())
                 {
                     var newTarget = hit.transform.GetComponent<Interactable>();
-                    if (_target != null && _target != newTarget) _target.RemoveTarget();
-                    _target = newTarget;
-                    _target.Target();
+                    if (_targetInteractable != null && _targetInteractable != newTarget)
+                        _targetInteractable.RemoveTarget();
+                    _targetInteractable = newTarget;
+                    _targetInteractable.Target();
                 }
                 else
                 {
-                    if (_target != null) _target.RemoveTarget();
-                    _target = null;
+                    if (_targetInteractable != null) _targetInteractable.RemoveTarget();
+                    _targetInteractable = null;
                 }
             }
             else
             {
-                if (_target != null) _target.RemoveTarget();
-                _target = null;
+                if (_targetInteractable != null) _targetInteractable.RemoveTarget();
+                _targetInteractable = null;
             }
 
             UpdateInfoText();
@@ -154,21 +156,21 @@ namespace Player
         private void UpdateInfoText()
         {
             textRenderer.gameObject.SetActive(false);
-            if (_target is SoundObjectPlatform && _playerPickupContainer.childCount > 0)
+            if (_targetInteractable is SoundObjectPlatform && _playerPickupContainer.childCount > 0)
             {
                 textRenderer.gameObject.SetActive(true);
-                _useInfo.text = "Place";
+                _targetUseHintText.text = "Place";
                 _textBackground.rectTransform.sizeDelta = new Vector2(72, 30);
             }
-            else if (_target)
+            else if (_targetInteractable)
             {
                 textRenderer.gameObject.SetActive(true);
-                _useInfo.text = _target.UseInfo;
-                _textBackground.rectTransform.sizeDelta = new Vector2(_useInfo.text.Length * 13, 30);
+                _targetUseHintText.text = _targetInteractable.UseInfo;
+                _textBackground.rectTransform.sizeDelta = new Vector2(_targetUseHintText.text.Length * 13, 30);
             }
             else
             {
-                _useInfo.text = "";
+                _targetUseHintText.text = "";
             }
         }
 
@@ -185,14 +187,14 @@ namespace Player
             var desiredMove = transform1.forward * targetDirection.y + transform1.right * targetDirection.x;
 
             // Get a normal for the surface that is being touched to move along it
-            Physics.SphereCast(transform1.position, _controller.radius, Vector3.down, out var hitInfo,
-                _controller.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            Physics.SphereCast(transform1.position, _characterController.radius, Vector3.down, out var hitInfo,
+                _characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
             _currentDirection.x = desiredMove.x * movementSpeed;
             _currentDirection.z = desiredMove.z * movementSpeed;
 
-            if (_controller.isGrounded)
+            if (_characterController.isGrounded)
             {
                 _currentDirection.y = -stickToGroundForce;
 
@@ -214,12 +216,13 @@ namespace Player
 
         private void Interact()
         {
-            if (_camera.GetComponentInChildren<Pickup>() & _target is SoundObjectPlatform)
-                _playerPickupContainer.GetComponentInChildren<Pickup>().Place(_target as SoundObjectPlatform);
+            if (_camera.GetComponentInChildren<Pickup>() & _targetInteractable is SoundObjectPlatform)
+                _playerPickupContainer.GetComponentInChildren<Pickup>()
+                    .Place(_targetInteractable as SoundObjectPlatform);
             else if (_playerPickupContainer.childCount > 0)
                 _playerPickupContainer.GetComponentInChildren<Pickup>().Drop();
 
-            else if (_target != null) _target.Interact();
+            else if (_targetInteractable != null) _targetInteractable.Interact();
         }
     }
 }

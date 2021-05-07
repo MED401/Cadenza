@@ -9,54 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/2nd Iteration Scenes/Menu.unity
     guid: 9b8100d148e5e9f45b9dc0b3c7210000
   - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Levels/Platform.unity
+    path: Assets/Scenes/2nd Iteration Scenes/Levels/The Platform.unity
     guid: f15aee6457d5d7940be97dd29d019df2
   - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/The Garden/The Garden.unity
-    guid: cf4b3c9245c107f49bc06f2c56d15631
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Lava/LavaLevel.unity
-    guid: 48359c9ad6b21c8469c0bf2f81fcaf4c
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Levels/Mansion.unity
-    guid: cb233bb54613d97469f36c59e3c436d7
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Ruins/Ruins.unity
-    guid: 3b36833a54a347d448d11a413d483cd1
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Pillar.unity
+    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Frozen Pillar.unity
     guid: e48e9190112e93a4c9a83a77d08b2471
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/The Castle/The Castle.unity
-    guid: f3ab206790e9a1e49a18c036e3e5ee42
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Royal Woods/The Royal Woods.unity
-    guid: d29879d167db5f045b0079933aba2b53
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/The Fortress/The Fortress.unity
-    guid: 122a63d18ce864e45855f9ec4f5780a3
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Maze.unity
-    guid: 8930f18731128d44b9ad0a9c97f8ed2e
   - enabled: 1
     path: Assets/Scenes/2nd Iteration Scenes/Island/The Island.unity
     guid: 6a0d2047072ad6744810abd1768813c3
   - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Crypt/CryptLevel.unity
-    guid: dbecc68047b3bff43bc1f658e51b0ae5
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/Winter Forest.unity
-    guid: ea369c3b1df970a43b14cdac42d149cf
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Industrial/Industrial.unity
-    guid: c79de9393313a46488f34b46741d5680
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Western/Western Saloon.unity
-    guid: 1a120abf85725db4daa71cb78ab7564e
-  - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/Stairway to winter.unity
+    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Icy Climb.unity
     guid: bf0533c00bdf4bc46a012f6b6120f9a6
   - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/The Black Tower/The Black Tower.unity
-    guid: 43289af8bfd56374e93948faf145be2d
+    path: Assets/Scenes/2nd Iteration Scenes/Catacombs/The Catacombs.unity
+    guid: dbecc68047b3bff43bc1f658e51b0ae5
+  - enabled: 1
+    path: Assets/Scenes/2nd Iteration Scenes/Ruins/The Ruins.unity
+    guid: 3b36833a54a347d448d11a413d483cd1
+  - enabled: 1
+    path: Assets/Scenes/2nd Iteration Scenes/Game End Screen.unity
+    guid: 580644b4d20cbc644b5dc3b266150ec7
   m_configObjects: {}

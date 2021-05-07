@@ -7,24 +7,27 @@ namespace LevelComponents.LevelEvents
 {
     public class OpenDoorLevelEvent : LevelEvent
     {
-        
-        [SerializeField] private Transform _door;
         public AudioSource doorSound;
 
+        [SerializeField] private Transform door;
+        
         private bool _doorRisen;
+        private SoundObjectPlatform _soundObjectPlatform;
 
-
+        private void Start()
+        {
+            _soundObjectPlatform = GetComponent<SoundObjectPlatform>();
+        }
 
         public override void Event(NoteScriptableObject note)
         {
-
             if (note != correctNoteForEvent) return;
             if (_doorRisen) return;
 
-            var DoorPosition = _door.position;
-            StartCoroutine(LerpPosition(_door, DoorPosition += new Vector3(0,-3,0), 1));
+            StartCoroutine(LerpPosition(door, new Vector3(0, -3, 0), 1));
 
             doorSound.Play();
+            _soundObjectPlatform.EnableAltLight();
             _doorRisen = true;
         }
 

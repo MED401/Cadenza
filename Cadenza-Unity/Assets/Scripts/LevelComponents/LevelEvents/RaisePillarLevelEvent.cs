@@ -7,35 +7,37 @@ namespace LevelComponents.LevelEvents
 {
     public class RaisePillarLevelEvent : LevelEvent
     {
-        
-        [SerializeField] private Transform _pillar;
-        [SerializeField] private float Raise;
         public AudioSource pillarSound;
 
+        [SerializeField] private Transform pillar;
+        [SerializeField] private float raiseSpeed;
+        [SerializeField] private float raiseDistance;
+
         private bool _pillarRisen;
+        private SoundObjectPlatform _soundObjectPlatform;
+
+        private void Start()
+        {
+            _soundObjectPlatform = GetComponent<SoundObjectPlatform>();
+        }
 
         public override void Event(NoteScriptableObject note)
         {
-            
             if (note != correctNoteForEvent) return;
             if (_pillarRisen) return;
-            var PillarPosition = _pillar.position;
-            StartCoroutine(LerpPosition(_pillar, PillarPosition += new Vector3(0,Raise,0), 3));
+
+            StartCoroutine(LerpPosition(pillar.position + new Vector3(0, raiseDistance, 0)));
 
             pillarSound.Play();
             _pillarRisen = true;
+            _soundObjectPlatform.EnableAltLight();
         }
 
-        private IEnumerator LerpPosition(Transform targetObject, Vector3 targetLocation, float duration)
+        private IEnumerator LerpPosition(Vector3 targetLocation)
         {
-            float time = 0;
-            var startPosition = targetObject.position;
-
-            while (time < duration)
+            while (pillar.position != targetLocation)
             {
-                targetObject.position =
-                    Vector3.Lerp(startPosition, targetLocation, time / duration);
-                time += Time.deltaTime;
+                pillar.position = Vector3.MoveTowards(pillar.position, targetLocation, raiseSpeed * Time.deltaTime);
                 yield return null;
             }
         }

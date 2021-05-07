@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Interactions;
 using ScriptableObjects;
 using UnityEngine;
@@ -8,10 +7,10 @@ namespace LevelComponents.SolutionElements.LevelSolutions.WinterWonderlandPillar
 {
     public class PillarSolution : Interactable
     {
+        [SerializeField] private int pillarPedestal;
+        [SerializeField] private NoteScriptableObject correctNote;
         private AudioSource _audioSource;
         private LevelController _levelController;
-        [SerializeField] private int pillarPedestal;
-        [SerializeField] private NoteScriptableObject _correctNote;
 
 
         protected override void Start()
@@ -23,20 +22,19 @@ namespace LevelComponents.SolutionElements.LevelSolutions.WinterWonderlandPillar
 
         public override void Interact()
         {
-            StartCoroutine(PlayCorrectSounds(_correctNote));
+            StartCoroutine(PlayCorrectSounds(correctNote));
         }
 
         private IEnumerator PlayCorrectSounds(NoteScriptableObject sound)
         {
-            _levelController.soundObjectPlatforms[pillarPedestal-1].EnableLight();
+            _levelController.soundObjectPlatforms[pillarPedestal - 1].PlayingSound = true;
 
-                _audioSource.clip = sound.clip;
-                _audioSource.Play();
-                yield return new WaitForSeconds(2);
-            
+            _audioSource.clip = sound.clip;
+            _audioSource.Play();
+            yield return new WaitForSeconds(2);
 
             _audioSource.Stop();
-            _levelController.soundObjectPlatforms[pillarPedestal-1].DisableLight();
+            _levelController.soundObjectPlatforms[pillarPedestal - 1].PlayingSound = false;
         }
     }
 }

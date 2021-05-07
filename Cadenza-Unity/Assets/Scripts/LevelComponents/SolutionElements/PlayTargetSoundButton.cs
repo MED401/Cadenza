@@ -26,19 +26,19 @@ namespace LevelComponents.SolutionElements
             {
                 if (i > 0)
                 {
-                    soundPlatforms[i - 1].DisableLight();
+                    soundPlatforms[i - 1].PlayingSound = false;
                     soundPlatforms[i - 1].audioSource.Stop();
                     soundPlatforms[i - 1].audioSource.clip = null;
                 }
 
-                soundPlatforms[i].EnableLight();
+                soundPlatforms[i].PlayingSound = true;
                 soundPlatforms[i].audioSource.clip = soundPlatforms[i].correctNote.clip;
                 soundPlatforms[i].audioSource.Play();
 
                 yield return new WaitForSeconds(2);
             }
 
-            soundPlatforms[soundPlatforms.Count - 1].DisableLight();
+            soundPlatforms[soundPlatforms.Count - 1].PlayingSound = false;
             soundPlatforms[soundPlatforms.Count - 1].audioSource.Stop();
             soundPlatforms[soundPlatforms.Count - 1].audioSource.clip = null;
         }

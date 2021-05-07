@@ -24,31 +24,32 @@ namespace LevelComponents.SolutionElements
         public NoteScriptableObject correctNote;
         public Transform soundObjectContainer;
         public AudioSource audioSource;
-        public AudioReverbZone audioReverbZone;
 
         [SerializeField] private AudioClip noSoundClip;
         [SerializeField] private Material lightMaterial;
+        [SerializeField] private Material altLightMaterial;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private AudioMixerGroup audioMixerGroup;
-        
+
+        private AudioReverbZone _audioReverbZone;
         private Material _baseMaterial;
-        private Material _currentMaterial;
         private SoundObject _currentSoundObject;
         private LevelEvent[] _events;
-        private bool _lightOn;
+        private bool _lightOn, _altLightOn;
         private MeshRenderer _numberRenderer;
 
+        public bool PlayingSound { get; set; }
         public bool HasValidSolution { get; private set; }
 
         protected override void Start()
         {
             UseInfo = "Play Current Sound";
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioReverbZone = gameObject.AddComponent<AudioReverbZone>();
-            audioReverbZone.minDistance = 20;
-            audioReverbZone.maxDistance = 100;
-            audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot; 
-            audioSource.spatialBlend = 1f;
+            _audioReverbZone = gameObject.AddComponent<AudioReverbZone>();
+            _audioReverbZone.minDistance = 20;
+            _audioReverbZone.maxDistance = 100;
+            _audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot;
+            audioSource.spatialBlend = 0.8f;
             audioSource.clip = noSoundClip;
             audioSource.outputAudioMixerGroup = audioMixerGroup;
 
@@ -60,7 +61,6 @@ namespace LevelComponents.SolutionElements
 
             _numberRenderer = transform.GetChild(2).GetComponent<MeshRenderer>();
             _baseMaterial = _numberRenderer.material;
-            _currentMaterial = _baseMaterial;
         }
 
         private void Update()
@@ -72,7 +72,13 @@ namespace LevelComponents.SolutionElements
             if (_currentSoundObject)
                 _currentSoundObject.transform.Rotate(new Vector3(1, 2, 5) * (rotationSpeed * Time.deltaTime));
 
-            _numberRenderer.material = _lightOn ? lightMaterial : _currentMaterial;
+
+            if (PlayingSound || _lightOn)
+                _numberRenderer.material = lightMaterial;
+            else if (_altLightOn)
+                _numberRenderer.material = altLightMaterial;
+            else
+                _numberRenderer.material = _baseMaterial;
 
             Validate();
         }
@@ -81,12 +87,12 @@ namespace LevelComponents.SolutionElements
         {
             if (!_currentSoundObject || _currentSoundObject.note != correctNote)
             {
-                _currentMaterial = _baseMaterial;
+                _lightOn = false;
                 HasValidSolution = false;
             }
             else
             {
-                _currentMaterial = lightMaterial;
+                _lightOn = true;
                 HasValidSolution = true;
             }
         }
@@ -109,14 +115,9 @@ namespace LevelComponents.SolutionElements
             }
         }
 
-        public void EnableLight()
+        public void EnableAltLight()
         {
-            _lightOn = true;
-        }
-
-        public void DisableLight()
-        {
-            _lightOn = false;
+            _altLightOn = true;
         }
     }
 }

@@ -25,10 +25,10 @@ namespace LevelComponents
         public List<AudioClip> correctSoundClips;
 
         [SerializeField] private Transform exitDoor;
-        private bool _hasSolutionEvent;
+        
+        private bool _hasSolutionEvent, _solutionEventActivated;
         private Portal _portal;
         private LevelSolutionEvent _solutionEvent;
-        private bool _solutionEventActivated;
 
         private void Start()
         {

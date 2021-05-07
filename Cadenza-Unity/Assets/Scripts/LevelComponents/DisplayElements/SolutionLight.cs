@@ -4,8 +4,7 @@ namespace LevelComponents.DisplayElements
 {
     public class SolutionLight : MonoBehaviour
     {
-        [SerializeField] private Material onMaterial;
-        [SerializeField] private Material offMaterial;
+        [SerializeField] private Material onMaterial, offMaterial;
         private Light _light;
         private MeshRenderer _meshRenderer;
 

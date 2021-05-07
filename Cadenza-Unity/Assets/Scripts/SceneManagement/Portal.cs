@@ -11,7 +11,7 @@ namespace SceneManagement
         private MeshRenderer _portalMeshRenderer;
         private bool _portalOpen = true;
 
-        private void Start()
+        private void Awake()
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.clip = portalActivateAudioClip;
