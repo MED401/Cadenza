@@ -81,6 +81,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""817413fe-9d3f-42e6-bc74-931f1fc8ba48"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""39371931-d70b-4bdf-96b5-eb256a14dced"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
