@@ -198,7 +198,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh224592
+  m_Name: pb_Mesh56140
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -962,6 +962,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
+--- !u!114 &425253650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4875164510258071467, guid: 17c741ce1f9bc61418d724d8a931c299, type: 3}
+  m_PrefabInstance: {fileID: 425253649}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230559711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2bdcea3d91422f81c984c24730ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &509555954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 430732, guid: 9675245c4464bf74ebc4eac2ed9a24e7, type: 3}
@@ -6578,11 +6589,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1995600972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b43bbb9d8304c7c820a9f827979e915, type: 3}
+  m_Script: {fileID: 11500000, guid: 97137723c0de25e44a1b7789f89b78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pillarPedestal: 2
-  correctNote: {fileID: 11400000, guid: 3bd1d0829a1a40e47b20c86044a84bcc, type: 2}
+  soundObjectPlatform: {fileID: 425253650}
 --- !u!64 &1995600975
 MeshCollider:
   m_ObjectHideFlags: 0

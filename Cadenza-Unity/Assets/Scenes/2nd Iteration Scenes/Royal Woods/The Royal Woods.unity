@@ -2155,6 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ed2d6610744adca6f86f7a50b5f5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: Play Portal Activation Sequence
 --- !u!65 &563956158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3470,6 +3471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  gateAudioClip: {fileID: 8300000, guid: 5dfacf1cbf3aedf4caa783ad3def0374, type: 3}
 --- !u!64 &805370909
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5216,6 +5218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ed2d6610744adca6f86f7a50b5f5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: Play Portal Activation Sequence
 --- !u!65 &1310835577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5706,6 +5709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  gateAudioClip: {fileID: 8300000, guid: 5dfacf1cbf3aedf4caa783ad3def0374, type: 3}
 --- !u!64 &1363869722
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6699,6 +6703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  gateAudioClip: {fileID: 8300000, guid: 5dfacf1cbf3aedf4caa783ad3def0374, type: 3}
 --- !u!64 &1673829919
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7381,6 +7386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ed2d6610744adca6f86f7a50b5f5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: Play Portal Activation Sequence
 --- !u!65 &1752643105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7566,6 +7572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ed2d6610744adca6f86f7a50b5f5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: Play Gate Opening Sequence
 --- !u!65 &1818828377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7679,6 +7686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ed2d6610744adca6f86f7a50b5f5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: Play Gate Opening Sequence
 --- !u!65 &1872579832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8449,6 +8457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ed2d6610744adca6f86f7a50b5f5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: Play Gate Opening Sequence
 --- !u!65 &2099792771
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6548,11 +6548,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 201447872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b43bbb9d8304c7c820a9f827979e915, type: 3}
+  m_Script: {fileID: 11500000, guid: 97137723c0de25e44a1b7789f89b78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pillarPedestal: 3
-  correctNote: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
+  soundObjectPlatform: {fileID: 2090667251}
 --- !u!1 &202040019
 GameObject:
   m_ObjectHideFlags: 0
@@ -19780,7 +19779,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh208220
+  m_Name: pb_Mesh49542
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49472,6 +49471,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
+--- !u!114 &2090667251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4149884449329640117, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
+  m_PrefabInstance: {fileID: 2090667250}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073448410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2bdcea3d91422f81c984c24730ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2097996090
 GameObject:
   m_ObjectHideFlags: 0

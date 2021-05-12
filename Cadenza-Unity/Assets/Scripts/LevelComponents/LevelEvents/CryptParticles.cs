@@ -7,19 +7,16 @@ namespace LevelComponents.LevelEvents
 {
     public class CryptParticles : LevelEvent
     {
-        
-        [SerializeField] private Transform Road;
         public AudioSource pillarSound;
-
+        [SerializeField] private Transform Road;
         private bool _pillarRisen;
 
         public override void Event(NoteScriptableObject note)
         {
-            
             if (note != correctNoteForEvent) return;
             if (_pillarRisen) return;
             var PillarPosition = Road.position;
-            StartCoroutine(LerpPosition(Road, PillarPosition += new Vector3(0,35,0), 6));
+            StartCoroutine(LerpPosition(Road, PillarPosition += new Vector3(0, 35, 0), 6));
 
             pillarSound.Play();
             _pillarRisen = true;

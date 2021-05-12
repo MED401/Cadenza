@@ -12,17 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/2nd Iteration Scenes/Levels/The Platform.unity
     guid: f15aee6457d5d7940be97dd29d019df2
   - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Frozen Pillar.unity
-    guid: e48e9190112e93a4c9a83a77d08b2471
+    path: Assets/Scenes/2nd Iteration Scenes/Western/Western Saloon.unity
+    guid: 1a120abf85725db4daa71cb78ab7564e
   - enabled: 1
     path: Assets/Scenes/2nd Iteration Scenes/Island/The Island.unity
     guid: 6a0d2047072ad6744810abd1768813c3
   - enabled: 1
+    path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Winter Forest.unity
+    guid: ea369c3b1df970a43b14cdac42d149cf
+  - enabled: 1
     path: Assets/Scenes/2nd Iteration Scenes/Winter Wonderland/The Icy Climb.unity
     guid: bf0533c00bdf4bc46a012f6b6120f9a6
   - enabled: 1
-    path: Assets/Scenes/2nd Iteration Scenes/Catacombs/The Catacombs.unity
-    guid: dbecc68047b3bff43bc1f658e51b0ae5
+    path: Assets/Scenes/2nd Iteration Scenes/Royal Woods/The Royal Woods.unity
+    guid: d29879d167db5f045b0079933aba2b53
   - enabled: 1
     path: Assets/Scenes/2nd Iteration Scenes/Ruins/The Ruins.unity
     guid: 3b36833a54a347d448d11a413d483cd1

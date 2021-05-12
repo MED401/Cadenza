@@ -7,6 +7,7 @@ namespace LevelComponents.SolutionElements
 {
     public class PlayTargetSoundButton : Interactable
     {
+        public string infoText = "Play Portal Activation Sequence";
         private bool _isPlaying;
         private LevelController _levelController;
         private IEnumerator _playSoundsRoutine;
@@ -18,7 +19,7 @@ namespace LevelComponents.SolutionElements
 
         private void Update()
         {
-            UseInfo = _isPlaying ? "Stop Target Sound" : "Play Target Sound";
+            UseInfo = _isPlaying ? "Stop Playing" : infoText;
         }
 
         public override void Interact()

@@ -8912,11 +8912,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 174294586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b43bbb9d8304c7c820a9f827979e915, type: 3}
+  m_Script: {fileID: 11500000, guid: 97137723c0de25e44a1b7789f89b78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pillarPedestal: 4
-  correctNote: {fileID: 11400000, guid: 2665f5c7e5833de4595d8eb78ae5372a, type: 2}
+  soundObjectPlatform: {fileID: 1278605461}
 --- !u!1 &220319295
 GameObject:
   m_ObjectHideFlags: 0
@@ -15554,11 +15553,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 447091630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b43bbb9d8304c7c820a9f827979e915, type: 3}
+  m_Script: {fileID: 11500000, guid: 97137723c0de25e44a1b7789f89b78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pillarPedestal: 5
-  correctNote: {fileID: 11400000, guid: 3b376d52dbb2b274d8e39d5481442a54, type: 2}
+  soundObjectPlatform: {fileID: 1582031693}
 --- !u!43 &455489790
 Mesh:
   m_ObjectHideFlags: 0
@@ -19521,7 +19519,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh186086
+  m_Name: pb_Mesh65624
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -50407,6 +50405,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6fff08357956974dabcddf76116cbca, type: 3}
+--- !u!114 &1278605461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1060545302719489559, guid: e6fff08357956974dabcddf76116cbca, type: 3}
+  m_PrefabInstance: {fileID: 1278605460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626615144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2bdcea3d91422f81c984c24730ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1279037880
 GameObject:
   m_ObjectHideFlags: 0
@@ -51105,6 +51114,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
+--- !u!114 &1377437436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4149884449329640117, guid: ec5c16d1c1c06dc4d9c794d540b0f0c5, type: 3}
+  m_PrefabInstance: {fileID: 1377437435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438291041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2bdcea3d91422f81c984c24730ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1391586893
 GameObject:
   m_ObjectHideFlags: 0
@@ -51468,11 +51488,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1449275671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b43bbb9d8304c7c820a9f827979e915, type: 3}
+  m_Script: {fileID: 11500000, guid: 97137723c0de25e44a1b7789f89b78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pillarPedestal: 3
-  correctNote: {fileID: 11400000, guid: 7ed495aa88f388142a90801c128f3322, type: 2}
+  soundObjectPlatform: {fileID: 1377437436}
 --- !u!1001 &1492711039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52492,6 +52511,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
+--- !u!114 &1582031693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6384905869590007525, guid: 2628c64527dbcdc4eba0701772431668, type: 3}
+  m_PrefabInstance: {fileID: 1582031692}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499024897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2bdcea3d91422f81c984c24730ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1585444967
 Mesh:
   m_ObjectHideFlags: 0
