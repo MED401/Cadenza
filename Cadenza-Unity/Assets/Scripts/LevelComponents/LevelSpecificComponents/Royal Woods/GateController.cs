@@ -16,6 +16,7 @@ namespace LevelComponents.LevelSpecificComponents.Royal_Woods
         {
             _gateAudioSource = gameObject.AddComponent<AudioSource>();
             _gateAudioSource.clip = gateAudioClip;
+            _gateAudioSource.spatialBlend = 0.8f;
 
             var position = transform.position;
             _closePosition = position;
