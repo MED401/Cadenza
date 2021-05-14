@@ -8391,7 +8391,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-85594
+  m_Name: pb_Mesh-10242
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8965,7 +8965,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-85606
+  m_Name: pb_Mesh-10254
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9337,7 +9337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596a34b145444c9db2e48b1375638b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1279315245}
   door: {fileID: 416833280}
 --- !u!1001 &761002445
 PrefabInstance:
@@ -18251,7 +18251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596a34b145444c9db2e48b1375638b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 4046451341489545589}
   door: {fileID: 2109804999}
 --- !u!4 &1321366868 stripped
 Transform:
@@ -19270,7 +19270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596a34b145444c9db2e48b1375638b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8635949674622157506}
   door: {fileID: 1739334093770894374}
 --- !u!43 &1412014409
 Mesh:
@@ -19278,7 +19278,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-83950
+  m_Name: pb_Mesh-8596
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19701,7 +19701,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-83938
+  m_Name: pb_Mesh-8584
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20865,7 +20865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99080132120d4d33958945fe171799e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gate: {fileID: 0}
+  gate: {fileID: 1713276511}
   gateSound: {fileID: 1713276512}
 --- !u!65 &1519770080
 BoxCollider:
@@ -24791,7 +24791,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh120866
+  m_Name: pb_Mesh52540
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26972,7 +26972,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-84300
+  m_Name: pb_Mesh-8946
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27679,7 +27679,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-84312
+  m_Name: pb_Mesh-8958
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

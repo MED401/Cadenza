@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Player;
 
 namespace Menus
 {
@@ -10,12 +11,14 @@ namespace Menus
         public AudioMixer audioMixer;
         public Dropdown resolutionDropDown, graphicsQualityDropDown;
         public Toggle fullscreenToggle;
-        public Slider masterVolumeSlider, ambientVolumeSlider, soundObjectVolumeSlider;
+        public Slider masterVolumeSlider, ambientVolumeSlider, soundObjectVolumeSlider, mouseSensitivitySlider;
 
         private Resolution[] _resolutions;
+        private PlayerController _player;
 
         private void Start()
         {
+            _player = FindObjectOfType<PlayerController>();
             _resolutions = Screen.resolutions;
             resolutionDropDown.ClearOptions();
             var resolutionOptions = new List<string>();
@@ -37,8 +40,8 @@ namespace Menus
 
             if (CurrentAudioSettings.MasterVolume != 0) masterVolumeSlider.value = CurrentAudioSettings.MasterVolume;
             if (CurrentAudioSettings.AmbientVolume != 0) ambientVolumeSlider.value = CurrentAudioSettings.AmbientVolume;
-            if (CurrentAudioSettings.SoundObjectVolume != 0)
-                soundObjectVolumeSlider.value = CurrentAudioSettings.SoundObjectVolume;
+            if (CurrentAudioSettings.SoundObjectVolume != 0) soundObjectVolumeSlider.value = CurrentAudioSettings.SoundObjectVolume;
+            if (CurrentAudioSettings.MouseSensitivity != 0) mouseSensitivitySlider.value = CurrentAudioSettings.MouseSensitivity;
 
             graphicsQualityDropDown.value = QualitySettings.GetQualityLevel();
             fullscreenToggle.isOn = Screen.fullScreen;
@@ -76,6 +79,12 @@ namespace Menus
         public void SetFullscreen(bool isFullscreen)
         {
             Screen.fullScreen = isFullscreen;
+        }
+
+        public void SetMouseSensitivity(float sensitivity)
+        {
+            if (_player != null) _player.mouseSensitivity = sensitivity;
+            CurrentAudioSettings.MouseSensitivity = sensitivity;
         }
     }
 }

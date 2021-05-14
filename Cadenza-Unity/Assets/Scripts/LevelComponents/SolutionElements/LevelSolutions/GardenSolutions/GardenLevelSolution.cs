@@ -1,21 +1,22 @@
-﻿using SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace LevelComponents.SolutionElements.LevelSolutions.CastleSolution
+namespace LevelComponents.SolutionElements.LevelSolutions.GardenSolutions
 {
-    public class CastleSolution : LevelSolutionEvent
+    public class GardenLevelSolution : LevelSolutionEvent
     {
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameObject door;
 
         public override void OnLevelSolution()
         {
+            Portal.OpenPortal();
             audioSource.Play();
             door.SetActive(false);
         }
 
         public override void OnNoLevelSolution()
         {
+            Portal.ClosePortal();
             audioSource.Play();
             door.SetActive(true);
         }

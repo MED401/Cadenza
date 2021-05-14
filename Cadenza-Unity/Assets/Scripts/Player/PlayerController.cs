@@ -1,6 +1,7 @@
 using System.Collections;
 using Interactions;
 using LevelComponents.SolutionElements;
+using Menus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,10 +10,11 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public float mouseSensitivity;
+
         private static Transform _playerPickupContainer;
 
         [SerializeField] private GameObject playMenu;
-        [SerializeField] [Range(0.0f, 1.0f)] private float mouseSensitivity = 0.1f;
         [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
         [SerializeField] private float stickToGroundForce = 10;
         [SerializeField] [Range(0.0f, 20.0f)] private float jumpStrength = 10.0f;
@@ -36,6 +38,7 @@ namespace Player
 
         private void Awake()
         {
+            mouseSensitivity = CurrentAudioSettings.MouseSensitivity;
             _characterController = GetComponent<CharacterController>();
             _camera = GetComponentInChildren<Camera>();
             _playerPickupContainer = _camera.transform.GetChild(1);
