@@ -55,6 +55,7 @@ namespace LevelComponents.SolutionElements
 
             audioSource.maxDistance = 100;
             audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.dopplerLevel = 0;
 
             _events = GetComponents<LevelEvent>();
             soundObjectContainer = transform.GetChild(0).GetComponent<Transform>();

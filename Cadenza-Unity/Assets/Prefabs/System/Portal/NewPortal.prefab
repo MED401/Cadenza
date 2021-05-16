@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 182632756995096612}
   - component: {fileID: 5590640132995205188}
   - component: {fileID: 8629530665212617636}
+  - component: {fileID: 8675067298550314784}
   - component: {fileID: 4400497676335867172}
   m_Layer: 0
   m_Name: PortalEntrance
@@ -82,6 +83,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8675067298550314784
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321345374964610476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2332713668033502746, guid: d363b5f6735c7814cbfd877b3482ccd7, type: 3}
 --- !u!114 &4400497676335867172
 MonoBehaviour:
   m_ObjectHideFlags: 0

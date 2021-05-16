@@ -29,6 +29,7 @@ namespace LevelComponents.SolutionElements
             _audioReverbZone.minDistance = 20;
             _audioReverbZone.maxDistance = 100;
             _audioReverbZone.reverbPreset = AudioReverbPreset.ParkingLot;
+            _audioSource.dopplerLevel = 0;
         }
 
         public override void Place(SoundObjectPlatform target)
