@@ -66,6 +66,7 @@ namespace Player
         {
             if (IsDead)
             {
+                transform.position = SpawnPoint;
                 StartCoroutine(Respawn());
             }
             else if (!_inMenu)
@@ -102,15 +103,7 @@ namespace Player
 
         private IEnumerator Respawn()
         {
-            transform.position = SpawnPoint;
-
-            var i = 0;
-
-            while (i < 3)
-            {
-                i++;
-                yield return new WaitForEndOfFrame();
-            }
+            yield return new WaitForSeconds(0.2f);
 
             IsDead = false;
         }
