@@ -10,19 +10,34 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public float mouseSensitivity;
-
         private static Transform _playerPickupContainer;
 
-        [SerializeField] private GameObject playMenu;
-        [SerializeField] [Range(0.0f, 10.0f)] private float movementSpeed = 6.0f;
+        [Header("Movement")] [SerializeField] [Range(0.0f, 10.0f)]
+        private float movementSpeed = 6.0f;
+
         [SerializeField] private float stickToGroundForce = 10;
         [SerializeField] [Range(0.0f, 20.0f)] private float jumpStrength = 10.0f;
         [SerializeField] [Range(0.0f, 5.0f)] private float gravityMultiplier = 2.0f;
-        [SerializeField] [Range(0.0f, 5.0f)] private float interactDistance = 2.0f;
-        [SerializeField] private bool lockCursor = true;
-        [SerializeField] private CanvasRenderer textRenderer;
 
+        [Header("Interaction")] [SerializeField] [Range(0.0f, 5.0f)]
+        private float interactDistance = 2.0f;
+
+        [Header("Camera")] public float mouseSensitivity;
+
+        [Header("Head Movement")] [SerializeField]
+        private bool headMovementEnabled = true;
+
+        [SerializeField] private float bobAmplitude = 0.05f;
+        [SerializeField] private float bobFrequency = 12f;
+        private float _transitionSpeed = 20.0f;
+        private Vector3 _restPosition;
+        private float _timer;
+
+        [Header("User Interface")] [SerializeField]
+        private GameObject playMenu;
+
+        [SerializeField] private CanvasRenderer textRenderer;
+        [SerializeField] private bool lockCursor = true;
         private Camera _camera;
         private float _cameraPitch;
         private CharacterController _characterController;
@@ -51,6 +66,7 @@ namespace Player
             _playerInput.OnFoot.OpenMenu.performed += _ => ToggleMenu();
 
             SpawnPoint = transform.position;
+            _restPosition = _camera.transform.localPosition;
         }
 
         private void Start()
@@ -122,8 +138,9 @@ namespace Player
         private void UpdateTarget()
         {
             if (Physics.Raycast(
-                _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, _camera.nearClipPlane)),
-                _camera.transform.forward, out var hit, interactDistance))
+                    _camera.ScreenToWorldPoint(
+                        new Vector3(Screen.width / 2f, Screen.height / 2f, _camera.nearClipPlane)),
+                    _camera.transform.forward, out var hit, interactDistance))
             {
                 if (hit.transform.GetComponent<Interactable>())
                 {
@@ -200,8 +217,38 @@ namespace Player
             {
                 _currentDirection += Physics.gravity * (gravityMultiplier * Time.deltaTime);
             }
+            
+            UpdateHeadMovement(_currentDirection); // Apply movement vector and call head bob;
 
             return _currentDirection;
+        }
+
+        private void UpdateHeadMovement(Vector3 movement)
+        {
+            if(!_characterController.isGrounded || !headMovementEnabled) return;
+
+            if (Mathf.Abs(movement.x) > 0.1f || Mathf.Abs(movement.z) > 0.1f)
+            {
+                _timer += bobFrequency * Time.deltaTime;
+
+                var localPosition = _camera.transform.localPosition;
+                localPosition = new Vector3(
+                    Mathf.Lerp(localPosition.x, Mathf.Cos(_timer / 2) * bobAmplitude, _transitionSpeed),
+                    Mathf.Lerp(localPosition.y, _restPosition.y + Mathf.Sin(_timer) * bobAmplitude, _transitionSpeed),
+                    localPosition.z
+                );
+                _camera.transform.localPosition = localPosition;
+            }
+            else
+            {
+                var localPosition = _camera.transform.localPosition;
+                localPosition = new Vector3(
+                    Mathf.Lerp(localPosition.x, _restPosition.x, _transitionSpeed * Time.deltaTime),
+                    Mathf.Lerp(localPosition.y, _restPosition.y, _transitionSpeed * Time.deltaTime),
+                    _restPosition.z
+                );
+                _camera.transform.localPosition = localPosition;
+            }
         }
 
         private void Jump()

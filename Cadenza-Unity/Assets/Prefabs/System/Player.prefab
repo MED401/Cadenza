@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 2231553362552968874}
   - component: {fileID: 2277353311649433614}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2231553362552968873}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2231553362407594967}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 2231553363348906855}
   - component: {fileID: 2231553363348906854}
   - component: {fileID: 2231553363348906853}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.7
   m_Radius: 0.5
   m_SlopeLimit: 100
   m_StepOffset: 0.3
@@ -455,15 +455,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72abc31e1b0f7c248ad8fdad06d48748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playMenu: {fileID: 5117283231488028295}
-  mouseSensitivity: 0.1
   movementSpeed: 6
   stickToGroundForce: 10
   jumpStrength: 10
   gravityMultiplier: 3
   interactDistance: 3
-  lockCursor: 1
+  mouseSensitivity: 0.1
+  headMovementEnabled: 1
+  bobAmplitude: 0.05
+  bobFrequency: 12
+  playMenu: {fileID: 5117283231488028295}
   textRenderer: {fileID: 3826978449679272964}
+  lockCursor: 1
 --- !u!1 &2532173320235740774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1082,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4709642326544797882, guid: f01c765ac51207143ae25e1d8082499b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2231553363348906853}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f01c765ac51207143ae25e1d8082499b, type: 3}
 --- !u!1 &5117283231488028295 stripped
