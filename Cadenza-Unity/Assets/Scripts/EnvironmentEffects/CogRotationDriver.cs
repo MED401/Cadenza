@@ -13,7 +13,7 @@ namespace EnvironmentEffects
 
         private void RotateCog()
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
         }
     }
 }
